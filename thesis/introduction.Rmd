@@ -1,0 +1,38 @@
+---
+title: ''
+output: pdf_document
+bibliography: ../references.bib
+---
+
+# Introduction
+
+## Background
+
+<!-- VO2max is important -->
+<!-- physiological determinants -->
+<!-- VO2max testing -->
+<!-- Influence factors in testing -->
+
+## Previous Research
+
+<!-- First example in 90s: applied research -->
+<!-- Since then: various example -->
+<!-- conceptual work: Robergs -->
+<!-- Comparison: martin-rincon -->
+<!-- Problem: group + individual -->
+<!-- Knowledge Gap -->
+
+## Aim
+
+<!-- Gap -> we need this: -->
+<!-- overview what is actually done -->
+<!-- and how does this impact VO2max assessment -->
+
+<!-- Review: mapping current methodological (+ reporting) state  -->
+<!-- Comparison: highlight advantage over previous -->
+
+<!-- help compare results across studies + for individuals -->
+<!-- advise for use of methods  -->
+<!-- call for improved reporting -->
+
+@bassett2000; @tricco2018

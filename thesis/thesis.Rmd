@@ -1,0 +1,149 @@
+---
+title: " "
+output: 
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: TRUE
+mainfont: Arial
+fontsize: 11pt
+urlcolor: blue
+linkcolor: black
+geometry: "left = 4cm, right = 2cm, top = 2cm, bottom = 2cm"
+header-include:
+  - \usepackage{setspace}\spacing{1.5}
+  - \renewcommand{\contentsname}{Inhalt}
+bibliography: ../references.bib
+csl: '`r here::here("apa.csl")`'
+params:
+  title: 'Data Processing Methods to Determine Maximum Oxygen Uptake: A Systematic Scoping Review and Experimental Comparison'
+  name: Simon Nolte
+  university: German Sport University Cologne
+  year: 2022
+---
+
+```{r setup, include=FALSE}
+
+```
+
+\begin{centering}
+
+\vspace*{2cm}
+
+\LARGE
+{\bf `r params$title`}
+
+\vspace{5cm}
+
+\LARGE
+{\bf Bachelor thesis}
+
+\LARGE
+{\bf from}
+
+\vspace{2cm}
+
+\LARGE
+{\bf `r params$name`}
+
+\vspace{6cm}
+
+\LARGE
+{\bf `r params$university`}
+
+\Large
+{\bf `r paste0("Cologne ", params$year)`}
+
+\end{centering}
+
+\pagenumbering{gobble}
+
+\newpage
+
+Thesis supervisor:
+
+Dr. Oliver Jan Quittmann
+
+Institute of Movement and Neurosciences
+
+\newpage
+
+Affirmation in lieu of an oath 
+ 
+Herewith I affirm in lieu of an oath that I have authored this Master thesis independently and did not use any other sources and tools than indicated. All citations, either direct quotations or passages which were reproduced verbatim or nearby-verbatim from publications, are indicated and the respective references are named. The same is true for tables and figures. I did not submit this piece of work in the same or similar way or in extracts in another assignment.
+
+
+\_____________________________
+
+Personally signed
+
+\newpage
+
+# Zusammenfassung (German abstract) {-}
+
+\newpage
+
+\pagenumbering{roman}
+
+# Table of contents {-}
+
+\renewcommand{\contentsname}{}
+
+\tableofcontents
+
+\newpage
+
+\renewcommand{\listfigurename}{}
+
+# List of Figures {-}
+
+\listoffigures
+
+\newpage
+
+\renewcommand{\listtablename}{}
+
+# List of Tables {-}
+
+\listoftables
+
+\newpage
+
+\pagenumbering{arabic}
+
+```{r intro, child = 'introduction.Rmd'}
+
+```
+
+\newpage
+
+```{r methods, child = 'methods.Rmd'}
+
+```
+
+\newpage
+
+```{r results, child = 'results.Rmd'}
+
+```
+
+\newpage
+
+```{r discussion, child = 'discussion.Rmd'}
+
+```
+
+\newpage
+
+```{r conclusion, child = 'conclusion.Rmd'}
+
+```
+
+\newpage
+
+# Bibliography
+
+<div id="refs"></div>
+
+\newpage
+
+# Appendix

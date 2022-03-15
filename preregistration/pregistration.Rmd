@@ -1,0 +1,297 @@
+---
+title: "Preregistration for 'Data Processing Strategies to Determine Maximum Oxygen Uptake: A Systematic Scoping Review and Experimental Comparison'"
+author: Simon Nolte
+output: 
+  pdf_document: 
+    latex_engine: xelatex
+mainfont: Arial
+urlcolor: blue
+bibliography: ../references.bib
+csl: ../apa.csl
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(tinytex.verbose = TRUE)
+```
+
+This document includes the preregistration of the aforementioned project. It follows the 'Inclusive Systematic Review Registration Form' [@akker2020]. For more information on the distinct parts of the planed work including analysis code, visit the accompanying file `detail_review.pdf` and `details_comparison.pdf`.
+
+This work is licensed under a [CC-BY 4.0](http://creativecommons.org/licenses/by/4.0/) license.
+
+## Meta-data
+
+### Target discipline
+
+Sport Science; Sports Medicine
+
+### Title
+
+'Data Processing Strategies to Determine Maximum Oxygen Uptake: A Systematic Scoping Review and Experimental Comparison'
+
+### Author(s)/Contributor(s)
+
+Simon Nolte^1^, Oliver Jan Quittmann^1^
+
+^1^Institute of Movement and Neurosciences, German Sport University Cologne
+
+### Tasks and Roles
+
+SN: Conceptualization; Data curation; Formal Analysis; Software; Investigation; Methodology; Visualization; Writing
+
+OJQ: Conceptualization, Investigation; Methodology
+
+## Review methods
+
+### Type of Review
+
+Scoping review, following the PRISMA-ScR guidelines [@tricco2018]. Accompanied by an empirical analysis (see `details_comparison.pdf` for more information)
+
+### Review Stages
+
+Search, Automated Screening, Random Sampling, Manual Screening, Extraction
+
+### Current review stage
+
+Before Search; the project has not started yet.
+
+### Start date
+
+05 March 2022
+
+### End date
+
+30 April 2022 (for data extraction)
+
+### Background
+
+As the most relevant physiological determinant of endurance performance, the maximum oxygen uptake (V̇O~2max~) is determined by measuring gas exchange measures during cardiopulmonary exercise testing [@bassett2000]. Different processing routines of the collected raw data lead to different V̇O~2max~ values [@robergs2003].
+
+@robergs2010 aimed to map the current state of data processing strategies in scientific cardiopulmonary exercise testing. They stated that there exist "two potential methods for this content: (i) a summary of published research, and (ii) a survey circulated via the Internet to as many exercise physiologists as possible", while choosing the latter for their article [@robergs2010]. A systematic review of published research on the data processing methods for V̇O~2max~ determination has yet not been conducted.
+
+Once the most common strategies have been identified in the literature, they can be compared in terms of their influence on determining the V̇O~2max~. @martin-rincon2019 compared an arbitrary chosen set of data processing strategies, but only on a group level in an assorted data set of mostly recreational or untrained individuals. Systematic comparisons on an individual level in well-trained athletes while controlling for external factors (protocol, measurement device, ...) are lacking.
+
+### Primary research question
+
+Which methods for processing of gas exchange data are currently used in the scientific literature when determining the maximum oxygen uptake?
+
+### Secondary research question
+
+How do the commonly used strategies for data processing influence the determined value for the maximum oxygen uptake?
+
+### Expectations / hypotheses
+
+--- No hypothesis tested due to the mapping character of the review ---
+
+--- The empirical part of the project is purely descriptive ---
+
+### Dependent variable(s) / outcome(s) / main variable(s)
+
+Data processing strategy used
+
+### Independent variable(s) / interventions(s) / treatment(s)
+
+--- No independent variables used ---
+
+### Additional variable(s) / covariate(s)
+
+-   Metabolic cart used
+-   Data preprocessing algorithm used
+
+### Software
+
+R Version 4.x [@rcoreteam2021]
+
+### Funding
+
+--- No funding was received for this project ---
+
+### Conflicts of interest
+
+--- All researchers involved state that there is no conflict of interest ---
+
+### Overlapping authorship
+
+--- No overlapping authorship is expected ---
+
+## Search Strategy
+
+### Databases
+
+PubMed & Web of Science
+
+### Interfaces
+
+PubMed & Web of Science
+
+### Grey literature
+
+--- No grey literature will be searched ---
+
+### Inclusion and exclusion criteria
+
+Inclusion:
+
+-   only research related to 'maximum oxygen uptake' (or similar term in title, abstract or keywords)
+-   only research published in 2017 or later
+
+### Query strings
+
+PubMed: `((((("maximum oxygen uptake") OR ("maximal oxygen uptake")) OR ("VO2max")) OR ("maximum oxygen consumption")) OR ("maximal oxygen consumption")) AND (("2017/01/01"[Date - Publication] : "3000"[Date - Publication]))`
+
+Web of Science: `(((((ALL=("maximum oxygen uptake")) OR ALL=("maximal oxygen uptake")) OR ALL=("VO2max")) OR ALL=("maximum oxygen consumption")) OR ALL=("maximal oxygen consumption")) AND PY=(2017-2022)`
+
+### Search validation
+
+--- no search validation procedure is conducted, as we aim to only map current methodical practices on a sample of research articles. We do not believe that our search strategy incorporates a systematic bias towards this goal. ---
+
+### Other search strategies
+
+--- No further search strategies are used ---
+
+### Procedures to contact authors
+
+--- We will not contact any authors during the review ---
+
+### Results of contacting authors
+
+--- Not applicable as we do not contact authors ---
+
+### Search expiration and repetition
+
+We will conduct one single literature search in March 2022, which will not be repeated.
+
+### Search strategy justification
+
+We aim to map current methodical practices in a specific yet often employed setting (determining maximum oxygen uptake). As measurement devices and methods change with time, we decided to include only studies from the past five years (2017 to today). We want to keep the initial search quite broad to have a better control of article exclusion in later stages (e.g. by automated title screening instead of additional initial exclusion criteria in search). As we later only take a random sample of our search results, we do not need to exhaustively review the literature, which is why we refrain from searching additional databases and grey literature.
+
+Based on @robergs2010 we use the term V̇O~2max~ to denote the highest oxygen uptake during a short exercise test until subjective exhaustion. Criteria to distinguish between V̇O~2max~ and V̇O~2peak~ are not universally accepted and heavily rely on the method used to process the gas exchange data (e.g. V̇O~2~ plateau as primary criteria or RER~max~ as secondary criteria). We do not use V̇O~2peak~ as a search term, as we expect such search to return many studies using exercise protocols that are generally not considered eligible for determining the maximum oxygen uptake.
+
+We believe that our search strategy provides a reasonable subset of the current scientific literature determining the V̇O~2max~.
+
+## Screening
+
+### Screening stages
+
+1.  Automated screening from Titles and meta data
+2.  Automated removal of duplicates (based on DOI)
+3.  Random sample of 500 articles
+4.  Manual title and abstract screening
+5.  Full-text retrieval and screening
+6.  Data extraction
+7.  *If less than 200 results remain after step 5, we will add an additional random sample of 100 article (step 3). This may be repeated until a minimum of 200 articles remains in step 5.*
+
+### Screened fields / blinding
+
+During manual title and abstract screening, all additional information will be blinded to the person screening. During full text screening no blinding applies. More information are available in the `details_review.pdf` file.
+
+### Used exclusion criteria
+
+During automated screening:
+
+-   No DOI attached
+-   Title contains at least one of the following phrases: 'review'; 'correction'; 'meta-analysis'; 'comment'; 'retraction'; 'editorial'; 'erratum'; 'reply'
+-   article duplicated (based on DOI assigned)
+
+During manual abstract screening:
+
+-   text not in English language
+-   no original research article
+-   no research in humans
+-   V̇O~2max~ not measured (e.g. only estimated)
+
+During manual text screening:
+
+-   no full text available
+-   all of the above criteria (from manual abstract screening)
+-   V̇O~2~ not continuously measured
+-   testing protocol not to subjective exhaustion
+-   testing protocol longer than 20 minutes (on average)
+
+### Screener instructions
+
+--- See document `details_review.pdf` for more details ---
+
+### Screening reliability
+
+All screening will be employed by two independent screeners (SN and OJQ).
+
+### Screening reconciliation procedure
+
+Conflicts during screening will be resolved by discussion between the two screeners.
+
+### Sampling and sampling size
+
+After the automated title and meta data screening and removing of duplicates, we will perform a random sample of 500 articles (see `detail_review.pdf` for technical details).
+
+We believe a final sample size of 200 studies after all exclusion steps to be sufficient, assuming that about half of these lack appropriate reporting of methods, and half contain valuable information. We expect about 50% of the initially sampled articles to be excluded during abstract and full-text screening and therefore use the sampling size of 500.
+
+If after all exclusion steps less than 200 articles remain, we will extend the random sampling by an additional 100 articles (using the same random seed), until the threshold of 200 articles after final exclusion is meet.
+
+### Screening procedure justification
+
+Due to economical and methodological reasons we perform no exhaustive literature search and investigate a sample of articles (see above). All exclusion criteria aim to leave the studies, that measured V̇O~2max~ using an appropriate testing procedure in humans.
+
+### Data management and sharing
+
+We will store the initial search results in a `csv` (for PubMed) and a `xls` (for Web of Science) file. The automated exclusion will be done in R [@rcoreteam2021] and documented in R Markdown. Results of manual screening and data extraction will be documented in a `csv` file. For more information see the file `details_review.pdf`.
+
+All data and analysis code will be made publicly available on GitHub.
+
+### Miscellaneous screening details
+
+--- No further details ---
+
+## Extraction
+
+### Entities to extract
+
+-   metabolic cart used
+
+-   type of metabolic cart/data basis (breath-by-breath, mixed chamber, ...)
+
+-   preprocessing algorithm
+
+-   data processing software
+
+-   interpolation procedure
+
+-   data processing/determination of V̇O~2max~:
+
+    -   type (time average, breath average, digital filtering)
+    -   alignment (rolling, binned, ...)
+    -   interval (in sec/breath, parameters for filtering)
+
+### Extraction stages
+
+All extraction happens in a single manual step by one researcher (SN).
+
+### Extractor instructions
+
+See the document `details_review.pdf` for more details.
+
+### Extractor blinding
+
+No blinding is applied during extraction.
+
+### Extraction reliability
+
+Only a single researcher will extract the information
+
+### Extraction reconciliation
+
+--- Not applicable, as extraction will be done by a single researcher ---
+
+### Extraction procedure justification
+
+We aim to extract data on the data processing methods for V̇O~2max~ testing. We also collect related information (e.g. metabolic cart used) as stated above. If information are missing or incomplete we will document this, but not exclude the article.
+
+### Data management and sharing
+
+Extracted data will be saved in a `csv` file and publicly shared via GitHub.
+
+## Synthesis and quality assessment
+
+--- As this is a scoping review, we will not perform any quality assessment of the included research. Instead we will simply count the methodical characteristics from the included research. Note that this scoping review is accompanied by an empirical comparison of different data processing methods (see `details comparison.pdf` for more information). ---
+
+## References

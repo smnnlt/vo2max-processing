@@ -1,0 +1,13 @@
+---
+title: ''
+output: pdf_document
+bibliography: ../references.bib
+---
+
+# Results
+
+## Systematic Scoping Review
+
+## Experimental Comparison
+
+![A plot](../preregistration/example_plot.png)
