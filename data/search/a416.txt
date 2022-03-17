@@ -1,0 +1,5 @@
+*** no abstract ***
+*** comment ***
+
+First sentences:
+We have serious concerns regarding the safety implications of the study by Jenkins et al. [9]. The authors assert that “…the SPV [self-paced peak oxygen uptake test] may be a safe, valid and reliable measure of peak oxygen uptake (V˙O2peak) in both clinical and healthy populations”.

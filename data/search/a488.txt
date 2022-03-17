@@ -1,0 +1,26 @@
+Using a verification phase test (VP) following a graded exercise test has
+been shown to be superior to secondary criteria to determine a “true”
+VO2max. It has not been determined if a sex difference in the optimal
+intensity for cycle ergometry VP testing exists. 31 participants (16
+females, age: 21±1.5 yrs, BMI: 23.2±3.3 kg/m2; 15 males, age: 22±1.5
+yrs, BMI: 24.5± 2.2 kg/m2) completed a ramp VO2max test, then on 4
+subsequent days, in random order, completed VP tests at 80, 90, 100,
+and 105% of the peak wattage achieved during the initial ramp test. The
+VO2max values for each test (Ramp, 80, 90, 100, and 105%) for women
+were 2.36±0.35, 2.29±0.03, 2.34±0.33, 2.35±0.32, 2.32±0.32 L/min and
+for men were 3.65±0.66, 3.67±0.71, 3.67±0.67, 3.55±0.51, 3.49±0.48
+L/min. For males VO2max at 105% was significantly lower than Ramp
+(P=0.02), 80% (P <0.01), 90% (P=0.02). There was also a trend for
+VO2max at 80% to be higher than 100% (P=0.08). Females showed no
+significant differences between VO2max values for any VP or Ramp test. 10
+of the 16 female subjects had their highest VO2max during the 100 or
+105% VP, while 12 of 15 male subjects had their highest from a
+submaximal VP. When comparing all VPs a trend for sex x test interaction
+(P =0.08) was observed. Submaximal VP intensities of 80% and 90% of
+max wattage achieved on the ramp test produce the highest VO2max
+values in males. In females the maximal and supramaximal intensities
+most frequently produced the highest VO2max values whereas the 80% led
+to excessive time to exhaustion (9.23±4.99 min). In order to obtain the
+highest VO2max values in the most optimal test time we recommend using
+90% of max wattage in males and 100 or 105% of max wattage in
+females

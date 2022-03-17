@@ -1,0 +1,204 @@
+# Analysis Script for the Systematic Review
+
+## Project: 'Data Processing Strategies to Determine Maximum Oxygen Uptake: A Systematic Scoping Review and Experimental Comparison'
+
+This script closely follows the preregistration, which is uploaded on OSF.
+
+```{r setup}
+# Packages used for the data workflow
+
+library(readxl)
+library(rentrez)
+library(XML)
+library(purrr)
+library(ggplot2)
+library(MetBrewer)
+```
+
+#### Get search data
+
+The search was conducted on the 16th March 2022 at around 10 pm CET.
+
+The Pubmed results are saved in the file 'pubmed.csv'; the Web of Science results are saved in the file 'wos.xls'.
+
+```{r read, warning=FALSE, message=FALSE}
+# file name for PubMed results
+pm_file <- "../data/search/pubmed.csv"
+
+# file name for merged WoS results
+wos_file <- "../data/search/wos.xls"
+
+# read PubMed data
+pm_data_pre <- read.csv(pm_file)
+pm_data <- data.frame(
+  pmid = pm_data_pre[, 1],
+  title = pm_data_pre$Title,
+  authors = pm_data_pre$Authors,
+  journal = pm_data_pre$Journal.Book,
+  year = pm_data_pre$Publication.Year,
+  doi = pm_data_pre$DOI,
+  abstract = NA
+)
+# read Web of Science data
+wos_data_pre <- readxl::read_xls(wos_file)
+wos_data <- data.frame(
+  pmid = wos_data_pre$`Pubmed Id`,
+  title = wos_data_pre$`Article Title`,
+  authors = wos_data_pre$`Author Full Names`,
+  journal = wos_data_pre$`Source Title`,
+  year = wos_data_pre$`Publication Year`,
+  doi = wos_data_pre$DOI,
+  abstract = wos_data_pre$Abstract
+)
+
+# count PubMed results
+nrow(pm_data)
+# count Web of Science results
+nrow(wos_data)
+```
+
+#### Removal of duplicates
+
+```{r duplicates}
+# Merge data frame
+merge_data <- rbind(wos_data, pm_data)
+
+# Filter entries without doi
+no_doi <- is.na(merge_data$doi) | (merge_data$doi == "")
+merge_data <- merge_data[!no_doi, ]
+
+# Count removal from missing doi
+sum(no_doi)
+
+# Find duplicated DOIs
+dupl <- duplicated(merge_data$doi)
+# Filter duplicates
+merge_data <- merge_data[!dupl, ]
+
+# Count removal of duplicates
+sum(dupl)
+```
+
+#### Automated title filtering
+
+```{r filter}
+# Filter titles by terms
+terms <- paste0("review|comment|correction|retraction|meta-analysis",
+                "|editorial|erratum|reply")
+excl <- grepl(terms, merge_data$title, ignore.case = TRUE)
+filtered_data <- merge_data[!excl, ]
+
+# Count removal by title filtering
+sum(excl)
+# count remaining articles
+nrow(filtered_data)
+```
+
+#### Random Sampling
+
+```{r sampling, eval=FALSE}
+# Assign ids to articles left
+filtered_data$id <- seq_len(nrow(filtered_data))
+
+# randomly sample 500 articles
+set.seed(4711)
+smpl <- sample(filtered_data$id, size = 500)
+
+sampled_data <- filtered_data[smpl, ]
+# assign sample id
+sampled_data$sid <- seq_len(nrow(sampled_data))
+
+# get abstract from PubMed where missing
+
+no_abstract <- is.na(sampled_data$abstract)
+
+no_abstract_pmid <- sampled_data$pmid[no_abstract]
+
+# function to scrape abstract from the PubMed API
+get_abstract <- function(pmid) {
+  if (is.na(pmid))
+    return(NA)
+  xml_data <- rentrez::entrez_fetch(
+    db = "pubmed", 
+    id = pmid, 
+    rettype = "xml", 
+    parse = TRUE
+  )
+  text <- XML::xmlValue(XML::getNodeSet(xml_data, "//AbstractText"))
+  out <- paste(text, collapse = "///")
+  if (out == "") out <- NA
+  out
+}
+
+# retrieve missing abstracts
+sampled_data$abstract[no_abstract] <- purrr::map_chr(
+  .x = no_abstract_pmid, 
+  .f = get_abstract
+)
+
+# manually add abstract for articles, where automated abstract retrieval did not
+# work. In these cases no blinding applies to the principal investigator
+which(is.na(sampled_data$abstract))
+
+sampled_data[500,]
+
+sampled_data$abstract[50] <- readtext::readtext("../data/search/a50.txt")$text
+sampled_data$abstract[238] <- readtext::readtext("../data/search/a238.txt")$text
+sampled_data$abstract[288] <- readtext::readtext("../data/search/a288.txt")$text
+sampled_data$abstract[416] <- readtext::readtext("../data/search/a416.txt")$text
+sampled_data$abstract[488] <- readtext::readtext("../data/search/a488.txt")$text
+sampled_data$abstract[490] <- readtext::readtext("../data/search/a490.txt")$text
+sampled_data$abstract[500] <- readtext::readtext("../data/search/a500.txt")$text
+
+# later plotting throws an error for some articles due to unrecognized html-tags
+# in the abstracts. These abstract are replaced by their text equivalents
+sampled_data$abstract[344] <- readtext::readtext("../data/search/a344.txt")$text
+sampled_data$abstract[356] <- readtext::readtext("../data/search/a356.txt")$text
+
+save(sampled_data, file = "../data/screen/sample.Rda")
+```
+
+#### Prepare Title-Abstract plots for screening
+
+```{r abstractplots, eval=FALSE}
+load("../data/screen/sample.Rda")
+
+# Function for creating plots with blinded abstract data
+create_abstract_plot <- function(row, data) {
+  # get random colour
+  # different colours in plots are used to stay concentrated when scanning
+  # the abstracts
+  clrs <- c(MetBrewer::met.brewer("Moreau")[-4])
+  clr <- sample(clrs, 1)
+  
+  g <- ggplot(data = NULL, aes(x = 0, y = 1)) +
+  ggtext::geom_textbox(
+    width = 1, 
+    box.colour = "transparent", 
+    label =  gsub(">", "", data$abstract[row]),
+    colour = clr
+  ) +
+  labs(
+    title = paste0(strwrap(data$title[row], 80), collapse = "\n"), 
+    subtitle = paste0("Sampling ID: ", sprintf("%03i", data$sid[row])),
+    caption = paste0("ID: ", data$id[row], "; PMID = ", data$pmid[row])
+    ) +
+  theme_void()
+  
+  ggsave(
+    filename = paste0("../plots/abstracts/", sprintf("%03i", data$sid[row]), ".png"), 
+    plot = g, 
+    dpi = 300, width = 7, height = 5, bg = "white"
+  )
+}
+
+
+# Create blinded abstract plots
+purrr::walk(
+  .x = seq_len(nrow(sampled_data)),
+  .f = create_abstract_plot, 
+  data = sampled_data
+)
+
+```
+

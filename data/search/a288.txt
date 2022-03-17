@@ -1,0 +1,5 @@
+*** no abstract ***
+*** Editorial comment ***
+
+First sentences:
+The importance of exercise capacity in predicting survival has been reported in many asymptomatic populations as well as in patients with particular co-morbidities, including patients with cardiovascular disease. Thirty years ago, a landmark study by Mancini et al (1) demonstrated the use of peak oxygen consumption (VO2) as a key parameter for risk-stratifying patients with heart failure and solidified its role in selecting heart transplantation candidates (1). Numerous publications have followed, affirming the validity of this variable as well as describing the usefulness of other cardiopulmonary exercise testing (CPET) variables including ventilatory efficiency (VE/VCO2) (ie, the amount of ventilation is needed to remove 1 L of carbon dioxide produced by the body).
