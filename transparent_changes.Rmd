@@ -1,0 +1,33 @@
+---
+title: "Transparent Changes"
+author: Simon Nolte
+output: 
+  pdf_document: 
+    latex_engine: xelatex
+mainfont: Arial
+urlcolor: blue
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(tinytex.verbose = TRUE)
+```
+
+# Supplement to the project 'Data Processing Strategies to Determine Maximum Oxygen Uptake: A Systematic Scoping Review and Experimental Comparison'
+
+This document includes all deviation and modifications of code and methods in the final project compared to its [preregistration](https://osf.io/3am4s).
+
+## Minor Changes
+
+#### Code changes for automated article filtering and screening preparation
+
+* advanced detection of missing DOIs: `is.na(merge_data$doi) | (merge_data$doi == "")` instead of `is.na(merge_data$doi)`.
+* Improved function to retrieve missing PubMed abstracts: Handles case when input (PMID) is missing (`if (is.na(pmid)) return(NA)`).
+* save/load of the sampling results as an .Rda file to reduce computation time when working on parts of the workflow.
+
+#### Unblinding of single abstract
+
+* Manual retrieval of abstracts for articles, as these were neither present in the search result data, nor could be automatically scraped. Abstracts were saved and imported as .txt files. Temporary unblinding only applied to the primary researcher. This concerns the abstract with the Sampling ID (sid): 50, 238, 288, 416, 488, 490, 500
+* Manual retrieval of abstracts for articles, as the automatically collected abstract contained html-tags that could not be removed for later abstract plots. Abstracts were saved and imported as .txt files. Temporary unblinding only applied to the primary researcher. This concerns the abstract with the Sampling ID (sid): 344, 356
+* Unblinding during screening to assess the implications of title given in squared brackets. This concerns the abstract with the Sampling ID (sid): 262, 303
+* Consulting of online abstract due to incomplete abstract plot. This concerns the abstract with the Sampling ID (sid): 275
