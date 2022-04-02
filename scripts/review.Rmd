@@ -140,8 +140,6 @@ sampled_data$abstract[no_abstract] <- purrr::map_chr(
 # work. In these cases no blinding applies to the principal investigator
 which(is.na(sampled_data$abstract))
 
-sampled_data[500,]
-
 sampled_data$abstract[50] <- readtext::readtext("../data/search/a50.txt")$text
 sampled_data$abstract[238] <- readtext::readtext("../data/search/a238.txt")$text
 sampled_data$abstract[288] <- readtext::readtext("../data/search/a288.txt")$text
@@ -202,3 +200,57 @@ purrr::walk(
 
 ```
 
+#### Compare abstract screening results
+
+```{r abstract-screen}
+load("../data/screen/sample.Rda")
+# read screening results
+s_res1 <- read.csv("../data/screen/abstract_screening_i1.csv")[, 2]
+s_res2 <- read.csv("../data/screen/abstract_screening_i2.csv")[, 2]
+
+# compare results
+comp_res <- function(x1, x2) {
+  if (is.na(x1)) x1c <- 0 else x1c <- x1
+  if (is.na(x2)) x2c <- 0 else x2c <- x2
+  if (x1c == x2c) out <- x1 else out <- "XXX"
+  out
+}
+
+s_res <- purrr::map2_chr(s_res1, s_res2, comp_res)
+s_res_df <- data.frame(
+  id = 1:500,
+  i1 = s_res1,
+  i2 = s_res2,
+  result = s_res,
+  decision = rep.int("", 500),
+  doi = sampled_data$doi
+)
+# write.csv(s_res_df, "../data/screen/abstract_screening.csv")
+# Calculate relative agreement
+1 - (sum(s_res == "XXX", na.rm = TRUE) / length(s_res))
+
+# Get final decisions
+s_res_final <- read.csv("../data/screen/abstract_screening.csv")
+# number excluded 
+sum(!is.na(s_res_final$decision))
+# extract remaining data
+ft_screen <- sampled_data[is.na(s_res_final$decision), ]
+
+l <- list.files("../data/fulltext")
+get_ft_id <- function(n, files) {
+  name <- files[n]
+  as.numeric(strsplit(name, "\\.")[[1]][[1]])
+}
+fts <- purrr::map_dbl(seq_along(l), get_ft_id, files = l)
+# find missing full texts
+# ft_screen$sid[!ft_screen$sid %in% fts]
+
+# write file for full text screening
+ft_screen_df <- data.frame(
+  sid = ft_screen$sid,
+  fulltext_exclusion = rep.int("", nrow(ft_screen)),
+  exclusion_note = rep.int("", nrow(ft_screen)),
+  doi = ft_screen$doi
+)
+# write.csv(ft_screen_df, file = "../data/screen/fulltext_screening_i1.csv", row.names = FALSE)
+```
