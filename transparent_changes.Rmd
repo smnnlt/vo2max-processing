@@ -17,6 +17,13 @@ options(tinytex.verbose = TRUE)
 
 This document includes all deviation and modifications of code and methods in the final project compared to its [preregistration](https://osf.io/3am4s).
 
+## Major Changes
+
+#### Addditional variables extracted from included research
+
+`outcome`: Which type of outcome VO2max is. Either `primary`, `secondary` or `other`
+`source`: Which source is provided for the data processing method used. 
+
 ## Minor Changes
 
 #### Code changes for automated article filtering and screening preparation
@@ -25,9 +32,18 @@ This document includes all deviation and modifications of code and methods in th
 * Improved function to retrieve missing PubMed abstracts: Handles case when input (PMID) is missing (`if (is.na(pmid)) return(NA)`).
 * save/load of the sampling results as an .Rda file to reduce computation time when working on parts of the workflow.
 
-#### Unblinding of single abstract
+#### Unblinding of single abstracts
 
 * Manual retrieval of abstracts for articles, as these were neither present in the search result data, nor could be automatically scraped. Abstracts were saved and imported as .txt files. Temporary unblinding only applied to the primary researcher. This concerns the abstract with the Sampling ID (sid): 50, 238, 288, 416, 488, 490, 500
 * Manual retrieval of abstracts for articles, as the automatically collected abstract contained html-tags that could not be removed for later abstract plots. Abstracts were saved and imported as .txt files. Temporary unblinding only applied to the primary researcher. This concerns the abstract with the Sampling ID (sid): 344, 356
 * Unblinding during screening to assess the implications of title given in squared brackets. This concerns the abstract with the Sampling ID (sid): 262, 303
 * Consulting of online abstract due to incomplete abstract plot. This concerns the abstract with the Sampling ID (sid): 275
+
+#### Minor Modification of exclusion criteria 
+
+Changes are in italics:
+
+`'r'`: Is the article no original research *(i.e. no primary analysis of experimental data)* ? (if yes, indicate 'r'; if no, continue)
+
+`'t'`: Was no full-text ~~available~~ *accessible* for the corresponding article? (if yes, indicate 't', if no continue)
+
