@@ -5,7 +5,7 @@ sid,cart,type,outcome,pre,software,interpolation,ptype,averaging,parameters,sour
 7,Master Screen; Carl Reiner,bbb,primary,NA,Ikemaster,second; linear,time,moving,15,NA,,10.1249/MSS.0000000000001289
 8,CPX; Medical Graphics,bbb,secondary,NA,NA,NA,NA,NA,NA,NA,,10.1519/JSC.0000000000002389
 10,ZAN; ZAN Messgeräte,bbb,primary,NA,NA,NA,time,binned,15,NA,not clear if binned or moving,10.1519/JSC.0000000000002259
-14,customized,open-circuit?,other,NA,DASYLab,NA,time,binned,60,NA,from source,10.1152/japplphysiol.00684.2018
+14,customized,mixing,other,NA,DASYLab,NA,time,binned,60,NA,from source,10.1152/japplphysiol.00684.2018
 16,K4 b2; Cosmed,bbb,primary,filter3sd,NA,NA,time,binned,15,NA,,10.1519/JSC.0000000000002696
 17,NA,NA,secondary,NA,NA,NA,NA,NA,NA,NA,,10.3389/fendo.2019.00116
 18,NA;Parvomedics,mixing,other,NA,NA,NA,time,binned,15,NA,,10.1016/j.wem.2018.01.005
@@ -19,7 +19,7 @@ sid,cart,type,outcome,pre,software,interpolation,ptype,averaging,parameters,sour
 33,Metamax II;Cortex,mixing,primary,NA,NA,NA,time,binned,10,NA,,10.1080/00140139.2018.1473644
 36,Quark;Cosmed,NA,primary,NA,NA,NA,NA,NA,NA,NA,,10.3390/healthcare9070851
 37,Ultima Cardio2;Medical Graphics,bbb,secondary,NA,NA,NA,NA,NA,NA,NA,,10.3390/ijerph17114174
-39,True One;ParvoMedics,mixed,other,NA,NA,NA,time,binned,45,NA,,10.1080/09638288.2016.1260648
+39,True One;ParvoMedics,mixing,other,NA,NA,NA,time,binned,45,NA,,10.1080/09638288.2016.1260648
 40,Metalyzer 3B-R3;Cortex,bbb,primary,NA,NA,NA,time,binned,30,NA,,10.5114/hpc.2021.107781
 43,VO2000;Medgraphics,bbb,other,NA,NA,NA,NA,NA,NA,NA,,10.1038/s41598-019-54912-6
 44,Jaeger Oxycon Pro;Viasys Healthcare ,bbb,primary,NA,NA,NA,time,binned,60,NA,,10.2478/bhk-2019-0023
@@ -53,7 +53,7 @@ sid,cart,type,outcome,pre,software,interpolation,ptype,averaging,parameters,sour
 114,NA;Medical Graphics,bbb,other,NA,BrezeSuite,NA,NA,NA,NA,NA,,10.1194/jlr.M091942
 117,CPX Express;Med Graphics,bbb,primary,NA,NA,NA,time,binned,60,NA,,10.1016/j.resp.2016.12.003
 119,Quark;Cosmed,bbb,primary,NA,NA,NA,time,binned,15,NA,,10.1016/j.heliyon.2020.e05427
-120,CardioCoachCO2;Korr Medical Technologies,mixing,primary,NA,manufactor,NA,NA,mbinned,2x15,NA,,10.3390/sports7040082
+120,CardioCoachCO2;Korr Medical Technologies,mixing,primary,NA,manufactor,NA,time,mbinned,2x15,NA,,10.3390/sports7040082
 121,NA,bbb,primary,NA,NA,NA,time,binned,30,NA,,10.1080/17461391.2020.1867650
 123,NA;Carl Reiner,bbb,secondary,NA,NA,NA,NA,NA,NA,NA,,10.1177/2047487318808014
 124,K4 b2;Cosmed,bbb,secondary,NA,NA,NA,breath,moving,8,Johnson1998,,10.1371/journal.pone.0170060
