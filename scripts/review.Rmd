@@ -244,6 +244,8 @@ s_res_df <- data.frame(
 s_res_final <- read.csv("../data/screen/abstract_screening.csv")
 # number excluded 
 abstr_excl_count <- sum(!is.na(s_res_final$decision))
+# reasons for exclusion
+table(s_res_final$decision)
 # extract remaining data
 ft_screen <- sampled_data[is.na(s_res_final$decision), ]
 
@@ -328,5 +330,150 @@ extr <- data.frame(
   doi = ft_res$doi[is.na(ft_res$decision)]
 )
 
-write.csv(extr, "../data/extract/extraction.csv", row.names = FALSE)```
+write.csv(extr, "../data/extract/extraction.csv", row.names = FALSE)
+```
+
+
+#### Read and clean extracted data
+
+```{r clean, warning=FALSE}
+ext <- read.csv("../data/extract/extraction.csv")
+
+# Create column for processing type + averaging type combination
+ext$proc_combination <- paste(ext$ptype, ext$averaging, sep = "-")
+ext$proc_combination[ext$proc_combination == "NA-NA"] <- NA
+
+# Separate parameter column for multiple parameters (i.e. multiple binned averages)
+# and calculate total duration
+
+split_parameters <- function(n) {
+  value <- ext$parameters[n]
+  if (grepl("x", value)) {
+    value_split <- strsplit(value, "x")[[1]]
+    out <- data.frame(
+      param_times = as.numeric(value_split[1]), 
+      param_value = as.numeric(value_split[2])
+    )
+    out$param_duration <- out$param_times * out$param_value
+  } else {
+    out <- data.frame(
+      param_times = NA, 
+      param_value = as.numeric(value), 
+      param_duration = as.numeric(value)
+    )
+  }
+  out
+}
+
+ext <- cbind(ext, purrr::map_dfr(seq_len(nrow(ext)), split_parameters))
+
+# save data
+# save(ext, file = "../data/review.Rda")
+
+# Show metabolic carts used
+table(ext$type, useNA = "ifany")
+```
+
+#### Analyze extracted data
+
+
+```{r percentages}
+load("../data/review.Rda")
+# Remove Douglas bag measurements
+ext <- ext[ext$type != "douglas", ]
+
+n_total <- nrow(ext)
+ext_bbb <- ext[ext$type == "bbb" & !is.na(ext$type),]
+n_bbb <- nrow(ext_bbb)
+
+# Type of metabolic cart
+p_cart <- 1 - (sum(grepl("NA", ext$cart) | is.na(ext$cart)) / n_total)
+
+# Preprocessing
+p_pre <- sum(!is.na(ext_bbb$pre)) / n_bbb
+
+# Software
+p_software <- sum(!is.na(ext_bbb$software)) / n_bbb
+
+# Processing strategy
+p_proc <- sum(!is.na(ext$ptype) & !is.na(ext$averaging) & !is.na(ext$parameters)) / n_total
+
+# Source
+p_source <- sum(!is.na(ext$source)) / n_total
+
+reporting <- data.frame(
+  "cart" = p_cart,
+  "pre" = p_pre,
+  "software" = p_software,
+  "processing" = p_proc,
+  "source" = p_source
+)
+
+save(reporting, file = "../data/reporting.Rda")
+
+knitr::kable(purrr::map_dfr(reporting, scales::percent, accuracy = 0.1))
+
+
+```
+
+
+```{r analysis}
+# Show data processing strategies overall
+table(ext$ptype, useNA = "ifany")
+
+# Show data processing type for breath-by-breath measurements only
+table(ext$proc_combination[ext$type == "bbb"], useNA = "ifany")
+
+# Plot for total calculation interval lengths
+ext[ext$ptype == "time" & !is.na(ext$ptype), ] |>
+  ggplot(aes(y = param_duration)) +
+    geom_bar() +
+  geom_text(aes(label = ..count..), stat = "count", hjust = 1.2, colour = "white") +
+    scale_y_reverse(
+      breaks = c(5, 10, 15, 20, 30, 45, 60),
+      minor_breaks = NULL,
+      name = "Duration (s)"
+    ) +
+    scale_x_continuous(
+      minor_breaks = NULL,
+      name = "Count",
+      breaks = c(0, 10, 20, 30, 40),
+      labels = NULL,
+      expand = c(0, 0),
+      position = "top"
+    ) +
+    theme_minimal(13) +
+   theme(
+     panel.grid.major.y = element_blank(),
+     axis.ticks.y = element_line(colour = "grey", size = 0.5)
+    )
+
+ggsave("../plots/duration_count.png", width = 5, height = 3, dpi = 600, bg = "white")
+```
+
+```{r}
+library(treemapify)
+library(dplyr)
+
+ext_count <- ext |> 
+  filter(type == "bbb") |>
+  select(c(proc_combination, ptype)) |>
+  filter(!is.na(proc_combination)) |>
+  count(proc_combination, ptype)
+
+ext_count$proc_combination <- factor(
+  ext_count$proc_combination, 
+  levels = c("breath-binned", "time-moving", "breath-moving", "time-binned", "time-mbinned"),
+  labels = c("Binned Breath","Moving Time", "Moving Breath", "Binned Time", "Multiple Binned Time"))
+
+percs <- scales::percent(ext_count$n / sum(ext_count$n))
+ext_count$label <- paste0(ext_count$proc_combination, " (", percs, ")")
+ext_count$subgroup <- c(1, 1, 2, 3, 4)
+
+ggplot(ext_count, aes(area = n, fill = proc_combination, label = label, subgroup = subgroup)) +
+  geom_treemap(show.legend = FALSE, start = "topleft") +
+  geom_treemap_text(reflow = TRUE, place = "centre", start = "topleft")
+
+ggsave("../plots/strategies.png", width = 5, height = 3, dpi = 600, bg = "white")
+```
 
