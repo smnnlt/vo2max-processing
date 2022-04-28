@@ -5,3 +5,14 @@ bibliography: ../references.bib
 ---
 
 # Discussion
+
+<!-- if report - diverse strategies -->
+<!-- most (multiple) binned time averages: necessary for mixing chamber, but bbb has more information! -->
+<!-- current practice is in contrast to recommendations (Robergs)! -->
+
+<!-- variety of calculation intervals - different results (example)-->
+<!-- comparing results for strategies -->
+
+<!-- recommendation for choosing a strategy: ... -->
+
+<!-- guidelines for reporting: ... -->

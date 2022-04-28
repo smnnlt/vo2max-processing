@@ -6,17 +6,19 @@ bibliography: ../references.bib
 
 # Methods
 
-The work presented in this thesis was preregistered before the start of the project on [OSF](). Any deviations from the preregistration are indicated in the 'Transparent Changes' document (LINK/Appendix). All data and code can be found at [GitHub](https://www.github.com/smnnlt/vo2max-processing).
+The work presented in this thesis was preregistered before the start of the project on the [Open Science Framework](). Any deviations from the preregistration are indicated in the 'Transparent Changes' document (LINK/Appendix). Major deviations will also explicitly name be named within the methods section. All data and code of this research project can be found at [GitHub](https://www.github.com/smnnlt/vo2max-processing).
 
 <!-- explicitly state deviations from preregistration -->
 
 ## Systematic Scoping Review
 
-<!-- Detailed Aim of review -->
+The aim of the Scoping review was to systematically map current practices of data processing for V̇O~2max~ determination in the scientific literature. Since the V̇O~2max~ determination is too common to perform an exhaustive search, I randomly sampled 500 articles that referred to V̇O~2max~ or similar keywords. Data on processing strategies was extracted from all sampled articles that directly measured V̇O~2max~ using an appropriate testing procedure in humans.
+
+The review was performed in accordance to the PRISMA extension for Scoping reviews [@tricco2018]. Appendix A contains the corresponding reporting checklist.
 
 ### Search & Screening
 
-To assess the current state of data processing methods for determining V̇O~2max~ in exercise science I systematically screened recent literature. The article search was conducted on 16th March 2022 using [PubMed]() and [Web of Science](). The search included articles published from 2017 to 2022 referring to 'maximum oxygen uptake' or equivalent terms in title, abstract or keyword. Table 1 shows the exact search terms.
+The article search was conducted on 16th March 2022 using [PubMed]() and [Web of Science](). The search included articles published from 2017 to 2022 referring to 'maximum oxygen uptake' or equivalent terms in title, abstract or keyword. Table 1 shows the exact search terms used.
 
 ```{r terms, echo = FALSE}
 out <- data.frame(
@@ -26,10 +28,11 @@ out <- data.frame(
 
 knitr::kable(out, 
   col.names = c("Source", "Search String"), 
-  caption = "Search strings for the systematic scoping review.")
+  caption = "Search strings for the systematic scoping review."
+)
 ```
 
-The search results from both data bases were joined at checked for the presence of a DOI. Entries without DOI were excluded, to allow for automated removal of duplicates by DOI matching in the next step. After the removal of duplicates I conducted an automated title scanning to remove results that are likely no original research articles. Table 2 displays the exclusion terms during the automated title screening.
+The search results from both data bases were joined and checked for the presence of a DOI. Entries without DOI were excluded, to allow for automated removal of duplicates by DOI matching in the next step. After the removal of duplicates I conducted an automated title scanning to remove results that were likely no original research articles. Table 2 displays the exclusion terms during the automated title screening.
 
 ```{r titlescan, echo = FALSE}
 out <- data.frame(
@@ -43,7 +46,7 @@ knitr::kable(out,
 
 In accordance with the preregistration a random sample was drawn from the search results. The goal of the random sample was to give an unbiased sample of the current state of scientific V̇O~2max~ testing. Based on the procedure described in the preregistration file (LINK), the sample included a total of 500 articles.
 
-The abstracts from the articles included in the random sample were blinded for scanning. This included the removal of any further information not relevant for the screening---such as authors or journals---leaving only the title, abstract and an ID of the articles (see Figure 2). Two researchers independently scanned the abstracts to filter those that matched one of the exclusion criteria shown in Table 3. When the screeners disagreed in their assessments, conflicts were resolved by discussion.
+The abstracts from the articles included in the random sample were blinded for scanning. This included the removal of any further information not relevant for the screening---such as authors or journals---leaving only the title, abstract and an ID of the article (see Appendix XXX for an example). Two researchers independently scanned the abstracts to filter those that matched one of the exclusion criteria shown in Table 3. When the screeners disagreed in their assessments, conflicts were resolved by discussion.
 
 After the abstract screening I retrieved the full-texts for all articles remaining in the review. The full-texts were again independently scanned by two researchers to include only those articles that measured V̇O~2max~ using an appropriate testing procedure in humans (see Table 3 for the full-text exclusion criteria). Conflicts were resolved by discussion.
 
@@ -55,7 +58,7 @@ I retrieved data from all articles remaining after the abstract and full-text sc
 
 -   metabolic cart used
 
--   type of metabolic cart/data basis (breath-by-breath, mixed chamber, ...)
+-   type of metabolic cart/data basis (breath-by-breath, mixing chamber, ...)
 
 -   type of outcome for V̇O~2max~ (primary, secondary, other)
 
@@ -74,11 +77,11 @@ I retrieved data from all articles remaining after the abstract and full-text sc
 
 -   reference for the used data processing strategy
 
-All extracted data is available in the Appendix A and under XXXLINK.
+All extracted data is available in the Appendix XXX and under XXXLINK.
 
 ### Data Synthesis
 
-<!-- presentation of data -->
+The extracted data is presented in a purely descriptive way. I calculated relative and absolute proportions of the different extracted variables.
 
 ## Experimental Comparison
 
@@ -86,13 +89,23 @@ To determine the influence the most common data processing strategies have on th
 
 ### Data Source
 
-A total of N = 72 exercise test were analysed for this study. The data was from previous research on the metabolic profile of endurance runners [@quittmann_unpubl_a; @quittmann_unpubl_b]. The tested individuals were experienced distance runners (XXX male, XXX female; XXX two times). The V̇O~2max~ tests were conducted in XXX to September 2019 [@quittmann_unpubl_a] and March to October 2021 [@quittmann_unpubl_b] using the same protocol. Participants run on a treadmill (XXX) with 1% inclination for ten minutes at a velocity of 2.8 m/s as a warm-up. After placing the mask for the gas exchange measures, they started a ramp protocol with an initial speed of 2.8 m/s for two minutes and subsequently velocity increased by 0.15 m/s every 30 seconds. The researchers provided verbal encouragement and terminated the exercise when the participants reached subjective exhaustion.
+A total of N = 72 exercise test were analysed for this study. The data was from previous research on the metabolic profile of endurance runners [@quittmann_unpubl_a; @quittmann_unpubl_b]. The tested individuals were experienced distance runners (XXX male, XXX female; XXX two times). The V̇O~2max~ tests were conducted in XXX to September 2019 [@quittmann_unpubl_a] and March to October 2021 [@quittmann_unpubl_b] using the same protocol. Participants run on a treadmill (XXX) with 1% inclination for ten minutes at a velocity of 2.8 m/s as a warm-up. After placing the mask for the gas exchange measures, they started a ramp protocol with an initial speed of 2.8 m/s for two minutes and subsequently increased velocity by 0.15 m/s every 30 seconds. The researchers provided verbal encouragement and terminated the exercise when the participants reached subjective exhaustion.
 
 Gas exchange data were recorded using a ZAN XXX device (XXX). The device was calibrated with a 3l-syringe pump (XXX) and a reference gas (XXX) before each measurement. The measured breath-by-breath data is available at XXXLINK.
 
 ### Data Processing
 
-The spiro Package for R [@nolte2022a] processed the raw gas exchange data. It includes various algorithms to calculate V̇O~2max~ with user-defined parameters on given data. Table 4 displays a brief summary exemplary function parameters used for the analysis. The full analysis script is available at XXXLINK.
+The spiro Package Version XXX for R [@nolte2022a] processed the raw gas exchange data. It includes various algorithms to calculate V̇O~2max~ with user-defined parameters on given data. Table 4 displays a brief summary of exemplary functions and parameters used for the analysis. The full analysis script is available at XXXLINK.
+
+```{r spiro-function, echo = FALSE}
+spiro_functions <- data.frame(
+  proc_type = c("Moving Time Average", "Binned Time Average", "Multiple Binned Time Average", "Moving Breath Average", "Digital Filtering"),
+  func = c("`spiro_max()`", "`spiro_summary()`", "`spiro_summary(); filter()`", "`spiro_max()`", "`spiro_max()`"),
+  parameter = c("`smooth = 30`", "XXX", "XXX", '`smooth = "10b"`', '`smooth = "XXX"')
+)
+
+knitr::kable(spiro_functions)
+```
 
 #### Time based averaging
 

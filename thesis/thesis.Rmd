@@ -15,7 +15,7 @@ header-include:
 bibliography: ../references.bib
 csl: '`r here::here("apa.csl")`'
 params:
-  title: 'Data Processing Methods to Determine Maximum Oxygen Uptake: A Systematic Scoping Review and Experimental Comparison'
+  title: 'Data Processing Strategies to Determine Maximum Oxygen Uptake: A Systematic Scoping Review and Experimental Comparison'
   name: Simon Nolte
   university: German Sport University Cologne
   year: 2022
