@@ -19,7 +19,7 @@ library(MetBrewer)
 files <- list.files("../data/ramptests", full.names = TRUE)
 ```
 
-# Functions to calculate VO2max using different strategies
+## Functions to calculate VO2max using different strategies
 
 ```{r}
 # Moving time average
@@ -34,7 +34,7 @@ max_breath_moving <- function(data, parameter) {
 }
 
 # Binned time average
-max_time_binned <- function(data, parameter) {
+max_time_binned <- function(data, parameter, max = TRUE) {
   nbin <- ceiling(nrow(data) / parameter)
   ibins <- seq(from = 1, by = parameter, length.out = nbin)
   binmean <- function(i, length, data) {
@@ -43,7 +43,7 @@ max_time_binned <- function(data, parameter) {
     mean(values)
   }
   binmeans <- purrr::map_dbl(.x = ibins, .f = binmean, length = parameter, data = data)
-  max(binmeans)
+  if (max) max(binmeans) else binmeans
 }
 
 vo2max <- function(parameter, method, data) {
@@ -61,6 +61,8 @@ vo2max <- function(parameter, method, data) {
   out
 }
 ```
+
+## Iterate over all exercise tests
 
 ```{r calc}
 # ZAN raw data only saves imprecise body mass data in the raw data file.
@@ -123,9 +125,10 @@ res_tidy <- pivot_longer(
 res_tidy$perdiff <- (res_tidy$value - 1) / 1
 ```
 
-## Plot data
+## Plot data: Comparison of processing strategies
 
 ```{r}
+# Function for calculating quantils
 quant <- function(data, lower, upper) {
   qs <- quantile(data, probs = c(lower, upper), names = FALSE)
   data.frame(
@@ -171,16 +174,17 @@ ggplot(res_tidy, aes(x = parameter, y = perdiff, colour = type, fill = type)) +
 ggsave("../plots/comparison.png", width = 6, height = 4, dpi = 600, bg = "white")
 ```
 
-## Respiratory Rate over time
+## Plot: Respiratory Rate over time
 
 ```{r}
 read_rr <- function(file) {
   dat <- spiro(file)
-  # Zero-lag Butterworth filter
+  # Zero-lag Butterworth filter with default parameters
   rr <- spiro_smooth(dat, smooth = "fz", columns = "RR")[, 1]
   time <- attr(dat, "raw")$time
   load <- attr(dat, "raw")$load
   
+  # file id
   filename_split <- strsplit(file, "/")[[1]]
   id <- filename_split[length(filename_split)]
   
@@ -224,5 +228,65 @@ p_rr <- ggplot(rr_all, aes(x = time, y = value, colour = is_end, alpha = is_end)
   theme_classic()
 
 ggsave(p_rr, filename = "../plots/rr.png", width = 6, height = 4, dpi = 600, bg = "white")
+```
+
+# Plot: Example of different strategies
+
+```{r}
+id <- 46
+id_info <- read.csv("../data/participants.csv")
+bodymass <- id_info$bodymass[id_info$p == id]
+
+exm_data <- spiro(files[id])
+raw_vo2 <- attr(exm_data, "raw")$VO2
+raw_time <- attr(exm_data, "raw")$time
+fz <- spiro_smooth(exm_data, "fz", "VO2")[,1]
+mb <- spiro_smooth(exm_data, "30b", "VO2")[,1]
+mt <- spiro_smooth(exm_data, 30, "VO2")[,1]
+tb <- max_time_binned(exm_data, 30, max = FALSE) * attr(exm_data, "info")[["weight"]]
+rb_time <- seq(from = 15, by = 30, length.out = length(tb))
+
+exm_tidy <- data.frame(
+  method = c(rep.int("raw", length(raw_vo2)), rep.int("fz", length(fz)), rep.int("mb", length(mb)), rep.int("mt", length(mt)), rep.int("tb", length(tb))),
+  value = c(raw_vo2, fz, mb, mt, tb),
+  time = c(rep.int(raw_time, 3), seq_along(mt), rb_time)
+)
+
+exm_tidy$method <- factor(
+  exm_tidy$method, 
+  levels = c("raw", "mb", "mt", "tb", "fz"), 
+  labels = c("raw", "Moving Breath", "Moving Time", "Binned Time", "Digital Filter")
+)
+exm_tidy$value <- exm_tidy$value / bodymass
+
+ggplot(exm_tidy, aes(x = time)) +
+  geom_point(data = exm_tidy[exm_tidy$method == "raw", ], aes(y = value), alpha = 0.1) +
+  geom_line(data = exm_tidy[exm_tidy$method %in% c("Moving Time", "Moving Breath", "Digital Filter"), ], aes(y = value, color = method), size = 0.7) +
+  geom_point(data = exm_tidy[exm_tidy$method == "Binned Time", ], aes(y = value, fill = method), color = met.brewer("Java", 3)[3], size = 1.2) +
+  scale_x_continuous(
+    name = "Time (min)",
+    limits = c(500,850),
+    breaks = c(540, 630, 720),
+    labels = c(8, 10, 12),
+    expand = c(0,0)
+  ) +
+  scale_y_continuous(
+    name = "VO2 (ml/min/kg)",
+    limits = c(55,75)
+  ) +
+  scale_color_manual(
+    name = "",
+    values = c(met.brewer("Java", 3)[1:2], "blue")
+  ) +
+   scale_fill_manual(
+    name = "",
+    values = "white"
+  ) +
+  theme_classic() +
+  theme(
+    legend.position = c(0.9, 0.55),
+  )
+
+ggsave(filename = "../plots/example.png", width = 6, height = 4, dpi = 1200, bg = "white")
 ```
 
