@@ -1,16 +1,12 @@
----
-title: ''
-output: github_document
-bibliography: ../references.bib
----
 
 # Analysis Script for the Systematic Review
 
-## Project: 'Data Processing Strategies to Determine Maximum Oxygen Uptake: A Systematic Scoping Review and Experimental Comparison'
+## Project: ‘Data Processing Strategies to Determine Maximum Oxygen Uptake: A Systematic Scoping Review and Experimental Comparison’
 
-This script closely follows the preregistration, which is uploaded on the [OSF](https://osf.io/3am4s).
+This script closely follows the preregistration, which is uploaded on
+the [OSF](https://osf.io/3am4s).
 
-```{r setup, warning = FALSE, message = FALSE}
+``` r
 knitr::opts_chunk$set(out.width = "70%", fig.align = "center")
 
 # Packages used for the data workflow
@@ -29,9 +25,10 @@ library(colorspace)
 
 The search was conducted on the 16th March 2022 at around 10 pm CET.
 
-The Pubmed results are saved in the file 'pubmed.csv'; the Web of Science results are saved in the file 'wos.xls'.
+The Pubmed results are saved in the file ‘pubmed.csv’; the Web of
+Science results are saved in the file ‘wos.xls’.
 
-```{r read, warning=FALSE, message=FALSE}
+``` r
 # file name for PubMed results
 pm_file <- "../data/search/pubmed.csv"
 
@@ -68,11 +65,11 @@ wos_count <- nrow(wos_data)
 overall_count <- pm_count + wos_count
 ```
 
-The search yielded `r overall_count` results (Pubmed: `r pm_count`; WOS: `r wos_count`)
+The search yielded 7929 results (Pubmed: 3969; WOS: 3960)
 
 #### Removal of duplicates
 
-```{r duplicates}
+``` r
 # Merge data frame
 merge_data <- rbind(wos_data, pm_data)
 
@@ -92,15 +89,15 @@ merge_data <- merge_data[!dupl, ]
 dupl_count <- sum(dupl)
 ```
 
-Removed because of missing DOI: `r no_doi_count`
+Removed because of missing DOI: 352
 
-Duplicates removed: `r dupl_count`
+Duplicates removed: 2935
 
-Remaining: `r overall_count - no_doi_count - dupl_count`
+Remaining: 4642
 
 #### Automated title filtering
 
-```{r filter}
+``` r
 # Filter titles by terms
 terms <- paste0("review|comment|correction|retraction|meta-analysis",
                 "|editorial|erratum|reply")
@@ -113,13 +110,13 @@ title_excl_count <- sum(excl)
 forsample_count <- nrow(filtered_data)
 ```
 
-Removed by automated title filtering: `r title_excl_count`
+Removed by automated title filtering: 278
 
-Remaining articles for random sampling: `r forsample_count`
+Remaining articles for random sampling: 4364
 
 #### Random Sampling
 
-```{r sampling, eval=FALSE}
+``` r
 # Assign ids to articles left
 filtered_data$id <- seq_len(nrow(filtered_data))
 
@@ -181,7 +178,7 @@ sampled_data$abstract[356] <- readtext::readtext("../data/search/a356.txt")$text
 
 #### Prepare Title-Abstract plots for screening
 
-```{r abstractplots, eval=FALSE}
+``` r
 load("../data/screen/sample.Rda")
 
 # Function for creating plots with blinded abstract data
@@ -220,12 +217,11 @@ create_abstract_plot <- function(row, data) {
 #   .f = create_abstract_plot, 
 #   data = sampled_data
 # )
-
 ```
 
 #### Compare abstract screening results
 
-```{r abstract-screen}
+``` r
 load("../data/screen/sample.Rda")
 # read screening results
 s_res1 <- read.csv("../data/screen/abstract_screening_i1.csv")[, 2]
@@ -252,13 +248,24 @@ s_res_df <- data.frame(
 
 # Calculate relative agreement
 1 - (sum(s_res == "XXX", na.rm = TRUE) / length(s_res))
+```
 
+    ## [1] 0.902
+
+``` r
 # Get final decisions
 s_res_final <- read.csv("../data/screen/abstract_screening.csv")
 # number excluded 
 abstr_excl_count <- sum(!is.na(s_res_final$decision))
 # reasons for exclusion
 table(s_res_final$decision)
+```
+
+    ## 
+    ##  h  l  m  r 
+    ## 17  2 64 36
+
+``` r
 # extract remaining data
 ft_screen <- sampled_data[is.na(s_res_final$decision), ]
 
@@ -273,11 +280,11 @@ ft_screen_df <- data.frame(
 # write.csv(ft_screen_df, file = "../data/screen/fulltext_screening_i1.csv", row.names = FALSE)
 ```
 
-Removed by abstract screening: `r abstr_excl_count`
+Removed by abstract screening: 119
 
 #### Compare full text screening results
 
-```{r fulltext-screening}
+``` r
 # read screening results
 f_res_i2 <- read.csv("../data/screen/fulltext_screening_i2.csv")
 f_res_i1 <- read.csv("../data/screen/fulltext_screening_i1.csv", sep = ";")
@@ -301,9 +308,17 @@ f_res_df <- data.frame(
 
 # Calculate relative agreement
 1 - (sum(f_res == "XXX", na.rm = TRUE) / length(f_res))
+```
 
+    ## [1] 0.7585302
+
+``` r
 1 - ((sum(is.na(f_res1) | is.na(f_res2)) - sum(is.na(f_res))) / length(f_res))
+```
 
+    ## [1] 0.816273
+
+``` r
 # read final decision
 ft_res <- read.csv("../data/screen/fulltext_screening.csv")
 ft_res$decision <- factor(
@@ -319,16 +334,15 @@ ft_excl_count <- sum(!is.na(ft_res$decision))
 
 # count remaining articles for data extraction
 final_count <- sum(is.na(ft_res$decision))
-
 ```
 
-Excluded after full text screening: `r ft_excl_count`
+Excluded after full text screening: 139
 
-Remaining articles: `r final_count`
+Remaining articles: 242
 
 #### Prepare data extraction
 
-```{r extraction, eval=FALSE}
+``` r
 emp <- rep.int("", final_count)
 
 extr <- data.frame(
@@ -349,10 +363,9 @@ extr <- data.frame(
 # write.csv(extr, "../data/extract/extraction.csv", row.names = FALSE)
 ```
 
-
 #### Read and clean extracted data
 
-```{r clean, warning=FALSE}
+``` r
 ext <- read.csv("../data/extract/extraction.csv")
 
 # Create column for processing type + averaging type combination
@@ -390,10 +403,13 @@ ext <- cbind(ext, purrr::map_dfr(seq_len(nrow(ext)), split_parameters))
 table(ext$type, useNA = "ifany")
 ```
 
+    ## 
+    ##    bbb mixing   <NA> 
+    ##    160     45     37
+
 #### Analyze extracted data
 
-
-```{r percentages}
+``` r
 load("../data/review.Rda")
 
 n_total <- nrow(ext)
@@ -428,15 +444,33 @@ reporting <- data.frame(
 knitr::kable(purrr::map_dfr(reporting, scales::percent, accuracy = 0.1))
 ```
 
+| cart  | pre  | software | processing | source |
+|:------|:-----|:---------|:-----------|:-------|
+| 88.0% | 5.6% | 15.0%    | 55.8%      | 5.8%   |
+
 #### Plot: Calculation intervals
 
-```{r interval, warning = FALSE}
+``` r
 # Show data processing strategies overall
 table(ext$ptype, useNA = "ifany")
+```
 
+    ## 
+    ## breath   time   <NA> 
+    ##      7    128    107
+
+``` r
 # Show data processing type for breath-by-breath measurements only
 table(ext$proc_combination[ext$type == "bbb"], useNA = "ifany")
+```
 
+    ## 
+    ## breath-binned breath-moving   time-binned  time-mbinned   time-moving 
+    ##             2             5            70             5             6 
+    ##          <NA> 
+    ##           109
+
+``` r
 # Plot for total calculation interval lengths
 p_int <- ext[ext$ptype == "time" & !is.na(ext$ptype), ] |>
   ggplot(aes(y = param_duration)) +
@@ -466,10 +500,11 @@ p_int <- ext[ext$ptype == "time" & !is.na(ext$ptype), ] |>
 knitr::include_graphics("../plots/duration_count.png")
 ```
 
+<img src="../plots/duration_count.png" width="70%" style="display: block; margin: auto;" />
+
 #### Plot: Processing strategies
 
-```{r strategies}
-
+``` r
 ext_count <- ext |> 
   filter(type == "bbb") |>
   select(c(proc_combination, ptype)) |>
@@ -502,3 +537,4 @@ p_strat <- ggplot(ext_count, aes(area = n, fill = proc_combination, label = labe
 knitr::include_graphics("../plots/strategies.png")
 ```
 
+<img src="../plots/strategies.png" width="70%" style="display: block; margin: auto;" />

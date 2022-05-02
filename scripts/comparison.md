@@ -1,16 +1,12 @@
----
-title: ''
-output: github_document
-bibliography: ../references.bib
----
 
 # Analysis Script for the Experimental Comparison
 
-## Project: 'Data Processing Strategies to Determine Maximum Oxygen Uptake: A Systematic Scoping Review and Experimental Comparison'
+## Project: ‘Data Processing Strategies to Determine Maximum Oxygen Uptake: A Systematic Scoping Review and Experimental Comparison’
 
-This script closely follows the preregistration, which is uploaded on the [OSF](https://osf.io/3am4s).
+This script closely follows the preregistration, which is uploaded on
+the [OSF](https://osf.io/3am4s).
 
-```{r setup, warning = FALSE}
+``` r
 knitr::opts_chunk$set(out.width = "70%", fig.align = "center")
 
 # Packages used for the data workflow
@@ -20,6 +16,16 @@ library(spiro)
 library(tidyr)
 library(ggplot2)
 library(scales)
+```
+
+    ## 
+    ## Attaching package: 'scales'
+
+    ## The following object is masked from 'package:purrr':
+    ## 
+    ##     discard
+
+``` r
 library(MetBrewer)
 
 # Get data files
@@ -29,7 +35,7 @@ files <- list.files("../data/ramptests", full.names = TRUE)
 
 ## Functions to calculate VO2max using different strategies
 
-```{r fuctions}
+``` r
 # Moving time average
 max_time_moving <- function(data, parameter) {
   spiro::spiro_max(data = data, smooth = parameter)$VO2_rel
@@ -72,7 +78,7 @@ vo2max <- function(parameter, method, data) {
 
 ## Iterate over all exercise tests
 
-```{r calc, eval = FALSE}
+``` r
 # ZAN raw data only saves imprecise body mass data in the raw data file.
 info <- read.csv("../data/participants.csv")
 
@@ -103,7 +109,7 @@ results <- purrr::map_dfr(
 
 ## Normalize results
 
-```{r norm}
+``` r
 res <- read.csv("../data/results.csv")
 
 # Reference method: 30 seconds binned average
@@ -113,7 +119,7 @@ res_norm$id <- as.factor(seq_len(nrow(res_norm)))
 
 ## Turn into tidy format
 
-```{r wrangle}
+``` r
 res_tidy <- pivot_longer(
   data = res_norm, 
   cols = !id,
@@ -134,7 +140,7 @@ res_tidy$perdiff <- (res_tidy$value - 1) / 1
 
 ## Plot: Comparison of processing strategies
 
-```{r comparison, warning = FALSE}
+``` r
 # Function for calculating quantiles
 quant <- function(data, lower, upper) {
   qs <- quantile(data, probs = c(lower, upper), names = FALSE)
@@ -183,9 +189,11 @@ p_comp <- ggplot(res_tidy, aes(x = parameter, y = perdiff, colour = type, fill =
 knitr::include_graphics("../plots/comparison.png")
 ```
 
+<img src="../plots/comparison.png" width="70%" style="display: block; margin: auto;" />
+
 ## Plot: Respiratory Rate over time
 
-```{r rr}
+``` r
 read_rr <- function(file) {
   dat <- spiro(file)
   # Zero-lag Butterworth filter with default parameters
@@ -241,9 +249,11 @@ p_rr <- ggplot(rr_all, aes(x = time, y = value, colour = is_end, alpha = is_end)
 knitr::include_graphics("../plots/rr.png")
 ```
 
+<img src="../plots/rr.png" width="70%" style="display: block; margin: auto;" />
+
 ## Plot: Example of different strategies
 
-```{r example, warning = FALSE}
+``` r
 id <- 46
 id_info <- read.csv("../data/participants.csv")
 bodymass <- id_info$bodymass[id_info$p == id]
@@ -303,3 +313,4 @@ p_ex <- ggplot(exm_tidy, aes(x = time)) +
 knitr::include_graphics("../plots/example.png")
 ```
 
+<img src="../plots/example.png" width="70%" style="display: block; margin: auto;" />
