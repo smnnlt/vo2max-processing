@@ -330,7 +330,7 @@ extr <- data.frame(
   doi = ft_res$doi[is.na(ft_res$decision)]
 )
 
-write.csv(extr, "../data/extract/extraction.csv", row.names = FALSE)
+# write.csv(extr, "../data/extract/extraction.csv", row.names = FALSE)
 ```
 
 
@@ -379,8 +379,6 @@ table(ext$type, useNA = "ifany")
 
 ```{r percentages}
 load("../data/review.Rda")
-# Remove Douglas bag measurements
-ext <- ext[ext$type != "douglas", ]
 
 n_total <- nrow(ext)
 ext_bbb <- ext[ext$type == "bbb" & !is.na(ext$type),]
@@ -412,8 +410,6 @@ reporting <- data.frame(
 save(reporting, file = "../data/reporting.Rda")
 
 knitr::kable(purrr::map_dfr(reporting, scales::percent, accuracy = 0.1))
-
-
 ```
 
 
@@ -454,6 +450,7 @@ ggsave("../plots/duration_count.png", width = 5, height = 3, dpi = 600, bg = "wh
 ```{r}
 library(treemapify)
 library(dplyr)
+library(colorspace)
 
 ext_count <- ext |> 
   filter(type == "bbb") |>
@@ -472,7 +469,15 @@ ext_count$subgroup <- c(1, 1, 2, 3, 4)
 
 ggplot(ext_count, aes(area = n, fill = proc_combination, label = label, subgroup = subgroup)) +
   geom_treemap(show.legend = FALSE, start = "topleft") +
-  geom_treemap_text(reflow = TRUE, place = "centre", start = "topleft")
+  geom_treemap_text(
+    color = "black",
+    reflow = TRUE, 
+    place = "centre", 
+    start = "topleft",
+    padding.y = grid::unit(1.5, "mm")) +
+  scale_fill_manual(
+    values = colorspace::lighten(c("#663171", "#ea7428", "#653151", "#0c7156", "#0c7182"), amount = 0.2)
+  )
 
 ggsave("../plots/strategies.png", width = 5, height = 3, dpi = 600, bg = "white")
 ```
