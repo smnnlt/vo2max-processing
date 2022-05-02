@@ -6,6 +6,7 @@ output:
     latex_engine: xelatex
 mainfont: Arial
 urlcolor: blue
+bibliography: references.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -19,27 +20,32 @@ This document includes all deviation and modifications of code and methods in th
 
 ## Major Changes
 
-#### Addditional variables extracted from included research
+### Number of exercise tests for comparison
+
+Due to a miscalculation, the preregistration provided an incorrect number of exercise test (n = 76). The correct number of exercise tests is n = 72, with 44 from @quittmann_unpubl_a (one test only partly included in the original work due to missing other data) and 28 from @quittmann_unpubl_b (three test only partly included in the original work due to missing other data).
+
+#### Additional variables extracted from included research
 
 `outcome`: Which type of outcome VO2max is. Either `primary`, `secondary` or `other`
-`source`: Which source is provided for the data processing method used. 
+
+`source`: Which source is provided for the data processing method used.
 
 ## Minor Changes
 
 #### Code changes for automated article filtering and screening preparation
 
-* advanced detection of missing DOIs: `is.na(merge_data$doi) | (merge_data$doi == "")` instead of `is.na(merge_data$doi)`.
-* Improved function to retrieve missing PubMed abstracts: Handles case when input (PMID) is missing (`if (is.na(pmid)) return(NA)`).
-* save/load of the sampling results as an .Rda file to reduce computation time when working on parts of the workflow.
+-   advanced detection of missing DOIs: `is.na(merge_data$doi) | (merge_data$doi == "")` instead of `is.na(merge_data$doi)`.
+-   Improved function to retrieve missing PubMed abstracts: Handles case when input (PMID) is missing (`if (is.na(pmid)) return(NA)`).
+-   save/load of the sampling results as an .Rda file to reduce computation time when working on parts of the workflow.
 
 #### Unblinding of single abstracts
 
-* Manual retrieval of abstracts for articles, as these were neither present in the search result data, nor could be automatically scraped. Abstracts were saved and imported as .txt files. Temporary unblinding only applied to the primary researcher. This concerns the abstract with the Sampling ID (sid): 50, 238, 288, 416, 488, 490, 500
-* Manual retrieval of abstracts for articles, as the automatically collected abstract contained html-tags that could not be removed for later abstract plots. Abstracts were saved and imported as .txt files. Temporary unblinding only applied to the primary researcher. This concerns the abstract with the Sampling ID (sid): 344, 356
-* Unblinding during screening to assess the implications of title given in squared brackets. This concerns the abstract with the Sampling ID (sid): 262, 303
-* Consulting of online abstract due to incomplete abstract plot. This concerns the abstract with the Sampling ID (sid): 275
+-   Manual retrieval of abstracts for articles, as these were neither present in the search result data, nor could be automatically scraped. Abstracts were saved and imported as .txt files. Temporary unblinding only applied to the primary researcher. This concerns the abstract with the Sampling ID (sid): 50, 238, 288, 416, 488, 490, 500
+-   Manual retrieval of abstracts for articles, as the automatically collected abstract contained html-tags that could not be removed for later abstract plots. Abstracts were saved and imported as .txt files. Temporary unblinding only applied to the primary researcher. This concerns the abstract with the Sampling ID (sid): 344, 356
+-   Unblinding during screening to assess the implications of title given in squared brackets. This concerns the abstract with the Sampling ID (sid): 262, 303
+-   Consulting of online abstract due to incomplete abstract plot. This concerns the abstract with the Sampling ID (sid): 275
 
-#### Minor Modification of exclusion criteria 
+#### Minor Modification of exclusion criteria
 
 Changes are in italics:
 
@@ -47,3 +53,6 @@ Changes are in italics:
 
 `'t'`: Was no full-text ~~available~~ *accessible* for the corresponding article? (if yes, indicate 't', if no continue)
 
+#### Minor screening error for two articles
+
+For two articles (sampling ids: 194, 282) I only realized during data extraction that they matched the exclusion criteria (\`c\`: no continuous measurement of oxygen uptake). In agreement of both screeners, the screening data was retrospectively changed.
