@@ -12,7 +12,7 @@ Initial search yielded 7529 results of which 4364 remained after automated filte
 
 ![Flow diagram for the systematic scoping review in accordance with the PRISMA 2020 Statement [@page2021]](../plots/flow_diagram.png)
 
-Reporting practices of the methodology of gas exchange measures differed widely within the literature (see Table 4). More than half (51.8%) of the articles did not report any information on their data processing strategy. Only one in twenty articles (5.4%) provided a rationale for their used strategy.
+Reporting practices of the methodology of gas exchange measures differed widely across the literature (see Table 4). More than half (51.8%) of the articles did not report any information on their data processing strategy. One in twenty articles (5.4%) provided a rationale for their used strategy. Only a single article [@maturana2021] reported information regarding all the investigated criteria.
 
 ```{r reporting-table, echo=FALSE}
 load("../data/reporting.Rda")
@@ -33,12 +33,20 @@ Out of the authors that provided information and collected breath-by-breath meas
 
 ![Data strategies for processing breath-by-breath data in the reviewed literature (n = 88).](../plots/strategies.png)
 
+Data preprocessing
+
 The calculation interval for time-based averages of mixing chamber and breath-by-breath devices ranged from 5 to 60 seconds (see Figure 3). 30 second length intervals were most common to define V̇O~2max~, while authors also often employed shorter (10-20s) and longer (60s) periods.
 
 ![Total durations of the calculation interval of V̇O~2max~ in the reviewed studies.](../plots/duration_count.png)
 
 ## Experimental Comparison
 
-![VO2max varies by data processing strategy. Values are expressed relative to the VO2max from a 30-second binned average --- the most common strategy as determined by the review. Solid lines display the median, the shaded area marks the interval between 10th and 90th percentile. Using moving average leads to systematically higher VO2max values compared to binned time averages. Changing the averaging interval (in seconds or breaths) can lead to changes in VO2max as large as 5%.](../plots/comparison.png)
+The average V̇O~2max~ as determined by a binned 30-second average was 62.2±6.3 (mean ± standard deviation). Applying different data processing strategies for V̇O~2max~ determination leads to different outcome values (see Figure 4).
 
-![Respiratory Rates peak around 60min^-1^ in the ramp tests. The red segments correspond to the last minute before exhaustion of each individual (n = 72). .](../plots/rr.png)
+![V̇O~2max~ varies by data processing strategy. Values are expressed relative to the V̇O~2max~ from a 30-second binned average --- the most common strategy as determined by the review. Solid lines display the median, the shaded area marks the interval between 10th and 90th percentile. Using moving average leads to systematically higher V̇O~2max~ values compared to binned time averages. Changing the averaging interval (in seconds or breaths) can lead to median changes in V̇O~2max~ as large as 5%,.](../plots/comparison.png)
+
+Binned time averages systematically lead to lower V̇O~2max~ values compared to moving averages. Decreasing the calculation interval to 5 seconds leads to a 3-4% median increase of V̇O~2max~-values. Notably on an individual level these increases may be lower (≈2%) or much higher (\>10%) than the median value.
+
+Moving time and moving breath averages yielded nearly identical values for V̇O~2max~ over all calculation intervals. This corresponds to the trained athletes reaching respiratory rates around 60 min^-1^ in the final minute of the exercise test (see Figure 4).
+
+![Respiratory Rates peak around 60 min^-1^ in the ramp tests. The red segments correspond to the last minute before exhaustion of each individual (n = 72).](../plots/rr.png)

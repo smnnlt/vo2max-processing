@@ -8,31 +8,96 @@ bibliography: ../references.bib
 
 ## Background
 
-<!-- VO2max is important -->
-<!-- physiological determinants -->
-<!-- VO2max testing -->
-<!-- Influence factors in testing -->
+### Maximum oxygen uptake: Definition and Relevance
+
+Performance in endurance sports is limited by the human physiology. Athletes need to supply energy to locomotion, a process that happens mainly via the oxidative phosphorylation. A higher maximal activity of the oxidative phosphorylation allows to supply more energy, and thus to move faster. On a whole-body level the highest activity of oxidative phosphorylation can be approximated by measuring the maximum oxygen uptake (V̇O~2max~).
+
+V̇O~2max~ is defined as the highest rate a body can consume oxygen. Determined by measuring gas exchange data, it is one of the most common measures investigated in sports science and medicine. V̇O~2max~ highly corresponds with endurance performance in heterogeneous groups, and thus can be regarded the most relevant physiological parameter for endurance performance prediction. Many training programs aim to target the V̇O~2max~, and studies evaluate the quality of interventions by measuring changes in V̇O~2max.~
+
+### Measuring the VO~2max~
+
+Researchers measure V̇O~2max~ during exercise tests to exhaustion. In a laboratory setting such exercise commonly takes place on treadmills or cycling Prior fatigue results in underestimating the true V̇O~2max~. Therefore most exercise protocol consist of a continuous or stepwise, fast increase in load. As the oxygen kinetics themselves comprise a time lag, XXX suggested an optimal duration of 8-12 minutes for testing V̇O~2max~. Despite protocol type and duration, factors such as nutrition, XXX bias the V̇O~2max~ determination.
+
+Early research in V̇O~2max~ used bags --- the so called Douglas bag method --- to collect expired air for later analysis. Today's modern metabolic carts allow for simultaneous collection and analysis of gases, using either mixing chamber (which sample data at fixed time intervals, e.g., 15s) or breath-by-breath methods. While mixing chambers are regarded as more reliable, measuring breath-by-breath generates more data with a higher temporal resolution. <!--Which is more common?--> The measuring method and the metabolic cart model can influence the measured oxygen uptake --- and as such the V̇O~2max~. Another important, yet often overlooked factor influencing the V̇O~2max~ is the data processing of the raw data.
+
+### VO~2max~ vs VO~2peak~
+
+Whether an observed peak in oxygen uptake corresponds to the true maximum has been extensively discussed in the past decades. To identify a 'true' maximum researchers evaluate a set of parameters measured in a ramp test --- the V̇O~2max~ criteria [@howley1995]. If these criteria a (partly) not fulfilled, researchers should speak of the peak oxygen uptake instead of V̇O~2max~. In this thesis I will not distinguish between peak and maximum oxygen uptake, as the criteria for V̇O~2max~ themselves (e.g. the primary criterium of a plateau in oxygen uptake; the secondary criterium of the maximum respiratory quotient) heavily rely on the data processing strategy used [@astorino2009]. I thus speak of V̇O~2max~ as the maximum oxygen uptake measured during an appropriate exercise test regardless of any V̇O~2max~ criteria.
 
 ## Previous Research
 
-<!-- First example in 90s: applied research -->
+Measured breath-by-breath data is noisy (see grey points in Figure 1). Both the biological variability of breathing patterns (as well as irregular breaths such as coughs and swallowing) and the measurement error lead to highly fluctuating raw oxygen uptake data. For interpretation the raw data requires some form of processing.
+
+![Raw breath by breath data and different processing strategies during the final minutes of a ramp test to exhaustion. Grey points mark single breaths.](../plots/example.png)
+
+Different data processing strategies influence measured parameters of gas exchange. As soon as when the first automated systems for gas exchange measure were available, @matthews1987 reported that different processing strategies lead to different V̇O~2max~ values. Since then many researchers investigated the influence of different data averaging intervals on V̇O~2max~, unsurprisingly showing that the shorter the calculation interval, the higher the V̇O~2max~ obtained [@johnson1998a; @astorino2009a; @sell2021]. @midgley2007 found differences between data processing strategies for V̇O~2max~, but no difference in the reliability of these, highlighting that consistency of strategies is key when comparing outcomes. Based on own data in sedentary and moderately trained individuals, @martin-rincon2019 provided linear -log equations to compare mean V̇O~2max~ values derived from different processing strategies. There is inconclusive evidence whether the influence of different processing strategies interacts with different exercise protocols [@hill2003; @scheadler2017].
+
+Differences in V̇O~2max~ due to data processing can cause serious implications in practice. They hinder the comparability of data from studies within meta-analysis or the assessment of longitudinal data from athletes that used different labs [@martin-rincon2019]. Data processing strategies directly affect the occurrence of a plateau in oxygen uptake, the primary criterium of V̇O~2max~ [@astorino2009]. Crucially, in situation where individuals are classified by their V̇O~2max~ --- for example when describing the trainings status of a study population [@pauw2013a; @decroix2016] or evaluating patients for a heart transplantation [@mancini1991] --- differing processing strategies can lead to misclassification [@johnson1998].
+
+Calls to standardize data processing strategies of gas exchange data are frequent (XXX; ...). @howley1995 argued to use longer calculation intervals (60 s), as shorter intervals may introduce bias towards extreme data values and thus could systematically overestimate true V̇O~2max~. Based on synthetic and experimental data @robergs2003a opposed these conclusion, stating that shorter calculation intervals are less erroneous. They argued to use breath-based moving averages as a strategy, as XXX. In a classic review, @robergs2010 argued for using digital filtering (i.e. a low-pass Butterworth filter) for processing gas exchange data, a strategy initially introduced for gas exchange measures by @weir2004 . However, @robergs2010 acknowledge the lack of software implementing such procedures.
+
+In absence of one commonly accepted method, data processing varies among the literature. In light of the influence on outcome variables, @myers1990 highlighted the need to to report processing strategies in research articles. @midgley2007 were the first to evaluate reported data processing strategies for breath-by-breath data in selected journals. They found that almost all studies reporting their methods choose binned time averaging, with only 1 in 117 using a moving time and a moving breath average, respectively. One third of the studies did not describe their processing method at all. While providing interesting first insights into reporting and processing practices, the search by @midgley2007 was not systematic and its methods were not described in detail. @robergs2010 wrote that to investigate the current state of data processing strategies two possible approaches are "(i) a summary of published research, and (ii) a survey circulated via the Internet to as many exercise physiologists as possible". They provides the latter one with a total of 75 respondents, which reported a great variety in data processing strategies. Most researchers reported the use of binned time averages over 30 or 60 seconds. Astonishingly, about half of the respondents admitted that their data processing strategy was rather chosen due to subjective influences as opposed to objective reasoning. Practices in reporting and processing may have changed more than a decade after publication of such numbers.
+
+Astorini 2008: Processing strategy (bbb, 15/30/60 tb) influences VO2max and plateau incidence
+
+Johnson 1998: Processing strategy (bbb, 15/30/60 tb, 8bm) influences VO2max in cardiac patients for heart transplantation evalution
+
+Midgley 2007:
+
+-   processing strategy (tb 10/15/20/30/60) influences VO2max
+
+-   processing strategies vary within the literature (binned time far most common, non-systematic review)
+
+-   processing strategy does not influence reliability of VO2max -\> but consistency is important
+
+Robergs & Burnett 2003: comparing methods (tb, bb, bm) on synthetic and experimental data: Recommendation to use 8 breath moving average. Potential use of filtering methods. Shorter intervals - less error (opposing Howley!)
+
+Howley 1995: classic for VO2max criteria; longer intervals preferable (i.e. 60s), shorter introduce systematic bias towards extreme values (sure???)
+
+Hill 2003: Effect of processing (bm) on VO2max interacts with exercise protocol (= duration)
+
+Schaedler 2017: No interaction between protocol and processing methods (opposing Hill, bit different protocols)
+
+TO READ:
+
+Weir JP, Koerner S, Mack B, Masek J, Vanderhoff J, Heiderscheit BC. VO 2\
+plateau detection in cycle ergometry. J Exerc Physiol (2004); 7: 55--62. -\> first with Butterworth (even zero-lag!)
+
+ATS/ACCP Guidelines
+
+Macfarlane DJ. Automated metabolic gas analysis systems: a review. Sports\
+Med (2001); 31: 841--861.
+
+Roecker K, Prettin S, Sorichter S. Gas exchange measurements with high\
+temporal resolution: the breath-by-breath approach. Int J Sports Med\
+(2005); 26(Suppl. 1): S11--S1
+
 <!-- Since then: various example -->
+
 <!-- conceptual work: Robergs -->
+
 <!-- Comparison: martin-rincon -->
+
 <!-- Problem: group + individual -->
+
 <!-- Knowledge Gap -->
 
 ## Aim
 
 <!-- Gap -> we need this: -->
+
 <!-- overview what is actually done -->
+
 <!-- and how does this impact VO2max assessment -->
 
 <!-- Review: mapping current methodological (+ reporting) state  -->
+
 <!-- Comparison: highlight advantage over previous -->
 
 <!-- help compare results across studies + for individuals -->
+
 <!-- advise for use of methods  -->
+
 <!-- call for improved reporting -->
 
 @bassett2000; @tricco2018
