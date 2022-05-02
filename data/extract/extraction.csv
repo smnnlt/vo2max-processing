@@ -97,7 +97,6 @@ sid,cart,type,outcome,pre,software,interpolation,ptype,averaging,parameters,sour
 187,True One;ParvoMedics,mixing,other,NA,NA,NA,time,binned,15,NA,,10.1371/journal.pone.0166299
 190,VO2000;Medgraphics,bbb,other,NA,BrezeSuite,NA,breath,binned,3,NA,,10.1139/apnm-2021-0383
 191,PowerCubeErgo;Ganshorn Medicine,bbb,primary,NA,NA,NA,NA,NA,NA,NA,,10.3390/nu14010149
-194,NA,douglas,other,NA,NA,NA,NA,NA,NA,NA,,10.3390/sports5020025
 197,NA;Medical Graphics,bbb,primary,NA,NA,NA,NA,NA,NA,NA,,10.1007/s00408-017-0039-9
 198,Moxus; AEI,mixing,other,NA,NA,NA,NA,NA,NA,NA,,10.3390/ijerph18030870
 199,True One 2400;Parvo Medics,mixing,other,NA,NA,NA,NA,NA,NA,NA,,10.1016/j.orcp.2020.08.008
@@ -143,7 +142,6 @@ sid,cart,type,outcome,pre,software,interpolation,ptype,averaging,parameters,sour
 277,Metalyzer 3B;Cortex,bbb,other,NA,NA,NA,time,binned,30,NA,,10.1080/25787489.2020.1810452
 279,TrueOne; Parvomedics,mixing,primary,filter2sd,NA,NA,time,binned,15,NA,,10.1249/MSS.0000000000001099
 281,Oxycon Mobile;Jaeger/Viasys,bbb,other,NA,NA,NA,time,binned,20,NA,,10.3390/biology9110383
-282,NA,douglas,primary,NA,NA,NA,NA,NA,NA,NA,,10.1080/02640414.2017.1346269
 283,Quark;Cosmed,NA,other,NA,Cosmed 9.1b,NA,NA,NA,NA,NA,,10.1186/s12970-019-0284-9
 286,Metamax II;Cortex,mixing,primary,NA,NA,NA,time,mbinned,3x10,NA,,10.2196/28124
 287,TrueOne 2400;Parvomedics,mixing,secondary,NA,NA,NA,NA,NA,NA,NA,,10.1123/ijspp.2018-0099
@@ -170,7 +168,7 @@ sid,cart,type,outcome,pre,software,interpolation,ptype,averaging,parameters,sour
 335,Ultima;Medgraphics,bbb,other,NA,BrezeSuite,NA,NA,NA,NA,NA,,10.1519/JSC.0000000000002418
 336,Metabolic Measuremnet System;ParvoMedics,mixing,other,NA,NA,NA,time,binned,15,NA,from source,10.1007/s00421-021-04632-5
 337,True One 2400;Parvo Medics,mixing,primary,NA,NA,NA,NA,NA,NA,NA,,10.5535/arm.2017.41.6.1047
-342,MetaLyzer;Cortex,bbb,primary,filter95confint,NA,second,time,binned,30,MartinRincon2019,,10.1007/s00421-021-04676-7
+342,MetaLyzer;Cortex,bbb,primary,filter95confint,R 4.0.2,second,time,binned,30,MartinRincon2019,,10.1007/s00421-021-04676-7
 344,ZAN600;Nspire Health,bbb,other,NA,NA,NA,NA,NA,NA,NA,,10.1139/apnm-2020-0474
 346,Oxycon Pro;Jaeger,mixing,other,NA,NA,NA,time,binned,60,NA,,10.1123/ijspp.2020-0747
 347,True One;ParvoMedics,bbb,primary,NA,NA,NA,time,binned,30,previousothers,,10.1007/s00421-020-04522-2
