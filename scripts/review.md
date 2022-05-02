@@ -509,7 +509,7 @@ p_int <- ext[ext$ptype == "time" & !is.na(ext$ptype), ] |>
      axis.ticks.y = element_line(colour = "grey", size = 0.5)
     )
 
-# ggsave(p_int, "../plots/duration_count.png", width = 5, height = 3, dpi = 600, bg = "white")
+# ggsave("../plots/duration_count.png", plot = p_int, width = 5, height = 3, dpi = 600, bg = "white")
 
 knitr::include_graphics("../plots/duration_count.png")
 ```
@@ -546,7 +546,7 @@ p_strat <- ggplot(ext_count, aes(area = n, fill = proc_combination, label = labe
     values = colorspace::lighten(c("#663171", "#ea7428", "#653151", "#0c7156", "#0c7182"), amount = 0.2)
   )
 
-# ggsave(p_strat, "../plots/strategies.png", width = 5, height = 3, dpi = 600, bg = "white")
+# ggsave("../plots/strategies.png", plot = p_strat, width = 5, height = 3, dpi = 600, bg = "white")
 
 knitr::include_graphics("../plots/strategies.png")
 ```

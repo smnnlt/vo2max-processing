@@ -10,7 +10,7 @@ bibliography: ../references.bib
 
 This script closely follows the preregistration, which is uploaded on the [OSF](https://osf.io/3am4s).
 
-```{r setup, warning = FALSE}
+```{r setup, warning = FALSE, message = FALSE}
 knitr::opts_chunk$set(out.width = "70%", fig.align = "center")
 
 # Packages used for the data workflow
@@ -123,7 +123,7 @@ res_tidy <- pivot_longer(
     parameter = ~ as.numeric(.x),
     type = ~ factor(.x, 
       levels = c("bm", "tm", "tb"), 
-      labels = c("moving breath", "moving time", "binned time")
+      labels = c("Moving Breath", "Moving Time", "Binned Time")
     )
   )
 )
@@ -168,9 +168,11 @@ p_comp <- ggplot(res_tidy, aes(x = parameter, y = perdiff, colour = type, fill =
     limits = c(-0.053,0.1)
   ) +
   scale_color_manual(
+    name = "Processing Strategy",
     values = met.brewer("Java", 3)
   ) +
   scale_fill_manual(
+    name = "Processing Strategy",
     values = met.brewer("Java", 3)
   ) +
   theme_classic() +
@@ -178,7 +180,7 @@ p_comp <- ggplot(res_tidy, aes(x = parameter, y = perdiff, colour = type, fill =
     legend.position = c(0.8,0.8)
   )
 
-# ggsave(p_comp, "../plots/comparison.png", width = 6, height = 4, dpi = 600, bg = "white")
+# ggsave("../plots/comparison.png", plot = p_comp, width = 6, height = 4, dpi = 600, bg = "white")
 
 knitr::include_graphics("../plots/comparison.png")
 ```
@@ -236,7 +238,7 @@ p_rr <- ggplot(rr_all, aes(x = time, y = value, colour = is_end, alpha = is_end)
   ) +
   theme_classic()
 
-# ggsave(p_rr, filename = "../plots/rr.png", width = 6, height = 4, dpi = 600, bg = "white")
+# ggsave(filename = "../plots/rr.png", plot = p_rr, width = 6, height = 4, dpi = 600, bg = "white")
 
 knitr::include_graphics("../plots/rr.png")
 ```
@@ -266,17 +268,18 @@ exm_tidy <- data.frame(
 exm_tidy$method <- factor(
   exm_tidy$method, 
   levels = c("raw", "mb", "mt", "tb", "fz"), 
-  labels = c("raw", "Moving Breath", "Moving Time", "Binned Time", "Digital Filter")
+  labels = c("raw","Moving Breath","Moving Time","Binned Time", "Digital Filter"),
+  ordered = TRUE
 )
 exm_tidy$value <- exm_tidy$value / bodymass
 
 p_ex <- ggplot(exm_tidy, aes(x = time)) +
   geom_point(data = exm_tidy[exm_tidy$method == "raw", ], aes(y = value), alpha = 0.1) +
-  geom_line(data = exm_tidy[exm_tidy$method %in% c("Moving Time", "Moving Breath", "Digital Filter"), ], aes(y = value, color = method), size = 0.7) +
-  geom_point(data = exm_tidy[exm_tidy$method == "Binned Time", ], aes(y = value, fill = method), color = met.brewer("Java", 3)[3], size = 1.2) +
+  geom_line(data = exm_tidy[exm_tidy$method %in% c("Moving Breath", "Moving Time", "Digital Filter"), ], aes(y = value, color = method), size = 0.7) +
+  geom_point(data = exm_tidy[exm_tidy$method == "Binned Time", ], aes(y = value, fill = method, colour = "Binned Time"), size = 1.4) +
   scale_x_continuous(
     name = "Time (min)",
-    limits = c(500,850),
+    limits = c(500,860),
     breaks = c(540, 630, 720),
     labels = c(8, 10, 12),
     expand = c(0,0)
@@ -286,19 +289,28 @@ p_ex <- ggplot(exm_tidy, aes(x = time)) +
     limits = c(55,75)
   ) +
   scale_color_manual(
-    name = "",
-    values = c(met.brewer("Java", 3)[1:2], "blue")
+    name = "Processing Strategy",
+    values = c(met.brewer("Java", 3)[3], "blue", met.brewer("Java", 3)[c(1,2)]),
+    labels = c("Binned Time", "Digital Filter","Moving Time","Moving Breath"),
+    guide = guide_legend(
+      reverse = TRUE,
+      override.aes = list(
+        linetype = c(rep.int("solid", 3), "blank"),
+        shape = c(rep.int(NA, 3), 19),
+        color = c(met.brewer("Java", 3)[c(1,2)], "blue", met.brewer("Java", 3)[3])
+      )
+    )
   ) +
    scale_fill_manual(
-    name = "",
-    values = "white"
+    values = "white",
+    guide = "none"
   ) +
   theme_classic() +
   theme(
-    legend.position = c(0.9, 0.55),
+    legend.position = c(0.88, 0.6),
   )
 
-# ggsave(p_ex, filename = "../plots/example.png", width = 6, height = 4, dpi = 1200, bg = "white")
+# ggsave(filename = "../plots/example.png", plot = p_ex, width = 6, height = 4, dpi = 1200, bg = "white")
 
 knitr::include_graphics("../plots/example.png")
 ```
