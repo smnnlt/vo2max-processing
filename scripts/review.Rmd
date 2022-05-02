@@ -320,6 +320,8 @@ ft_excl_count <- sum(!is.na(ft_res$decision))
 # count remaining articles for data extraction
 final_count <- sum(is.na(ft_res$decision))
 
+table(ft_res$decision, useNA = "ifany")
+
 ```
 
 Excluded after full text screening: `r ft_excl_count`

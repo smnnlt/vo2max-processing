@@ -334,7 +334,21 @@ ft_excl_count <- sum(!is.na(ft_res$decision))
 
 # count remaining articles for data extraction
 final_count <- sum(is.na(ft_res$decision))
+
+table(ft_res$decision, useNA = "ifany")
 ```
+
+    ## 
+    ##                  no fulltext         no english full-text 
+    ##                           15                            7 
+    ##         no original research                    no humans 
+    ##                           11                            0 
+    ##             VO2 not measured VO2 not continously measured 
+    ##                           41                            3 
+    ##                no exhaustion                long protocol 
+    ##                           12                           18 
+    ##                        other                         <NA> 
+    ##                           32                          242
 
 Excluded after full text screening: 139
 
