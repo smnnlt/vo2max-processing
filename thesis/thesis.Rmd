@@ -8,6 +8,7 @@ mainfont: Arial
 fontsize: 11pt
 urlcolor: blue
 linkcolor: black
+link-citations: yes
 geometry: "left = 4cm, right = 2cm, top = 2cm, bottom = 2cm"
 header-include:
   - \usepackage{setspace}\spacing{1.5}
