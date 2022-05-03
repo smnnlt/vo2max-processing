@@ -1,26 +1,14 @@
 ---
-title: "Transparent Changes"
-author: Simon Nolte
-output: 
-  pdf_document: 
-    latex_engine: xelatex
-mainfont: Arial
-urlcolor: blue
+title: ''
+output: pdf_document
 bibliography: references.bib
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-options(tinytex.verbose = TRUE)
-```
-
-# Supplement to the project 'Data Processing Strategies to Determine Maximum Oxygen Uptake: A Systematic Scoping Review and Experimental Comparison'
-
 This document includes all deviation and modifications of code and methods in the final project compared to its [preregistration](https://osf.io/3am4s).
 
-## Major Changes
+### Major Changes
 
-### Number of exercise tests for comparison
+#### Number of exercise tests for comparison
 
 Due to a miscalculation, the preregistration provided an incorrect number of exercise test (n = 76). The correct number of exercise tests is n = 72, with 44 from @quittmann_unpubl_a (one test only partly included in the original work due to missing other data) and 28 from @quittmann_unpubl_b (three test only partly included in the original work due to missing other data).
 
@@ -30,7 +18,7 @@ Due to a miscalculation, the preregistration provided an incorrect number of exe
 
 `source`: Which source is provided for the data processing method used.
 
-## Minor Changes
+### Minor Changes
 
 #### Code changes for automated article filtering and screening preparation
 

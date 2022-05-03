@@ -67,10 +67,9 @@ Institute of Movement and Neurosciences
 
 \newpage
 
-Affirmation in lieu of an oath 
- 
-Herewith I affirm in lieu of an oath that I have authored this Master thesis independently and did not use any other sources and tools than indicated. All citations, either direct quotations or passages which were reproduced verbatim or nearby-verbatim from publications, are indicated and the respective references are named. The same is true for tables and figures. I did not submit this piece of work in the same or similar way or in extracts in another assignment.
+Affirmation in lieu of an oath
 
+Herewith I affirm in lieu of an oath that I have authored this Master thesis independently and did not use any other sources and tools than indicated. All citations, either direct quotations or passages which were reproduced verbatim or nearby-verbatim from publications, are indicated and the respective references are named. The same is true for tables and figures. I did not submit this piece of work in the same or similar way or in extracts in another assignment.
 
 \_____________________________
 
@@ -146,4 +145,32 @@ Personally signed
 
 \newpage
 
+\appendix
+
 # Appendix
+
+<!-- \addtocontents{toc}{\protect\setcounter{tocdepth}{0}} -->
+
+## Transparent Changes
+
+```{r appendix-a, child = '../transparent_changes.Rmd'}
+
+```
+
+\newpage
+
+## Prisma Reporting Checklist
+
+\newpage
+
+## Blinded abstract example
+
+![](../plots/abstracts/030.png)
+
+\newpage
+
+## Session Info
+
+```{r session}
+sessionInfo()
+```

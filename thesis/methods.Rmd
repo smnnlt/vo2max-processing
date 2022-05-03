@@ -6,13 +6,15 @@ bibliography: ../references.bib
 
 # Methods
 
-The work presented in this thesis was preregistered before the start of the project on the [Open Science Framework](https://osf.io/3am4s) [@foster2017], following the 'Inclusive Systematic Review Registration Form' [@akker2020]. Any deviations from the preregistration are indicated in the 'Transparent Changes' document (Appendix A). Major deviations will also be explicitly stated within the methods section. All data and code of this research project can be found on [GitHub](https://www.github.com/smnnlt/vo2max-processing).
+The work presented in this thesis was preregistered before the start of the project on the [Open Science Framework](https://osf.io/3am4s) [@foster2017], following the 'Inclusive Systematic Review Registration Form' [@akker2020]. Any deviations from the preregistration are indicated in the 'Transparent Changes' document (Appendix A.1). Major deviations will also be explicitly stated within the methods section. All data and code of this research project can be found on [GitHub](https://www.github.com/smnnlt/vo2max-processing).
+
+I conducted all analyses using R Version 4.1.2 [@rcoreteam2022]. The thesis was entirely written in R Markdown Version 1.1 [@allaire2022]. The attached packages and default settings are documented in Appendix A.4.
 
 ## Systematic Scoping Review
 
 The aim of the scoping review was to systematically map current practices of data processing for V̇O~2max~ determination in the scientific literature. Since determining V̇O~2max~ is a far too common procedure to perform an exhaustive search, I randomly sampled 500 articles that referred to V̇O~2max~ or similar keywords. Data on processing strategies were extracted from all sampled articles that directly measured V̇O~2max~ using an appropriate testing procedure in humans.
 
-The review was performed in accordance to the PRISMA extension for Scoping reviews [@tricco2018]. Appendix B contains the corresponding reporting checklist.
+The review was performed in accordance to the PRISMA extension for Scoping reviews [@tricco2018]. Appendix A.2 contains the corresponding reporting checklist.
 
 ### Search & Screening
 
@@ -44,7 +46,7 @@ knitr::kable(out,
 
 In accordance with the preregistration I drew a random sample from the search results. The goal of this process was to give an unbiased estimate of the current state of scientific V̇O~2max~ testing. Based on the procedure described in the preregistration, the sample included a total of 500 articles.
 
-The abstracts from the articles included in the random sample were blinded for scanning. This meant removing any further information not relevant for the screening---such as authors or journal---leaving only the title, abstract and an ID of the article (see Appendix C for an example). Two researchers independently scanned the abstracts to filter those that matched one of the exclusion criteria shown in Table 3. When the screeners disagreed in their assessments, they resolved the conflict by discussion.
+The abstracts from the articles included in the random sample were blinded for scanning. This meant removing any further information not relevant for the screening---such as authors or journal---leaving only the title, abstract and an ID of the article (see Appendix A.3 for an example). Two researchers independently scanned the abstracts to filter those that matched one of the exclusion criteria shown in Table 3. When the screeners disagreed in their assessments, they resolved the conflict by discussion.
 
 ```{r exclusion, echo = FALSE}
 exclusion_criteria <- data.frame(
