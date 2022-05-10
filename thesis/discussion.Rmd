@@ -6,13 +6,33 @@ bibliography: ../references.bib
 
 # Discussion
 
-<!-- if report - diverse strategies -->
-<!-- most (multiple) binned time averages: necessary for mixing chamber, but bbb has more information! -->
-<!-- current practice is in contrast to recommendations (Robergs)! -->
+The collected data shows, that current research uses a variety of strategies to determine V̇O~2max~, which directly influences the values obtained. Many articles only incompletely report on their methods and use outdated strategies. These practices hinder the validity and reproducibility of V̇O~2max~ measurement.
 
-<!-- variety of calculation intervals - different results (example)-->
-<!-- comparing results for strategies -->
+## Current state of data processing
 
-<!-- recommendation for choosing a strategy: ... -->
+Despite the call to use moving averages [@robergs2010], binned time averages remain the most commonly used in the reviewed literature.
+<!-- compare with midgley? differences? why? highlight systematic aspect? -->
+<!-- ...different journals, not self-assessed -->
+<!-- explain why binned leads to lower vo2max - see fig 1 -->
+<!-- Why do researchers use binned? Not aware of problems? -->
+<!-- binned common for mixing (but not necessary!). Removes major advantages of bbb -->
+<!-- not reporting at all - compare number -->
 
-<!-- guidelines for reporting: ... -->
+<!-- length of calculation interval: very important (example), but often differing -->
+<!-- may be due to opposing recommendations -->
+<!-- rational for both short and long, reporting even more important -->
+
+<!-- project allows to compare data among strategies -->
+<!-- but: very individual (and most research only on group mean) -->
+<!-- : for comparison of processing strategies in individuals simply reporting is not enough -->
+
+<!-- recommendation for choosing a strategy: digital filter! -->
+<!-- but zero phase (not as robergs) -->
+<!-- practical issue: requires advanced software -->
+
+<!-- guidelines for reporting: report! -->
+<!-- checklist -->
+
+<!-- even better: share data and code (reporducible analysis) -->
+<!-- data is easy to anonymize -->
+<!-- tools have been recently developed (whippr, spiro) -->

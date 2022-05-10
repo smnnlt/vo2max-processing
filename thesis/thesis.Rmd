@@ -10,8 +10,11 @@ urlcolor: blue
 linkcolor: black
 link-citations: yes
 geometry: "left = 4cm, right = 2cm, top = 2cm, bottom = 2cm"
-header-include:
+header-includes:
   - \usepackage{setspace}\spacing{1.5}
+  - \usepackage{caption}
+  - \captionsetup[table]{font={stretch=1}} 
+  - \captionsetup[figure]{font={stretch=1}}
   - \renewcommand{\contentsname}{Inhalt}
 bibliography: ../references.bib
 csl: '`r here::here("apa.csl")`'
@@ -27,6 +30,8 @@ params:
 ```
 
 \begin{centering}
+
+\singlespacing
 
 \vspace*{2cm}
 
@@ -86,6 +91,8 @@ Personally signed
 
 # Table of contents {-}
 
+\singlespacing
+
 \renewcommand{\contentsname}{}
 
 \tableofcontents
@@ -93,6 +100,8 @@ Personally signed
 \newpage
 
 \renewcommand{\listfigurename}{}
+
+\spacing{1.5}
 
 # List of Figures {-}
 
@@ -149,8 +158,6 @@ Personally signed
 \appendix
 
 # Appendix
-
-<!-- \addtocontents{toc}{\protect\setcounter{tocdepth}{0}} -->
 
 ## Transparent Changes
 
