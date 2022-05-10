@@ -1,6 +1,6 @@
 ---
 title: ''
-output: pdf_document
+format: pdf
 bibliography: ../references.bib
 ---
 

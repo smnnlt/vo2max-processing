@@ -1,0 +1,42 @@
+---
+title: ''
+format: pdf
+bibliography: ../references.bib
+---
+
+# Results
+
+## Systematic Scoping Review
+
+Initial search yielded 7529 results of which 4364 remained after automated filtering and removal of duplicates (see flow diagram in @fig-flow). Out of the random sample (n = 500), 242 articles were included in the final analysis.
+
+![Flow diagram for the systematic scoping review in accordance with the PRISMA 2020 Statement [@page2021]](../plots/flow_diagram.png){#fig-flow}
+
+Reporting practices of the methodology of gas exchange measures differed widely across the literature (see @tbl-reporting). More than half (51.8%) of the articles did not report any information regarding their data processing strategy. One in twenty articles (5.4%) provided a rationale for their used strategy. Only a single article [@maturana2021] reported information regarding all the investigated criteria.
+
+```{r}
+#| echo: false
+#| label: tbl-reporting
+#| tbl-cap: "Percentage of studies that provided details on the different characteristics of oxygen uptake data processing. *only examined within the subgroup of studies using breath-by-breath measurements"
+load("../data/reporting.Rda")
+t <- purrr::map_dfr(reporting, scales::percent, accuracy = 0.1)
+
+t[["pre"]] <- paste0(t[["pre"]], "*")
+t[["software"]] <- paste0(t[["software"]], "*")
+
+knitr::kable(
+  t,
+  col.names = c("Metabolic cart", "Preprocessing", "Software", "Processing Strategy", "Reference"),
+  align = "r"
+)
+```
+
+Out of the authors that provided information and collected breath-by-breath measurements, most (79.5%) utilized binned averages to determine V̇O~2max~. Moving time averages, or breath-based averages were uncommon (see @fig-strategies). No study used methods of digital filtering to determine V̇O~2max~.
+
+![Data strategies for processing breath-by-breath data in the reviewed literature (n = 88).](../plots/strategies.png){#fig-strategies}
+
+For preprocessing, some authors reported the use of a (linear) interpolation for the breath-by-breath data to seconds (n = 7; 4.3%). A minority of researchers reported the use of data filtering strategies to remove outliers. This included the use of initial data smoothing by a short moving average (3 seconds, n = 1; 5 breaths, n = 3), the manual detection and removal of outliers (n = 2) or an automated removal of outliers (n = 5). For the automated outlier detection authors removed single data points differing from a local mean by a varying number of standard deviations (2, 3 or 4) or being outside of a 95% confidence interval. When reported, the software used for data processing varied among studies showing a total of more than 15 reported programs (for 30 studies that reported this parameter).
+
+The calculation interval for time-based averages of mixing chamber and breath-by-breath devices ranged from 5 to 60 seconds (see @fig-duration). 30 second length intervals were most common to define V̇O~2max~, while authors also often employed shorter (10-20 s) and longer (60 s) periods.
+
+![Total durations of the calculation interval of V̇O~2max~ in the reviewed studies.](../plots/duration_count.png){#fig-duration}

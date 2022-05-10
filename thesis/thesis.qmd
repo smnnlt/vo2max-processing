@@ -1,23 +1,16 @@
 ---
 title: " "
-output: 
-  pdf_document:
-    latex_engine: xelatex
-    number_sections: TRUE
+format: pdf
+number-sections: true
+top-level-division: section
 mainfont: Arial
 fontsize: 11pt
 urlcolor: blue
 linkcolor: black
 link-citations: yes
-geometry: "left = 4cm, right = 2cm, top = 2cm, bottom = 2cm"
-header-includes:
-  - \usepackage{setspace}\spacing{1.5}
-  - \usepackage{caption}
-  - \captionsetup[table]{font={stretch=1}} 
-  - \captionsetup[figure]{font={stretch=1}}
-  - \renewcommand{\contentsname}{Inhalt}
 bibliography: ../references.bib
 csl: '`r here::here("apa.csl")`'
+geometry: "left = 4cm, right = 2cm, top = 2cm, bottom = 2cm"
 params:
   title: 'Data Processing Strategies to Determine Maximum Oxygen Uptake: A Systematic Scoping Review and Experimental Comparison'
   name: Simon Nolte
@@ -25,39 +18,33 @@ params:
   year: 2022
 ---
 
-```{r setup, include=FALSE}
-
-```
-
 \begin{centering}
-
-\singlespacing
 
 \vspace*{2cm}
 
 \LARGE
-{\bf `r params$title`}
+{`r params$title`}
 
 \vspace{5cm}
 
 \LARGE
-{\bf Bachelor thesis}
+{Bachelor thesis}
 
 \LARGE
-{\bf from}
+{from}
 
 \vspace{2cm}
 
 \LARGE
-{\bf `r params$name`}
+{`r params$name`}
 
 \vspace{6cm}
 
 \LARGE
-{\bf `r params$university`}
+{`r params$university`}
 
 \Large
-{\bf `r paste0("Cologne ", params$year)`}
+{`r paste0("Cologne ", params$year)`}
 
 \end{centering}
 
@@ -91,8 +78,6 @@ Personally signed
 
 # Table of contents {-}
 
-\singlespacing
-
 \renewcommand{\contentsname}{}
 
 \tableofcontents
@@ -100,8 +85,6 @@ Personally signed
 \newpage
 
 \renewcommand{\listfigurename}{}
-
-\spacing{1.5}
 
 # List of Figures {-}
 
@@ -119,32 +102,32 @@ Personally signed
 
 \pagenumbering{arabic}
 
-```{r intro, child = 'introduction.Rmd'}
-
+```{r}
+#| child = 'introduction.qmd'
 ```
 
 \newpage
 
-```{r methods, child = 'methods.Rmd'}
-
+```{r}
+#| child = 'methods.qmd'
 ```
 
 \newpage
 
-```{r results, child = 'results.Rmd'}
-
+```{r}
+#| child = 'results.qmd'
 ```
 
 \newpage
 
-```{r discussion, child = 'discussion.Rmd'}
-
+```{r}
+#| child = 'discussion.qmd'
 ```
 
 \newpage
 
-```{r conclusion, child = 'conclusion.Rmd'}
-
+```{r}
+#| child = 'conclusion.qmd'
 ```
 
 \newpage
@@ -161,9 +144,6 @@ Personally signed
 
 ## Transparent Changes
 
-```{r appendix-a, child = '../transparent_changes.Rmd'}
-
-```
 
 \newpage
 
@@ -177,8 +157,21 @@ Personally signed
 
 \newpage
 
-## Session Info
+## Technical Details
+
+### Session info
 
 ```{r session}
 sessionInfo()
 ```
+
+### Used Packages
+
+```{r}
+p_used <- unique(renv::dependencies(path = "../")$Package)
+p_inst <- as.data.frame(installed.packages())
+out <- p_inst[p_inst$Package %in% p_used, c("Package", "Version")]
+rownames(out) <- NULL
+out
+```
+
