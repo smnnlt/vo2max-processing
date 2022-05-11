@@ -40,3 +40,15 @@ For preprocessing, some authors reported the use of a (linear) interpolation for
 The calculation interval for time-based averages of mixing chamber and breath-by-breath devices ranged from 5 to 60 seconds (see @fig-duration). 30 second length intervals were most common to define V̇O~2max~, while authors also often employed shorter (10-20 s) and longer (60 s) periods.
 
 ![Total durations of the calculation interval of V̇O~2max~ in the reviewed studies.](../plots/duration_count.png){#fig-duration}
+
+## Experimental Comparison
+
+The average V̇O~2max~ as determined by a binned 30-second average was 62.2±6.3 ml·min^-1^·kg^-1^ (mean ± standard deviation). Applying different data processing strategies for V̇O~2max~ determination leads to different outcome values (see @fig-comparison).
+
+![V̇O~2max~ varies by data processing strategy. Values are expressed relative to the V̇O~2max~ from a 30-second binned average --- the most common strategy as determined by the review. Solid lines display the median, the shaded area marks the interval between 10th and 90th percentile. Using moving average leads to systematically higher V̇O~2max~ values compared to binned time averages. Changing the averaging interval (in seconds or breaths) can lead to median changes in V̇O~2max~ as large as 5%,.](../plots/comparison.png){#fig-comparison}
+
+Binned time averages systematically generate V̇O~2max~ values compared to moving averages. Decreasing the calculation interval to 5 seconds leads to a 3-4% median increase of V̇O~2max~ values. Notably on an individual level these increases may be lower (≈2%) or much higher (\>10%) than the median value.
+
+Moving time and moving breath averages yield nearly identical values for V̇O~2max~ over all calculation intervals. This corresponds to the trained athletes reaching respiratory rates around 60 min^-1^ in the final minute of the exercise test (see @fig-rr).
+
+![Respiratory Rates peak around 60 min^-1^ in the ramp tests. The red segments correspond to the last minute before exhaustion of each individual (n = 72).](../plots/rr.png){#fig-rr}
