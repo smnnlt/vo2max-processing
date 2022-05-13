@@ -1,6 +1,9 @@
 ---
 title: " "
-format: pdf
+format: 
+  pdf:
+    include-in-header: 
+      text: \usepackage{setspace}
 number-sections: true
 top-level-division: section
 mainfont: Arial
@@ -9,7 +12,7 @@ urlcolor: blue
 linkcolor: black
 link-citations: yes
 bibliography: ../references.bib
-csl: '`r here::here("apa.csl")`'
+csl: '`r here::here("sports-med-new.csl")`'
 geometry: "left = 4cm, right = 2cm, top = 2cm, bottom = 2cm"
 params:
   title: 'Data Processing Strategies to Determine Maximum Oxygen Uptake: A Systematic Scoping Review and Experimental Comparison'
@@ -102,6 +105,8 @@ Personally signed
 
 \pagenumbering{arabic}
 
+\onehalfspacing
+
 ```{r}
 #| child = 'introduction.qmd'
 ```
@@ -132,7 +137,7 @@ Personally signed
 
 \newpage
 
-# Bibliography
+# References {.unnumbered}
 
 <div id="refs"></div>
 
@@ -142,36 +147,37 @@ Personally signed
 
 # Appendix
 
-## Transparent Changes
-
-
-\newpage
-
-## Prisma Reporting Checklist
+## Transparent Changes {#sec-tchanges}
 
 \newpage
 
-## Blinded abstract example
+## Technical Details {#sec-tech}
 
-![](../plots/abstracts/030.png)
-
-\newpage
-
-## Technical Details
-
-### Session info
+### Session Info
 
 ```{r session}
 sessionInfo()
 ```
 
-### Used Packages
+### Packages
 
 ```{r}
+#| message: false
+
 p_used <- unique(renv::dependencies(path = "../")$Package)
 p_inst <- as.data.frame(installed.packages())
 out <- p_inst[p_inst$Package %in% p_used, c("Package", "Version")]
 rownames(out) <- NULL
 out
 ```
+
+\newpage
+
+## Prisma Reporting Checklist {#sec-checklist}
+
+\newpage
+
+## Blinded Abstract Example {#sec-blindabstract}
+
+![](../plots/abstracts/030.png)
 

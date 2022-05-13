@@ -44,17 +44,35 @@ To compare and evaluate V̇O~2max~ values from different studies, knowledge of t
 
 > *"We measured breath-by-breath data during the ramp tests with a ZAN 600 device (nSpire Health, Inc., Longmont, CO, United States of America). The raw data was analyzed without any previous filtering by using a low-pass forward-backward Butterworth filter (each filter: 3rd order, 0.04 Hz cut-off) implemented in the spiro Package for R [@nolte2022]. This strategy produces similar results as that recommended by @robergs2010, but does not produce a time lag."*
 
-| reporting item        | description                                                                                                           |
-|-----------------------|-----------------------------------------------------------------------------------------------------------------------|
-| Metabolic Cart        | State the exact device model and manufacturer                                                                         |
-| Measurement Mode      | State the measurement mode (e.g., mixing chamber, breath-by-breath,...)                                               |
-| Software              | State the name and version of the software used for data analysis                                                     |
-| Preprocessing         | State if and how data underwent any initial modification (e.g., filtering of outliers, interpolation) before analysis |
-| Processing Strategy   | State the exact data processing strategy used to determine the V̇O~2max~ (e.g., binned time averages)                  |
-| Processing Parameters | State the parameters used for the processing strategy (e.g., length of averaging interval)                            |
-| Rationale             | State the rationale for using the processing strategy (e.g., reference to recommendations)                            |
+```{r}
+#| echo: false
+#| tbl-cap: "Recommendations for reporting data processing strategies to determine the maximum oxygen uptake"
+#| label: tbl-recommendation
 
-: Recommendations for reporting data processing strategies to determine V̇O~2max~. {#tbl-recommendation}
+rec_df <- data.frame(
+  item = c("Metabolic Cart", "Measurement Mode", "Software", "Preprocessing", "Processing Strategy", "Processing Parameters", "Rationale"),
+  desc = c(
+    "State the exact device model and manufacturer",
+    "State the measurement mode (e.g., mixing chamber, breath-by-breath,…)",
+    "State the name and version of the software used for data analysis",
+    "State if and how data underwent any initial modification (e.g., filtering of outliers, interpolation) before analysis",
+    "State the exact data processing strategy used to determine the VO2max (e.g., binned time averages)",
+    "State the parameters used for the processing strategy (e.g., length of averaging interval)",
+    "State the rationale for using the processing strategy (e.g., reference to recommendations)")
+)
+
+out <- kableExtra::kbl(
+  rec_df,
+  col.names = c("Reporting Item", "Description"),
+  format = "latex",
+  booktabs = TRUE
+) |>
+   kableExtra::column_spec(
+    2, width = "11cm"
+  )
+
+knitr::asis_output(stringr::str_replace_all(out, "VO2max", "${\\\\dot{\\\\textsf{V}}\\\\textsf{O}_{\\\\textsf{2max}}}$"))
+```
 
 Note that the correct reporting of an exercise test to determine V̇O~2max~ requires more information than those on data processing. Further aspects to be reported include, but are not limited to, the study population, the exercise protocol, the device calibration, and criteria to stop the test. In cases where journals endorse word limits on articles, these reporting --- including the reporting on data processing strategies --- may be included in supplementary files. The correct and detailed reporting of data processing strategies, as well as other test characteristics, is crucial for interpreting presented V̇O~2max~ values.
 
