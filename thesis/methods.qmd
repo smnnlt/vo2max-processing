@@ -10,7 +10,7 @@ bibliography: ../references.bib
 
 The work presented in this thesis was preregistered before the start of the project on the [Open Science Framework](https://osf.io/3am4s) [@foster2017], following the 'Inclusive Systematic Review Registration Form' [@akker2020]. Any deviations from the preregistration are indicated in the 'Transparent Changes' document (@sec-tchanges). Major deviations will also be explicitly stated within the methods section. All data and code of this research project can be found on [GitHub](https://www.github.com/smnnlt/vo2max-processing).
 
-I conducted all analyses using R Version 4.1.2 [@rcoreteam2022] within R Studio Version 2022.2.2.485 [@rstudioteam2022]. The thesis was entirely written in Quarto Version 0.9.380 [@allaire2022a]. The attached packages and default settings are documented in @sec-tech.
+I conducted all analyses using R Version 4.2.0 [@rcoreteam2022] within R Studio Version 2022.2.2.485 [@rstudioteam2022]. The thesis was entirely written in Quarto Version 0.9.380 [@allaire2022a]. The attached packages and default settings are documented in @sec-tech.
 
 ## Systematic Scoping Review
 
@@ -122,7 +122,7 @@ Gas exchange data were recorded using a ZAN 600 USB device (nSpire Health, Inc.,
 
 ### Data Processing
 
-The spiro Package Version XXX for R [@nolte2022] processed the raw gas exchange data. It includes various algorithms to calculate V̇O~2max~ with user-defined parameters on given data. The full analysis script is available on [GitHub](https://github.com/smnnlt/vo2max-processing/blob/master/scripts/comparison.md).
+The spiro Package version 0.0.4 for R [@nolte2022] processed the raw gas exchange data. It includes various algorithms to calculate V̇O~2max~ with user-defined parameters on given data. The full analysis script is available on [GitHub](https://github.com/smnnlt/vo2max-processing/blob/master/scripts/comparison.md).
 
 Moving time based averages were calculated by first linearly interpolating the breath-by-breath data to seconds. Subsequently a (center aligned) moving average was calculated over a defined timespan. These processing steps are implemented in the spiro package [@nolte2022]. For calculating the moving average over 30 seconds for example, I used the functions `spiro(data) |> spiro_max(30)`.
 

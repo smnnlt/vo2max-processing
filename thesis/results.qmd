@@ -20,7 +20,7 @@ Initial search yielded 7529 results of which 4364 remained after automated filte
 knitr::include_graphics("../plots/flow_diagram.png")
 ```
 
-Reporting practices of the methodology of gas exchange measures differed widely across the literature (see @tbl-reporting). More than half (51.8%) of the articles did not report any information regarding their data processing strategy. One in twenty articles (5.4%) provided a rationale for their used strategy. Only a single article [@maturana2021] reported information regarding all the investigated criteria.
+Reporting practices of the methodology of gas exchange measures differed widely across the literature (see @tbl-reporting). Almost half (44.2%) of the articles did not report any information regarding their data processing strategy. One in twenty articles (5.8%) provided a rationale for their used strategy. Only a single article [@maturana2021] reported information regarding all the investigated criteria.
 
 ```{r}
 #| echo: false
