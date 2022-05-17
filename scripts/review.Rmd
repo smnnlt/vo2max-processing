@@ -504,3 +504,41 @@ p_strat <- ggplot(ext_count, aes(area = n, fill = proc_combination, label = labe
 knitr::include_graphics("../plots/strategies.png")
 ```
 
+#### Create data of all sampled studies
+
+```{r}
+load("../data/screen/sample.Rda")
+abstract <- read.csv("../data/screen/abstract_screening.csv")
+fulltext <- read.csv("../data/screen/fulltext_screening.csv")
+fullsample <- sampled_data[, c("sid", "title", "authors", "year", "doi")]
+get_status <- function(sid) {
+  if (!(sid %in% fulltext$sid)) {
+    status <- "excluded_abstract"
+    reason <- abstract$decision[sid]
+  } else {
+    if (is.na(fulltext$decision[sid])) {
+      status <- "included"
+      reason <- NA
+    } else {
+      status <- "excluded_fulltext"
+      reason <- fulltext$decision[sid]
+    }
+  }
+  data.frame(status = status, reason = reason)
+}
+fullsample <- cbind(
+  fullsample, 
+  purrr::map_dfr(seq_len(nrow(fullsample)), get_status)
+)
+
+fullsample$reason <- factor(
+  fullsample$reason, 
+  levels = c("t", "l", "r", "h", "m", "c", "e", "d", "o"),
+  labels = c("report not retrieved", "not in English", "no primary research", 
+             "reasearch not in humans", "VO2 only estimated", "no appropriate test protocol (VO2 not continously measured)", 
+             "no appropriate test protocol (no exhaustion)", "no appropriate test protocol (longer than 20 minutes)", "no information regarding the exclusion criteria")
+)
+
+write.csv(fullsample, file = "../data/fullsample.csv", na = "", row.names = FALSE)
+```
+
