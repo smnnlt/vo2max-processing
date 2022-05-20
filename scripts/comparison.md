@@ -19,8 +19,10 @@ library(scales)
 library(MetBrewer)
 
 # Get data files
-
 files <- list.files("../data/ramptests", full.names = TRUE)
+
+# ZAN raw data only saves imprecise body mass data in the raw data file.
+info <- read.csv("../data/participants.csv")
 ```
 
 ## Functions to calculate VO2max using different strategies
@@ -69,9 +71,6 @@ vo2max <- function(parameter, method, data) {
 ## Iterate over all exercise tests
 
 ``` r
-# ZAN raw data only saves imprecise body mass data in the raw data file.
-info <- read.csv("../data/participants.csv")
-
 # level 1: iterate over each data file
 results <- purrr::map_dfr(
   .x = seq_along(files),
@@ -242,6 +241,34 @@ knitr::include_graphics("../plots/rr.png")
 ```
 
 <img src="../plots/rr.png" width="70%" style="display: block; margin: auto;" />
+
+## Calculate zero phase digital filter
+
+``` r
+# Function to get VO2max with digital filtering
+get_fzmax <- function(i) {
+  dta <- spiro(files[i], weight = info$bodymass[i])
+  spiro_max(dta, smooth = "0.04fz3")$VO2_rel
+}
+
+# iterate over all tests
+fzmax <- purrr::map_dbl(seq_along(files), get_fzmax)
+
+# normalize to reference procedure
+fzmax_norm <- fzmax / res$tb_30
+
+# get median and quantile values
+median(fzmax_norm)
+```
+
+    ## [1] 1.0044
+
+``` r
+quant(fzmax_norm, 0.1, 0.9)
+```
+
+    ##        ymin    ymax
+    ## 1 0.9980903 1.01367
 
 ## Plot: Example of different strategies
 
