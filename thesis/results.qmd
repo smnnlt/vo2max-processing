@@ -34,7 +34,7 @@ t[["software"]] <- paste0(t[["software"]], "*")
 
 kableExtra::kbl(
   t,
-  col.names = c("Metabolic cart", "Preprocessing", "Software", "Processing Strategy", "Reference"),
+  col.names = c("Metabolic cart", "Preprocessing", "Software", "Processing Strategy", "Rationale"),
   align = "r",
   booktabs = TRUE
 ) |>
@@ -84,7 +84,7 @@ knitr::include_graphics("../plots/comparison.png")
 
 Binned time averages systematically generate lower V̇O~2max~ values compared to moving averages. Decreasing the calculation interval to 5 seconds leads to a 3-4% median increase of V̇O~2max~ values. Notably on an individual level these increases may be lower (≈2%) or much higher (\>10%) than the median value.
 
-Moving time and moving breath averages yield nearly identical values for V̇O~2max~ over all calculation intervals. This corresponds to the trained athletes reaching respiratory rates around 60 min^-1^ in the final minute of the exercise test (see @fig-rr).
+Moving time and moving breath averages yield nearly identical values for V̇O~2max~ over all calculation intervals. This corresponds to the trained athletes reaching respiratory rates around 60 min^-1^ in the final minute of the exercise test (see @fig-rr). Using a zero-phase forward-backward filter (third order, 0.04 Hz cut-off frequency) lead to V̇O~2max~ values 0.4% \[-0.2%; +1.4%\] (median, 10th and 90th quantile) higher than the 30-second binned time average approach.
 
 ```{r}
 #| echo: false
