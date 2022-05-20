@@ -8,13 +8,13 @@ bibliography: ../references.bib
 
 # Methods
 
-The work presented in this thesis was preregistered before the start of the project on the [Open Science Framework](https://osf.io/3am4s) [@foster2017], following the 'Inclusive Systematic Review Registration Form' [@akker2020]. Any deviations from the preregistration are indicated in the 'Transparent Changes' document (@sec-tchanges). Major deviations will also be explicitly stated within the methods section. All data and code of this research project can be found on [GitHub](https://www.github.com/smnnlt/vo2max-processing).
+The work presented in this thesis was preregistered before the start of the project on the [Open Science Framework](https://osf.io/3am4s) [@foster2017], following the 'Inclusive Systematic Review Registration Form' [@akker]. Any deviations from the preregistration are indicated in the 'Transparent Changes' document (@sec-tchanges). Major deviations will also be explicitly stated within the methods section. All data and code of this research project can be found on [GitHub](https://www.github.com/smnnlt/vo2max-processing).
 
-I conducted all analyses using R Version 4.2.0 [@rcoreteam2022] in the R Studio IDE Version 2022.2.2.485 [@rstudioteam2022]. The thesis was entirely written in Quarto Version 0.9.380 [@allaire2022a]. The attached packages and default settings are documented in @sec-tech.
+I conducted all analyses using R Version 4.2.0 [@rcoreteam2022] in the R Studio IDE Version 2022.2.2.485 [@rstudioteam2022]. The thesis was entirely written in Quarto Version 0.9.380 [@allaire2022]. The attached packages and default settings are documented in @sec-tech.
 
 ## Systematic Scoping Review
 
-The aim of the scoping review was to systematically map current practices of data processing for V̇O~2max~ determination in the scientific literature. Since determining V̇O~2max~ is a far too common procedure to perform an exhaustive search, I randomly sampled 500 articles that referred to V̇O~2max~ or similar keywords. Data on processing strategies were extracted from all sampled articles that directly measured V̇O~2max~ using an appropriate testing procedure in humans. The review was performed in accordance to the PRISMA extension for Scoping reviews [@tricco2018a]. @sec-checklist contains the corresponding reporting checklist.
+The aim of the scoping review was to systematically map current practices of data processing for V̇O~2max~ determination in the scientific literature. Since determining V̇O~2max~ is a far too common procedure to perform an exhaustive search, I randomly sampled 500 articles that referred to V̇O~2max~ or similar keywords. Data on processing strategies were extracted from all sampled articles that directly measured V̇O~2max~ using an appropriate testing procedure in humans. The review was performed in accordance to the PRISMA extension for Scoping reviews [@tricco2018]. @sec-checklist contains the corresponding reporting checklist.
 
 ### Search & Screening
 
@@ -120,7 +120,7 @@ A total of N = 72 exercise tests were analysed for this study. Due to a miscalcu
 
 Gas exchange data were recorded using a ZAN 600 USB device (nSpire Health, Inc., Longmont, CO, United States of America). The device was calibrated with a 3l-syringe pump (nSpire Health, Inc., Longmont, CO, 143 United States of America) and a reference gas (15% O~2~, 6% CO~2~) before each measurement. The measured breath-by-breath data is available on [GitHub](https://github.com/smnnlt/vo2max-processing/tree/master/data/ramptests).
 
-### Data Processing
+### Data Processing {#sec-processing}
 
 The spiro Package version 0.0.4 for R [@nolte2022] processed the raw gas exchange data. It includes various algorithms to calculate V̇O~2max~ with user-defined parameters on given data. The full analysis script is available on [GitHub](https://github.com/smnnlt/vo2max-processing/blob/master/scripts/comparison.md).
 
