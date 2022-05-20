@@ -149,6 +149,10 @@ Personally signed
 
 ## Transparent Changes {#sec-tchanges}
 
+```{r}
+#| child = '../transparent_changes.Rmd'
+```
+
 \newpage
 
 ## Technical Details {#sec-tech}
@@ -174,6 +178,16 @@ out
 \newpage
 
 ## Prisma Reporting Checklist {#sec-checklist}
+
+![](checklist.pdf)
+
+```{r}
+#| echo: false
+#| out-extra: "page=2"
+
+knitr::include_graphics("checklist.pdf")
+```
+
 
 \newpage
 
