@@ -73,7 +73,9 @@ Personally signed
 
 \newpage
 
-# Zusammenfassung (German abstract) {-}
+```{r}
+#| child = 'abstract.qmd'
+```
 
 \newpage
 
