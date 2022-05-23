@@ -301,9 +301,20 @@ exm_tidy$method <- factor(
 exm_tidy$value <- exm_tidy$value / bodymass
 
 p_ex <- ggplot(exm_tidy, aes(x = time)) +
-  geom_point(data = exm_tidy[exm_tidy$method == "raw", ], aes(y = value), alpha = 0.1) +
-  geom_line(data = exm_tidy[exm_tidy$method %in% c("Moving Breath", "Moving Time", "Digital Filter"), ], aes(y = value, color = method), size = 0.7) +
-  geom_point(data = exm_tidy[exm_tidy$method == "Binned Time", ], aes(y = value, fill = method, colour = "Binned Time"), size = 1.4) +
+  geom_point(
+    data = exm_tidy[exm_tidy$method == "raw", ], 
+    aes(y = value, alpha = method, colour = "Raw Data")
+  ) +
+  geom_line(
+    data = exm_tidy[exm_tidy$method %in% c("Moving Breath", "Moving Time", "Digital Filter"), ], 
+    aes(y = value, color = method), 
+    size = 0.7
+  ) +
+  geom_point(
+    data = exm_tidy[exm_tidy$method == "Binned Time", ], 
+    aes(y = value, fill = method, colour = "Binned Time"), 
+    size = 1.4
+  ) +
   scale_x_continuous(
     name = "Time (min)",
     limits = c(500,860),
@@ -317,24 +328,28 @@ p_ex <- ggplot(exm_tidy, aes(x = time)) +
   ) +
   scale_color_manual(
     name = "Processing Strategy",
-    values = c(met.brewer("Java", 3)[3], "blue", met.brewer("Java", 3)[c(1,2)]),
-    labels = c("Binned Time", "Digital Filter","Moving Time","Moving Breath"),
+    values = c(met.brewer("Java", 3)[3], "blue", met.brewer("Java", 3)[c(1,2)], "black"),
+    labels = c("Raw Data", "Binned Time", "Digital Filter","Moving Time","Moving Breath"),
     guide = guide_legend(
       reverse = TRUE,
       override.aes = list(
-        linetype = c(rep.int("solid", 3), "blank"),
-        shape = c(rep.int(NA, 3), 19),
-        color = c(met.brewer("Java", 3)[c(1,2)], "blue", met.brewer("Java", 3)[3])
+        linetype = c(rep.int("solid", 3), "blank", "blank"),
+        shape = c(rep.int(NA, 3), 19, 19),
+        color = c(met.brewer("Java", 3)[c(1,2)], "blue", met.brewer("Java", 3)[3], "black"),
+        alpha = c(rep.int(1, 4), 0.1)
       )
     )
   ) +
-   scale_fill_manual(
+  scale_fill_manual(
     values = "white",
+    guide = "none"
+  ) +  scale_alpha_manual(
+    values = 0.1,
     guide = "none"
   ) +
   theme_classic() +
   theme(
-    legend.position = c(0.88, 0.6),
+    legend.position = c(0.88, 0.63),
   )
 
 # ggsave(filename = "../plots/example.png", plot = p_ex, width = 6, height = 4, dpi = 1200, bg = "white")
