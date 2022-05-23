@@ -20,6 +20,9 @@ The aim of the scoping review was to systematically map current practices of dat
 
 The article search was conducted on 16th March 2022 using [PubMed]() and [Web of Science](). The search included articles published from 2017 to 2022 referring to 'maximum oxygen uptake' or equivalent terms in title, abstract or keywords. @tbl-search shows the exact search terms used.
 
+The search results from both data bases were merged and checked for the presence of a Digital Object Identifier (DOI). Entries without DOI were excluded to allow for automated removal of duplicates by DOI matching in the next step. After removing the duplicates I conducted an automated title scanning to exclude results that were likely no original research articles. All titles that contained one of the following words were excluded: *'review', 'correction', 'meta-analysis', 'comment', 'retraction', 'editorial', 'erratum', 'reply'.*
+
+
 ```{r}
 #| echo: false
 #| tbl-cap: "Search strings for the systematic scoping review."
@@ -41,11 +44,30 @@ kableExtra::kbl(
   )
 ```
 
-The search results from both data bases were merged and checked for the presence of a Digital Object Identifier (DOI). Entries without DOI were excluded to allow for automated removal of duplicates by DOI matching in the next step. After removing the duplicates I conducted an automated title scanning to exclude results that were likely no original research articles. All titles that contained one of the following words were excluded: review, correction, meta-analysis, comment, retraction, editorial, erratum, reply.
-
 In accordance with the preregistration I drew a random sample from the search results. The goal of this process was to give an unbiased estimate of the current state of scientific V̇O~2max~ testing. Based on the procedure described in the preregistration, the sample included a total of 500 articles.
 
 The abstracts from the articles included in the random sample were blinded for scanning. This meant removing any further information not relevant for the screening---such as authors or journal---leaving only the title, abstract and an ID of the article (see @sec-blindabstract for an example). Two researchers independently scanned the abstracts to filter those that matched one of the exclusion criteria shown in @tbl-exclusion. When the screeners disagreed in their assessments, they resolved the conflict by discussion.
+
+After the abstract screening I retrieved the full-texts for all remaining articles. The full-texts were again independently scanned by two researchers to include only those articles that measured V̇O~2max~ using an appropriate testing procedure in humans (see @tbl-exclusion for the detailed full-text exclusion criteria). Conflicts were resolved by discussion between examiners. All data exclusion steps are documented in an Markdown script on [GitHub](https://github.com/smnnlt/vo2max-processing/blob/master/scripts/review.md).
+
+### Data Extraction
+
+I retrieved data from all articles remaining after the abstract and full-text screening. Extraction included the following data:
+
+-   metabolic cart used
+-   measurement type (breath-by-breath, mixing chamber, ...)
+-   type of outcome for V̇O~2max~ (primary, secondary, other)
+-   data preprocessing (e.g., filtering)
+-   data processing software
+-   interpolation procedure
+-   data processing/determination of V̇O~2max~:
+    -   type (time average, breath average, digital filtering)
+    -   alignment (rolling, binned, ...)
+    -   interval (in seconds or breaths, parameters for filtering)
+-   reference for the used data processing strategy
+
+The criteria 'type of outcome' and 'reference' were added to the extraction list after the abstracts had been scanned, thus they were not stated in the preregistration. All extracted data is available as a csv file on [GitHub](https://github.com/smnnlt/vo2max-processing/blob/master/data/extract/extraction.csv).
+
 
 ```{r}
 #| echo: false
@@ -86,25 +108,6 @@ out <- kableExtra::kbl(
 knitr::asis_output(stringr::str_replace_all(out, "VO2max", "${\\\\dot{\\\\textsf{V}}\\\\textsf{O}_{\\\\textsf{2max}}}$"))
 ```
 
-After the abstract screening I retrieved the full-texts for all remaining articles. The full-texts were again independently scanned by two researchers to include only those articles that measured V̇O~2max~ using an appropriate testing procedure in humans (see @tbl-exclusion for the detailed full-text exclusion criteria). Conflicts were resolved by discussion between examiners. All data exclusion steps are documented in an Markdown script on [GitHub](https://github.com/smnnlt/vo2max-processing/blob/master/scripts/review.md).
-
-### Data Extraction
-
-I retrieved data from all articles remaining after the abstract and full-text screening. Extraction included the following data:
-
--   metabolic cart used
--   measurement type (breath-by-breath, mixing chamber, ...)
--   type of outcome for V̇O~2max~ (primary, secondary, other)
--   data preprocessing (e.g., filtering)
--   data processing software
--   interpolation procedure
--   data processing/determination of V̇O~2max~:
-    -   type (time average, breath average, digital filtering)
-    -   alignment (rolling, binned, ...)
-    -   interval (in seconds or breaths, parameters for filtering)
--   reference for the used data processing strategy
-
-The criteria 'type of outcome' and 'reference' were added to the extraction list after the abstracts had been scanned, thus they were not stated in the preregistration. All extracted data is available as a csv file on [GitHub](https://github.com/smnnlt/vo2max-processing/blob/master/data/extract/extraction.csv).
 
 ### Data Synthesis
 
@@ -116,7 +119,7 @@ To determine the influence of the most common data processing strategies on the 
 
 ### Data Source
 
-A total of N = 72 exercise tests were analysed for this study. Due to a miscalculation, the preregistration had incorrectly stated a number of 76 tests. The data were from previous research on the metabolic profile of endurance runners [@quittmann_unpubl_a; @quittmann_unpubl_b]. The tested individuals were experienced distance runners (15 female, 54 male; three of the males participated in both studies). The V̇O~2max~ tests were conducted in March to September 2019 [@quittmann_unpubl_a] and March to October 2021 [@quittmann_unpubl_b] using an identical exercise protocol. Participants run on a treadmill (saturn 300/100, h/p/cosmos sports & medical 127 GmbH, Nussdorf-Traunstein, Germany) with 1% inclination for ten minutes at a velocity of 2.8 m·s^-1^ as a warm-up. After preparing the gas exchange measures, they started a ramp protocol with an initial speed of 2.8 m·s^-1^ for two minutes and subsequently increased velocity by 0.15 m·s^-1^ every 30 seconds. The researchers provided verbal encouragement and terminated the exercise when the participants reached subjective exhaustion.
+A total of N = 72 exercise tests were analysed for this study. Due to a miscalculation, the preregistration had incorrectly stated a number of 76 tests. The data were from previous research on the metabolic profile of endurance runners [@quittmann_unpubl_a; @quittmann_unpubl_b]. The tested individuals were experienced distance runners (15 female, 54 male; three of the males participated in both studies). The V̇O~2max~ tests were conducted in March to September 2019 [@quittmann_unpubl_a] and March to October 2021 [@quittmann_unpubl_b], respectively, while using an identical exercise protocol. Participants run on a treadmill (saturn 300/100, h/p/cosmos sports & medical 127 GmbH, Nussdorf-Traunstein, Germany) with 1% inclination for 8 minutes at a velocity of 2.8 m·s^-1^ as a warm-up. After preparing the gas exchange measures, they started a ramp protocol with an initial speed of 2.8 m·s^-1^ for two minutes and subsequently increased velocity by 0.15 m·s^-1^ every 30 seconds. The researchers provided verbal encouragement and terminated the exercise when the participants reached subjective exhaustion.
 
 Gas exchange data were recorded using a ZAN 600 USB device (nSpire Health, Inc., Longmont, CO, United States of America). The device was calibrated with a 3l-syringe pump (nSpire Health, Inc., Longmont, CO, 143 United States of America) and a reference gas (15% O~2~, 6% CO~2~) before each measurement. The measured breath-by-breath data is available on [GitHub](https://github.com/smnnlt/vo2max-processing/tree/master/data/ramptests).
 
@@ -134,6 +137,6 @@ Butterworth filters are a class of recursive digital filters. Robergs et al. @ro
 
 ### Comparison of methods
 
-To compare different processing methods within and between individuals, I choose to express the V̇O~2max~ normalized to a reference procedure. The reference procedure was chosen as being the most commonly applied in current literature as determined by the systematic review. Individual V̇O~2max~ values were expressed in reference to this procedure, where a value of 1 means that the processing method yields exactly the same V̇O~2max~ value as the reference method. I calculated the data for all integer parameter values within the range of the values found in the literature during the review. On a group level, I calculated the median and 10%- and 90%-quantiles of each processing strategy.
+To compare different processing methods within and between individuals, I chose to express the V̇O~2max~ normalized to a reference procedure. The reference procedure was chosen as being the most commonly applied in current literature as determined by the systematic review. Individual V̇O~2max~ values were expressed in reference to this procedure, where a value of 1 means that the processing method yields exactly the same V̇O~2max~ value as the reference method. I calculated the data for all integer parameter values within the range of the values found in the literature during the review. On a group level, I calculated the median and 10%- and 90%-quantiles of each processing strategy.
 
 In an additional exploratory analysis I investigated the respiratory rate (number of breaths per minute) during the ramp tests. This may help to understand how breath-based and time-based data processing methods relate to each other.

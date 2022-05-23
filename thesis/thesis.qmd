@@ -73,11 +73,15 @@ Personally signed
 
 \newpage
 
+\onehalfspacing
+
 ```{r}
 #| child = 'abstract.qmd'
 ```
 
 \newpage
+
+\singlespacing
 
 \pagenumbering{roman}
 
@@ -95,7 +99,7 @@ Personally signed
 
 \listoffigures
 
-\newpage
+\vspace{2cm}
 
 \renewcommand{\listtablename}{}
 
