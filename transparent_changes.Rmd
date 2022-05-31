@@ -4,17 +4,17 @@ output: pdf_document
 bibliography: references.bib
 ---
 
-This document includes all deviation and modifications of code and methods in the final project compared to its [preregistration](https://osf.io/3am4s).
+This document includes all deviations and modifications of code and methods in the final project compared to its [preregistration](https://osf.io/3am4s).
 
 ### Major Changes
 
 #### Number of exercise tests for comparison
 
-Due to a miscalculation, the preregistration provided an incorrect number of exercise test (n = 76). The correct number of exercise tests is n = 72, with 44 from @quittmann_unpubl_a (one test only partly included in the original work due to missing other data) and 28 from @quittmann_unpubl_b (three test only partly included in the original work due to missing other data).
+Due to a miscalculation, the preregistration provided an incorrect number of exercise test (n = 76). The correct number of exercise tests is n = 72, with 44 from @quittmann_unpubl_a (one test only partly included in the original work due to missing other data) and 28 from @quittmann_unpubl_b (three tests only partly included in the original work due to missing other data).
 
 #### Additional variables extracted from included research
 
-`outcome`: Which type of outcome VO2max is. Either `primary`, `secondary` or `other`
+`outcome`: Which type of outcome V̇O~2max~ is. Either `primary`, `secondary` or `other`
 
 `source`: Which source is provided for the data processing method used.
 
@@ -28,10 +28,10 @@ Due to a miscalculation, the preregistration provided an incorrect number of exe
 
 #### Unblinding of single abstracts
 
--   Manual retrieval of abstracts for articles, as these were neither present in the search result data, nor could be automatically scraped. Abstracts were saved and imported as .txt files. Temporary unblinding only applied to the primary researcher. This concerns the abstract with the Sampling ID (sid): 50, 238, 288, 416, 488, 490, 500
--   Manual retrieval of abstracts for articles, as the automatically collected abstract contained html-tags that could not be removed for later abstract plots. Abstracts were saved and imported as .txt files. Temporary unblinding only applied to the primary researcher. This concerns the abstract with the Sampling ID (sid): 344, 356
--   Unblinding during screening to assess the implications of title given in squared brackets. This concerns the abstract with the Sampling ID (sid): 262, 303
--   Consulting of online abstract due to incomplete abstract plot. This concerns the abstract with the Sampling ID (sid): 275
+-   Manual retrieval of abstracts for articles, as these were neither present in the search result data, nor could be automatically scraped. Abstracts were saved and imported as .txt files. Temporary unblinding only applied to the primary researcher. This concerns the abstracts with the sampling id (sid): 50, 238, 288, 416, 488, 490, 500
+-   Manual retrieval of abstracts for articles, as the automatically collected abstract contained html-tags that could not be removed for later abstract plots. Abstracts were saved and imported as .txt files. Temporary unblinding only applied to the primary researcher. This concerns the abstracts with the sampling id (sid): 344, 356
+-   Unblinding during screening to assess the implications of title given in squared brackets. This concerns the abstracts with the sampling id (sid): 262, 303
+-   Consulting of online abstract due to incomplete abstract plot. This concerns the abstract with the sampling id (sid): 275
 
 #### Minor Modification of exclusion criteria
 
