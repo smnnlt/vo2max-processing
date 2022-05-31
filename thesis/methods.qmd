@@ -1,24 +1,22 @@
 ---
 title: ''
 format: pdf
-crossref:
-  sec-prefix: appendix
 bibliography: ../references.bib
 ---
 
 # Methods
 
-The work presented in this thesis was preregistered before the start of the project on the [Open Science Framework](https://osf.io/3am4s) [@foster2017], following the 'Inclusive Systematic Review Registration Form' [@akker]. Any deviations from the preregistration are indicated in the 'Transparent Changes' document (@sec-tchanges). Major deviations will also be explicitly stated within the methods section. All data and code of this research project can be found on [GitHub](https://www.github.com/smnnlt/vo2max-processing).
+The work presented in this thesis was preregistered before the start of the project on the [Open Science Framework](https://osf.io/3am4s) [@foster2017], following the 'Inclusive Systematic Review Registration Form' [@akker]. Any deviations from the preregistration are indicated in the 'Transparent Changes' document ([Appendix @sec-tchanges]). Major deviations will also be explicitly stated within the methods section. All data and code of this research project can be found on [GitHub](https://www.github.com/smnnlt/vo2max-processing).
 
-I conducted all analyses using R Version 4.2.0 [@rcoreteam2022] in the R Studio IDE Version 2022.2.2.485 [@rstudioteam2022]. The thesis was entirely written in Quarto Version 0.9.380 [@allaire2022]. The attached packages and default settings are documented in @sec-tech.
+I conducted all analyses using R Version 4.2.0 [@rcoreteam2022] in the R Studio IDE Version 2022.2.2.485 [@rstudioteam2022]. The thesis was entirely written in Quarto Version 0.9.380 [@allaire2022]. The attached packages and default settings are documented in [Appendix @sec-tech].
 
 ## Systematic Scoping Review
 
-The aim of the scoping review was to systematically map current practices of data processing for V̇O~2max~ determination in the scientific literature. Since determining V̇O~2max~ is a far too common procedure to perform an exhaustive search, I randomly sampled 500 articles that referred to V̇O~2max~ or similar keywords. Data on processing strategies were extracted from all sampled articles that directly measured V̇O~2max~ using an appropriate testing procedure in humans. The review was performed in accordance to the PRISMA extension for Scoping reviews [@tricco2018]. @sec-checklist contains the corresponding reporting checklist.
+The aim of the scoping review was to systematically map current practices of data processing for V̇O~2max~ determination in the scientific literature. Since determining V̇O~2max~ is a far too common procedure to perform an exhaustive search, I randomly sampled 500 articles that referred to V̇O~2max~ or similar keywords. Data on processing strategies were extracted from all sampled articles that directly measured V̇O~2max~ using an appropriate testing procedure in humans. The review was performed in accordance to the PRISMA extension for Scoping reviews [@tricco2018]. [Appendix @sec-checklist] contains the corresponding reporting checklist.
 
 ### Search & Screening
 
-The article search was conducted on 16th March 2022 using [PubMed]() and [Web of Science](). The search included articles published from 2017 to 2022 referring to 'maximum oxygen uptake' or equivalent terms in title, abstract or keywords. @tbl-search shows the exact search terms used.
+The article search was conducted on 16th March 2022 using [PubMed](https://pubmed.ncbi.nlm.nih.gov/) and [Web of Science](https://www.webofscience.com/wos/woscc/basic-search). The search included articles published from 2017 to 2022 referring to 'maximum oxygen uptake' or equivalent terms in title, abstract or keywords. @tbl-search shows the exact search terms used.
 
 The search results from both data bases were merged and checked for the presence of a Digital Object Identifier (DOI). Entries without DOI were excluded to allow for automated removal of duplicates by DOI matching in the next step. After removing the duplicates I conducted an automated title scanning to exclude results that were likely no original research articles. All titles that contained one of the following words were excluded: *'review', 'correction', 'meta-analysis', 'comment', 'retraction', 'editorial', 'erratum', 'reply'.*
 
@@ -46,7 +44,7 @@ kableExtra::kbl(
 
 In accordance with the preregistration I drew a random sample from the search results. The goal of this process was to give an unbiased estimate of the current state of scientific V̇O~2max~ testing. Based on the procedure described in the preregistration, the sample included a total of 500 articles.
 
-The abstracts from the articles included in the random sample were blinded for scanning. This meant removing any further information not relevant for the screening---such as authors or journal---leaving only the title, abstract and an ID of the article (see @sec-blindabstract for an example). Two researchers independently scanned the abstracts to filter those that matched one of the exclusion criteria shown in @tbl-exclusion. When the screeners disagreed in their assessments, they resolved the conflict by discussion.
+The abstracts from the articles included in the random sample were blinded for scanning. This meant removing any further information not relevant for the screening---such as authors or journal---leaving only the title, abstract and an ID of the article (see [Appendix @sec-blindabstract] for an example). Two researchers independently scanned the blinded abstracts to filter those that matched one of the exclusion criteria shown in @tbl-exclusion. When the screeners disagreed in their assessment, they resolved the conflict by discussion.
 
 After the abstract screening I retrieved the full-texts for all remaining articles. The full-texts were again independently scanned by two researchers to include only those articles that measured V̇O~2max~ using an appropriate testing procedure in humans (see @tbl-exclusion for the detailed full-text exclusion criteria). Conflicts were resolved by discussion between examiners. All data exclusion steps are documented in an Markdown script on [GitHub](https://github.com/smnnlt/vo2max-processing/blob/master/scripts/review.md).
 
@@ -55,18 +53,18 @@ After the abstract screening I retrieved the full-texts for all remaining articl
 I retrieved data from all articles remaining after the abstract and full-text screening. Extraction included the following data:
 
 -   metabolic cart used
--   measurement type (breath-by-breath, mixing chamber, ...)
+-   measurement type (breath-by-breath, mixing chamber)
 -   type of outcome for V̇O~2max~ (primary, secondary, other)
 -   data preprocessing (e.g., filtering)
 -   data processing software
 -   interpolation procedure
 -   data processing/determination of V̇O~2max~:
-    -   type (time average, breath average, digital filtering)
-    -   alignment (rolling, binned, ...)
+    -   type (time average, breath average, digital filtering, ...)
+    -   alignment (moving, binned, ...)
     -   interval (in seconds or breaths, parameters for filtering)
--   reference for the used data processing strategy
+-   rationale for the used data processing strategy (e.g. a reference)
 
-The criteria 'type of outcome' and 'reference' were added to the extraction list after the abstracts had been scanned, thus they were not stated in the preregistration. All extracted data is available as a csv file on [GitHub](https://github.com/smnnlt/vo2max-processing/blob/master/data/extract/extraction.csv).
+The criteria 'type of outcome' and 'rationale' were added to the extraction list after the abstracts had been scanned, thus they were not stated in the preregistration. All extracted data is available as a csv file on [GitHub](https://github.com/smnnlt/vo2max-processing/blob/master/data/extract/extraction.csv).
 
 
 ```{r}
@@ -80,11 +78,11 @@ excl_df <- data.frame(
       "not in English", "no primary research", "research not in humans", "VO2max only estimated",
       "no appropriate test protocol", "no information regarding the exclusion criteria"),
     info = c(
-      "Full text only available in non-English language",
+      "full text only available in non-English language",
       "research was no original investigation or only a reanalysis of data", 
       "research was conducted in animals", "VO2max was only approximated by means of a predictive equation", 
-      "Protocol for VO2max testing did either not include exercise to voluntary exhaustion or was to long (>20 min) for a reliable estimate", 
-      "no information regarding the exclusion criteria | crucial information on VO2max testing that allowed the evaluation of the other exclusion criteria were missing"
+      "protocol for VO2max testing did either not include exercise to voluntary exhaustion or was to long (>20 min) for a reliable estimate", 
+      "crucial information on VO2max testing that allowed the evaluation of the other exclusion criteria were missing"
       )
 )
 
@@ -111,7 +109,7 @@ knitr::asis_output(stringr::str_replace_all(out, "VO2max", "${\\\\dot{\\\\textsf
 
 ### Data Synthesis
 
-The extracted data is presented in a purely descriptive way. I calculated the relative and absolute frequency for the reporting of the extracted items. Similarly, I counted the use of different data strategies for processing data in all articles that reported measuring breath-by-breath. Total interval duration of averaging procedures were derived from the reported parameters.
+The extracted data is presented in a purely descriptive way. I calculated the relative and absolute frequency for the reporting of the extracted items. Similarly, I counted the use of different strategies for processing data in all articles that reportedly measured breath-by-breath. Total interval duration of averaging procedures were derived from the reported parameters.
 
 ## Experimental Comparison
 
@@ -119,24 +117,24 @@ To determine the influence of the most common data processing strategies on the 
 
 ### Data Source
 
-A total of N = 72 exercise tests were analysed for this study. Due to a miscalculation, the preregistration had incorrectly stated a number of 76 tests. The data were from previous research on the metabolic profile of endurance runners [@quittmann_unpubl_a; @quittmann_unpubl_b]. The tested individuals were experienced distance runners (15 female, 54 male; three of the males participated in both studies). The V̇O~2max~ tests were conducted in March to September 2019 [@quittmann_unpubl_a] and March to October 2021 [@quittmann_unpubl_b], respectively, while using an identical exercise protocol. Participants run on a treadmill (saturn 300/100, h/p/cosmos sports & medical 127 GmbH, Nussdorf-Traunstein, Germany) with 1% inclination for 8 minutes at a velocity of 2.8 m·s^-1^ as a warm-up. After preparing the gas exchange measures, they started a ramp protocol with an initial speed of 2.8 m·s^-1^ for two minutes and subsequently increased velocity by 0.15 m·s^-1^ every 30 seconds. The researchers provided verbal encouragement and terminated the exercise when the participants reached subjective exhaustion.
+A total of N = 72 exercise tests were analyzed for this study. Due to a miscalculation, the preregistration had incorrectly stated a number of 76 tests. The data were from previous research on the metabolic profile of endurance runners [@quittmann_unpubl_a; @quittmann_unpubl_b]. The tested individuals were experienced distance runners (15 female, 54 male; three of the males participated in both studies). The V̇O~2max~ tests were conducted in March to September 2019 [@quittmann_unpubl_a] and March to October 2021 [@quittmann_unpubl_b], respectively, while using an identical exercise protocol. Participants run on a treadmill (saturn 300/100, h/p/cosmos sports & medical 127 GmbH, Nussdorf-Traunstein, Germany) with 1% inclination for 8 minutes at a velocity of 2.8 m·s^-1^ as a warm-up. After preparing the gas exchange measures, they started a ramp protocol with an initial speed of 2.8 m·s^-1^ for two minutes and subsequently increased velocity by 0.15 m·s^-1^ every 30 seconds. The researchers provided verbal encouragement and terminated the exercise when the participants reached subjective exhaustion.
 
 Gas exchange data were recorded using a ZAN 600 USB device (nSpire Health, Inc., Longmont, CO, United States of America). The device was calibrated with a 3l-syringe pump (nSpire Health, Inc., Longmont, CO, 143 United States of America) and a reference gas (15% O~2~, 6% CO~2~) before each measurement. The measured breath-by-breath data is available on [GitHub](https://github.com/smnnlt/vo2max-processing/tree/master/data/ramptests).
 
 ### Data Processing {#sec-processing}
 
-The spiro Package version 0.0.4 for R [@nolte2022] processed the raw gas exchange data. It includes various algorithms to calculate V̇O~2max~ with user-defined parameters on given data. The full analysis script is available on [GitHub](https://github.com/smnnlt/vo2max-processing/blob/master/scripts/comparison.md).
+The spiro package version 0.0.4 for R [@nolte2022] processed the raw gas exchange data. It includes various algorithms to calculate V̇O~2max~ with user-defined parameters on given data. The full analysis script is available on [GitHub](https://github.com/smnnlt/vo2max-processing/blob/master/scripts/comparison.md).
 
 Moving time-based averages were calculated by first linearly interpolating the breath-by-breath data to seconds. Subsequently a (center aligned) moving average was calculated over a defined timespan. These processing steps are implemented in the spiro package [@nolte2022]. For calculating the moving average over 30 seconds for example, I used the functions `spiro(data) |> spiro_max(30)`.
 
 Binned time averages were calculated using a custom function (available in the [analysis script](https://github.com/smnnlt/vo2max-processing/blob/master/scripts/comparison.md) on GitHub). Breath-by-breath data were initially interpolated to full seconds and then binned into consecutive intervals of constant lengths. The average of each interval was aligned to its center. Incomplete intervals (i.e. the last seconds of measurement) were not considered in the analysis. Note that some authors use a different procedure for determining their bins, starting by the end point of the measurement. However, defining bins beginning by the start of the measurement is a common output option for many gas exchange data analysis software (e.g. Cosmed Omnia).
 
-Breath based moving averages were calculated on the raw data. As this functionality is implemented in the spiro package, I used the functions `spiro(data) |> spiro_max("30b")` for an exemplary 30-breath long averaging interval.
+Breath based moving averages were calculated on the raw data. As this functionality is implemented in the spiro package [@nolte2022], I used the functions `spiro(data) |> spiro_max("30b")` for an exemplary 30-breath long averaging interval.
 
-Butterworth filters are a class of recursive digital filters. Robergs et al. @robergs2010 and Weir et al. @weir2004 argue that these more advanced processing strategies are superior to the traditional moving or binned average approach for analysing gas exchange data. However Robergs et al. @robergs2010 missed to account for the time lag introduced by Butterworth filters. Therefore I applied a zero-phase Butterworth filter by means of forward-backward filtering. While this effectively zeroes out the time lag, the resulting filter is non-causal, which means it cannot be used online (i.e. in real time). However, for the present application, an offline filter is sufficient. The forward-backward filtering also introduces transients at both ends of the signal [@gustafsson1996]. I therefore padded the reverted signal at both the start and the end of the array (identical to the 'even padtype' in Python's `scipy.signal.filtfilt()` function [@virtanen2020]). I used 3 as the order parameter and 0.04 as the low-pass cut-off frequency for each filter [@robergs2010]. Note that due to the forward-backward approach both the filter's overall order and overall cut-off frequency are different from these values. The described approach is implemented in the spiro package [@nolte2022], and can be used by calling, for example, the functions `spiro(data) |> spiro_max("0.04fz3")`.
+Butterworth filters are a class of recursive digital filters. Robergs et al. @robergs2010 and Weir et al. @weir2004 argued that these more advanced processing strategies are superior to the traditional moving or binned average approach for analysing gas exchange data. However Robergs et al. @robergs2010 missed to account for the time lag introduced by Butterworth filters. Therefore I applied a zero-phase Butterworth filter by means of forward-backward filtering. While this effectively zeroes out the time lag, the resulting filter is non-causal, which means it cannot be used online (i.e. in real time). However, for the present application, an offline filter is sufficient. The forward-backward filtering also introduces transients at both ends of the signal [@gustafsson1996]. I therefore padded the reverted signal at both the start and the end of the array (identical to the 'even padtype' in Python's `scipy.signal.filtfilt()` function [@virtanen2020]). I used 3 as the order parameter and 0.04 as the low-pass cut-off frequency for each filter [@robergs2010]. Note that due to the forward-backward approach both the filter's overall order and overall cut-off frequency are different from these values. The described approach is implemented in the spiro package [@nolte2022], and can be used by calling, for example, the functions `spiro(data) |> spiro_max("0.04fz3")`.
 
-### Comparison of methods
+### Comparison of Methods
 
-To compare different processing methods within and between individuals, I chose to express the V̇O~2max~ normalized to a reference procedure. The reference procedure was chosen as being the most commonly applied in current literature as determined by the systematic review. Individual V̇O~2max~ values were expressed in reference to this procedure, where a value of 1 means that the processing method yields exactly the same V̇O~2max~ value as the reference method. I calculated the data for all integer parameter values within the range of the values found in the literature during the review. On a group level, I calculated the median and 10%- and 90%-quantiles of each processing strategy.
+To compare different processing methods within and between individuals, I chose to express the V̇O~2max~ normalized to a reference procedure. The reference procedure was chosen as being the most commonly applied in current literature as determined by the scoping review. Individual V̇O~2max~ values were expressed in reference to this procedure, where a value of 1 means that the processing method yields exactly the same V̇O~2max~ value as the reference method. I calculated the data for all integer parameter values within the range of the values found in the literature during the review. On a group level, I calculated the median and 10%- and 90%-quantiles of each processing strategy.
 
 In an additional exploratory analysis I investigated the respiratory rate (number of breaths per minute) during the ramp tests. This may help to understand how breath-based and time-based data processing methods relate to each other.

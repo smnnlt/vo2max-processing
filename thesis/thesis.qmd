@@ -4,6 +4,9 @@ format:
   pdf:
     include-in-header: 
       text: \usepackage{setspace}
+    title-meta: 'Data Processing Strategies to Determine Maximum Oxygen Uptake: A Systematic Scoping Review and Experimental Comparison'
+    author-meta: 'Simon Nolte'
+    subject: 'Released under a CC-BC-NC-ND license'
 number-sections: true
 top-level-division: section
 mainfont: Arial
@@ -65,7 +68,8 @@ Institute of Movement and Neurosciences
 
 Affirmation in lieu of an oath
 
-Herewith I affirm in lieu of an oath that I have authored this Master thesis independently and did not use any other sources and tools than indicated. All citations, either direct quotations or passages which were reproduced verbatim or nearby-verbatim from publications, are indicated and the respective references are named. The same is true for tables and figures. I did not submit this piece of work in the same or similar way or in extracts in another assignment.
+Herewith I affirm in lieu of an oath that I have authored this Bachelor thesis independently and did not use any other sources and tools than indicated. All citations, either direct quotations or passages which were reproduced verbatim or nearby-verbatim from publications, are indicated and the respective references are named. The same is true for tables and figures. I did not submit this piece of work in the same or similar way or in extracts in another assignment.
+
 
 \_____________________________
 

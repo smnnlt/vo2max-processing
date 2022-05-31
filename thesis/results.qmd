@@ -13,7 +13,7 @@ Initial search yielded 7529 results of which 4364 remained after automated filte
 ```{r}
 #| echo: false
 #| fig-cap: "Flow diagram for the systematic scoping review in accordance with the PRISMA 2020 Statement [@page2021]"
-#| fig-scap: "Flow diagram for the systematic scoping review"
+#| fig-scap: "Flow diagram for the systematic scoping review."
 #| label: fig-flow
 #| out-width: '90%'
 
@@ -48,7 +48,7 @@ Out of the authors that provided information and collected breath-by-breath meas
 
 ```{r}
 #| echo: false
-#| fig-cap: "Data strategies for processing breath-by-breath data in the reviewed literature (n = 88)."
+#| fig-cap: "Strategies for processing breath-by-breath data in the reviewed literature (n = 88)."
 #| label: fig-strategies
 #| out-width: '90%'
 
@@ -57,7 +57,7 @@ knitr::include_graphics("../plots/strategies.png")
 
 For preprocessing, some authors reported the use of a (linear) interpolation for the breath-by-breath data to seconds (n = 7; 4.3%). A minority of researchers reported the use of data filtering strategies to remove outliers. This included the use of initial data smoothing by a short moving average (3 seconds, n = 1; 5 breaths, n = 3), the manual detection and removal of outliers (n = 2) or an automated removal of outliers (n = 5). For the automated outlier detection authors removed single data points differing from a not further defined local mean by a varying number of standard deviations (2, 3 or 4) or being outside of a 95% confidence interval. When reported, the software used for data processing varied among studies showing a total of more than 15 reported programs (for 30 studies that reported this parameter).
 
-The calculation intervals for time-based averages of mixing chamber and breath-by-breath devices ranged from 5 to 60 seconds (see @fig-duration). 30 second length intervals were most common to define V̇O~2max~, while authors also often employed shorter (10-20 s) and longer (60 s) periods.
+The calculation intervals for time-based averages of mixing chamber and breath-by-breath devices ranged from 5 to 60 seconds (see @fig-duration). 30-second intervals were most common to define V̇O~2max~, while authors also often employed shorter (10-20 s) and longer (60 s) periods.
 
 ```{r}
 #| echo: false
@@ -74,8 +74,8 @@ The average V̇O~2max~ as determined by a binned 30-second average was 62.2 ± 6
 
 ```{r}
 #| echo: false
-#| fig-cap: "V̇O~2max~ varies by data processing strategy. Values are expressed relative to the V̇O~2max~ from a 30-second binned average — the most common strategy as determined by the review. Solid lines display the median, the shaded area marks the interval between 10th and 90th percentile. Using moving average leads to systematically higher V̇O~2max~ values compared to binned time averages. Changing the averaging interval (in seconds or breaths) can lead to median changes in V̇O~2max~ as large as 5%."
-#| fig-scap: "Comparison of different data processing strategies"
+#| fig-cap: "V̇O~2max~ varies by data processing strategy. Values are expressed relative to the V̇O~2max~ from a 30-second binned average — the most common strategy as determined by the review. Solid lines display the median, the shaded areas mark the interval between 10th and 90th percentile. Using moving average leads to systematically higher V̇O~2max~ values compared to binned time averages. Changing the averaging interval (in seconds or breaths) can lead to median changes in V̇O~2max~ as large as 5%."
+#| fig-scap: "Comparison of different data processing strategies."
 #| label: fig-comparison
 #| out-width: '90%'
 
@@ -84,12 +84,12 @@ knitr::include_graphics("../plots/comparison.png")
 
 Binned time averages systematically generate lower V̇O~2max~ values compared to moving averages. Decreasing the calculation interval to 5 seconds leads to a 3-4% median increase of V̇O~2max~ values. Notably on an individual level these increases may be lower (\~2%) or much higher (\>10%) than the median value.
 
-Moving time and moving breath averages yield nearly identical values for V̇O~2max~ over all calculation intervals. This corresponds to the trained athletes reaching respiratory rates around 60 min^-1^ in the final minute of the exercise test (see @fig-rr). Using a zero-phase forward-backward filter (third order, 0.04 Hz cut-off frequency) lead to V̇O~2max~ values 0.4% \[-0.2%; +1.4%\] (median, 10th and 90th quantile) higher than the 30-second binned time average approach.
+Moving time and moving breath averages yield nearly identical values for V̇O~2max~ over all calculation intervals. This corresponds to the trained athletes reaching respiratory rates around 60 min^-1^ in the final minute of the exercise test (see @fig-rr). Using a zero-phase forward-backward filter (third order, 0.04 Hz cut-off frequency) leads to V̇O~2max~ values 0.4% \[-0.2%; +1.4%\] (median, 10%- and 90%-quantile) higher than the 30-second binned time average approach.
 
 ```{r}
 #| echo: false
 #| fig-cap: "Respiratory rates peak around 60 min^-1^ in the ramp tests. The red segments correspond to the last minute before exhaustion of each individual (n = 72)."
-#| fig-scap: "Respiratory rates during the ramp tests"
+#| fig-scap: "Respiratory rates during the ramp tests."
 #| label: fig-rr
 #| out-width: '90%'
 
