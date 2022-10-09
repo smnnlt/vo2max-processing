@@ -1,0 +1,258 @@
+---
+title: "Data Processing Strategies to Determine Maximum Oxygen Uptake: A Systematic Scoping Review and Experimental Comparison with Guidelines for Reporting"
+format: docx
+bibliography: references.bib
+csl: sports-med-new.csl
+always_allow_html: true
+---
+
+# Abstract
+
+**Background** Gas exchange data from maximum oxygen uptake (V̇O~2max~) testing needs post-processing. Different processing strategies may lead to varying V̇O~2max~ values in individuals. The exact processing strategies used in the literature have not yet been systematically investigated. Previous research provided comparisons of methods only on a group level.
+
+**Methods** Out of a random sample, we investigated 242 recently published articles that measured V̇O~2max~ in an appropriate setting. We extracted the reported methods of data processing and their rationale. We compared the most common processing strategies on a data set of 72 standardized exercise tests in trained athletes.
+
+**Results** Most researchers use binned time averages to determine V̇O~2max~, with a minority using moving time or moving breath averages. Half of the included studies did not report their data processing strategy and almost all articles failed to provide a rationale for the strategy used. The processing strategies found in the literature can lead to median differences in V̇O~2max~ of more than 5% with considerable variation on an individual level.
+
+**Conclusion** Researchers should report their data processing strategy used to determine V̇O~2max~. We provide a reporting checklist of seven items that can function as a template for reporting.
+
+## Key Points
+
+-   Despite calls to use moving averages or digital filter, binned averages remain the most common data processing strategy to determine V̇O~2max~.
+-   Different processing strategies lead to varying V̇O~2max~ values, which can hardly be predicted on an individual level.
+-   Researchers should at minimum report their processing strategy in detail, or preferably share their raw oxygen uptake data and analysis code.
+
+# Introduction
+
+The maximum oxygen uptake (V̇O~2max~) is one of the most commonly assessed physiological parameters in sports and exercise science [@bassett2000]. The V̇O~2max~ highly corresponds with endurance performance in heterogeneous groups [@reaburn2008; @costill1973; @tanaka1990] and can be regarded the most relevant physiological predictor of endurance performance [@bassett2000]. Many training programs aim to target the V̇O~2max~, and studies evaluate the quality of interventions by measuring changes in V̇O~2max.~
+
+Researchers predominantly measure V̇O~2max~ during exercise tests to exhaustion. Among the factors that influence the V̇O~2max~ determination are the exercise test protocol [@buchfuhrer1983 ; @yoon2007; @midgley2008], exercise modality [@myers1991], motivation [@midgley2018], and biological variability [@katch1982]. The measuring method (e.g. mixing chamber, breath-by-breath) and the metabolic cart model used can influence the measured oxygen uptake --- and as such the V̇O~2max~ [@winkert2021; @miles1994]. But even the same oxygen uptake data generated during an exercise test may result in varying outcomes when processed differently [@astorino2009].
+
+Whether an observed peak in oxygen uptake corresponds to the true maximum has been extensively discussed in the past decades [@taylor1955; @howley1995; @poole2008; @poole2017; @green2018]. To identify a true maximum, researchers commonly evaluate a set of parameters measured during ramp tests --- the so called 'V̇O~2max~ criteria' [@howley1995]. We will not distinguish between peak and maximum oxygen uptake in this article, as the criteria for V̇O~2max~ (e.g. the primary criterion of a plateau in oxygen uptake or the secondary criterion of the maximum respiratory quotient) do heavily rely on the data processing strategy used [@astorino2009]. Thus, we speak of V̇O~2max~ as the maximum oxygen uptake measured during an appropriate exercise test regardless of any V̇O~2max~ criteria.
+
+Measured gas exchange data is noisy. Both the biological variability of breathing patterns and the measurement error (as well as irregular breaths such as coughs and swallowing) lead to a highly fluctuating raw oxygen uptake on a breath-by-breath basis. For interpretation the raw data requires some form of processing. Different data processing strategies influence measured parameters of gas exchange [@matthews1987; @johnson1998; @astorino2009; @sell2021]. Midgley et al. @midgley2007 found differences between data processing strategies for V̇O~2max~, but no difference in the reliability of these, inferring that no optimal strategy exists, but that consistency of strategies is key when comparing outcomes. Based on own data in sedentary and moderately trained individuals, Martin-Rincon et al. @martin-rincon2019 provided linear-log equations to compare mean V̇O~2max~ values derived from processing strategies with differing averaging interval lengths. There is inconclusive evidence on whether the influence of different processing strategies interacts with different exercise protocols [@hill2003; @scheadler2017].
+
+Researchers have proposed a variety of calculation intervals and computational methods to process oxygen uptake data [@howley1995; @robergs2003; @ats/accp2003; @weir2004; @robergs2010] and calls to standardize processing strategies are frequent [@scheadler2017; @myers1990; @hill2003; @johnson1998]. In light of the influence on outcome variables, many articles highlighted the need to report processing strategies in research [@myers1990; @astorino2009; @scheadler2017; @johnson1998]. Midgley et al. @midgley2007 were the first to evaluate reported data processing strategies for breath-by-breath analyses in selected journals. They found that almost all studies reporting the use of binned time averaging, with only 1 in 117 using a moving time and a moving breath average, respectively. One third of the studies did not describe their processing method at all. While providing interesting first insights into reporting and processing practices, the search by Midgley et al. @midgley2007 was not systematic and its methods were not described in detail. Robergs et al. @robergs2010 wrote that to investigate the current state of data processing strategies, two possible approaches are *"(i) a summary of published research, and (ii) a survey circulated via the Internet to as many exercise physiologists as possible"*. They provided the latter one with a total of 75 respondents, who reported a great variety in data processing strategies. Most researchers reported the use of binned time averages over 30 or 60 seconds. Astonishingly, about half of the respondents admitted that their data processing strategy was rather chosen due to subjective influences as opposed to objective reasoning [@robergs2010]. Practices in reporting and processing may have changed more than a decade after the publication of these numbers.
+
+Selected data processing strategies have been extensively compared in the literature. Due to the absence of a systematic mapping of current practices, these works lacked the reasoning of which strategies to compare. Many studies compared different averaging intervals, but not averaging types (e.g. moving breath vs. binned time) [@astorino2009; @midgley2007]. Martin-Rincon et al. @martin-rincon2019 provided formulas for comparing data processing strategies by investigating a data set of sedentary individuals and recreational athletes, using two different metabolic carts. Therefore in this work motivation and measurement devices may have interacted with the influence of processing strategies. Most comparisons only report mean differences between strategies [@astorino2009; @midgley2007]. No research has yet compared a variety of systematically derived strategies among a group of trained individuals using a standardized measurement set-up.
+
+Differences in V̇O~2max~ due to data processing can have serious implications in practice. They hinder the assessment of longitudinal data from athletes that participated in diagnostics with differing data processing or the comparability of data from studies within meta-analyses [@martin-rincon2019]. Data processing strategies directly affect the occurrence of a plateau in oxygen uptake, the primary criterion for V̇O~2max~ [@astorino2009]. Crucially, in situations where individuals are classified by their V̇O~2max~ --- for example when describing the training status of a study population [@pauw2013; @decroix2016] or evaluating patients for a heart transplantation [@mancini1991] --- differing processing strategies can lead to misclassifications [@johnson1998].
+
+This paper aims to review the usage and reporting of different data processing strategies in the scientific literature and investigate their influence on the V̇O~2max~. The results will help to compare V̇O~2max~ data derived from different processing methods among studies and in individuals. The review allows to assess the implementation of data processing routines and to find malpractices in reporting. The results build a basis for providing recommendations for the reporting of data processing strategies to determine the V̇O~2max~.
+
+# Methods
+
+This work was preregistered before the start of the project on the [Open Science Framework](https://osf.io/3am4s) [@foster2017], following the 'Inclusive Systematic Review Registration Form' [@akker]. Any deviations from the preregistration are indicated in a 'Transparent Changes' document \[LINK\]. Major deviations will also be explicitly stated within the methods section. All data and code of this research project can be found on [GitHub](https://www.github.com/smnnlt/vo2max-processing). We conducted all analyses using R Version 4.2.0 [@rcoreteam2022] in the R Studio IDE Version 2022.2.2.485 [@rstudioteam2022].
+
+## Systematic Scoping Review
+
+The aim of the scoping review was to systematically map current practices of data processing for V̇O~2max~ determination in the scientific literature. Since determining V̇O~2max~ is a far too common procedure to perform an exhaustive search, we randomly sampled 500 articles that referred to V̇O~2max~ or similar keywords. Data on processing strategies were extracted from all sampled articles that directly measured V̇O~2max~ using an appropriate testing procedure in humans. The review was performed in accordance to the PRISMA extension for Scoping reviews [@tricco2018], see LINK for the CHECKLIST.
+
+### Search & Screening
+
+The article search was conducted on 16th March 2022 using [PubMed](https://pubmed.ncbi.nlm.nih.gov/) and [Web of Science](https://www.webofscience.com/wos/woscc/basic-search). The search included articles published from 2017 to the date of the search referring to 'maximum oxygen uptake' or equivalent terms in title, abstract or keywords. APPENDIX \[LINK\] shows the exact search terms used.
+
+The search results from both data bases were merged and checked for the presence of a Digital Object Identifier (DOI). Entries without DOI were excluded to allow for automated removal of duplicates by DOI matching in the next step. This was followed by an automated title scanning to exclude results that were likely no original research articles. All titles that contained one of the following words were excluded: *'review', 'correction', 'meta-analysis', 'comment', 'retraction', 'editorial', 'erratum', 'reply'.*
+
+In accordance with the preregistration we drew a random sample from the search results. The goal of this process was to give an unbiased estimate of the current state of scientific V̇O~2max~ testing. Based on the procedure described in the preregistration, the sample included a total of 500 articles.
+
+The abstracts from the articles included in the random sample were blinded for scanning, by removing any authors identities and journal information. Two of the authors (SN and OJQ) independently scanned the blinded abstracts to filter those that matched one of the exclusion criteria shown in @tbl-exclusion [LINK]. When the screeners disagreed in their assessment, they resolved the conflict by discussion.
+
+After the abstract screening we retrieved the full-texts for the remaining articles. The full-texts were again independently scanned by two authors (SN and OJQ) to include only those articles that measured V̇O~2max~ using an appropriate testing procedure in humans (see @tbl-exclusion for the detailed full-text exclusion criteria\[LINK\]). Conflicts were resolved by discussion between the two examiners.
+
+### Data Extraction
+
+We retrieved data from all articles remaining after the abstract and full-text screening. Extraction included the following data:
+
+-   metabolic cart used
+-   measurement type (breath-by-breath, mixing chamber)
+-   type of outcome for V̇O~2max~ (primary, secondary, other)
+-   data preprocessing (e.g., filtering)
+-   data processing software
+-   interpolation procedure
+-   data processing/determination of V̇O~2max~:
+    -   type (time average, breath average, digital filtering, ...)
+    -   alignment (moving, binned, ...)
+    -   interval (in seconds or breaths, parameters for filtering)
+-   rationale for the used data processing strategy (e.g. a reference)
+
+The criteria 'type of outcome' and 'rationale' were added to the extraction list after the abstracts had been scanned, thus they were not stated in the preregistration.
+
+### Data Synthesis
+
+The extracted data is presented in a purely descriptive way. We calculated the relative and absolute frequency for the reporting of the extracted items. Similarly, we counted the use of different strategies for processing data in all articles that reportedly measured breath-by-breath. Total interval duration of averaging procedures were derived from the reported parameters.
+
+## Experimental Comparison
+
+To determine the influence of the most common data processing strategies on the determination of V̇O~2max~, we compared them on a set of already collected gas exchange data from ramp tests in running.
+
+### Data Source
+
+A total of N = 72 exercise tests were analyzed for this study. Due to a miscalculation, the preregistration had incorrectly stated a number of 76 tests. The data were from previous research on the metabolic profile of endurance runners [@quittmann_unpubl_a; @quittmann_unpubl_b]. The tested individuals were experienced distance runners (15 female, 54 male; three of the males participated in both studies). The V̇O~2max~ tests were conducted in March to September 2019 [@quittmann_unpubl_a] and March to October 2021 [@quittmann_unpubl_b], respectively, while using identical exercise protocols and test equipment. Participants run on a treadmill (saturn 300/100, h/p/cosmos sports & medical 127 GmbH, Nussdorf-Traunstein, Germany) with 1% inclination for 8 minutes at a velocity of 2.8 m·s^-1^ as a warm-up. After preparing the gas exchange measures, they started a ramp protocol with an initial speed of 2.8 m·s^-1^ for two minutes and subsequently increased velocity by 0.15 m·s^-1^ every 30 seconds. The researchers provided verbal encouragement and terminated the exercise when the participants reached subjective exhaustion.
+
+Gas exchange data were recorded using a ZAN 600 USB device (nSpire Health, Inc., Longmont, CO, United States of America). The device was calibrated with a 3l-syringe pump (nSpire Health, Inc., Longmont, CO, 143 United States of America) and a reference gas (15% O~2~, 6% CO~2~) before each measurement. The measured breath-by-breath data is available on [GitHub](https://github.com/smnnlt/vo2max-processing/tree/master/data/ramptests).
+
+### Data Processing
+
+The spiro package version 0.0.4 for R [@nolte2022] processed the raw gas exchange data. The software includes various algorithms to calculate V̇O~2max~ with user-defined parameters. Moving time-based averages were calculated by first linearly interpolating the breath-by-breath data to full seconds. Subsequently a (center aligned) moving average was calculated over the defined timespan.
+
+For binned time-averages, the breath-by-breath data were initially interpolated to full seconds and then binned into consecutive intervals of constant lengths. The average of each interval was aligned to its center. Incomplete intervals (i.e. the last seconds of measurement) were not considered in the analysis. Note that some authors use a different procedure for determining their bins, starting by the end point of the measurement. However, defining bins beginning by the start of the measurement is a common output option for many gas exchange data analysis software (e.g. Cosmed Omnia). Breath based moving averages were calculated on the raw data.
+
+### Comparison of Methods
+
+To compare different processing methods within and between individuals, we chose to express the V̇O~2max~ normalized to a reference procedure. The reference procedure was the most commonly applied one in current literature as determined by our scoping review. Individual V̇O~2max~ values were expressed in reference to this procedure, where a value of 1 means that the processing method yields exactly the same V̇O~2max~ value as the reference method. We calculated the data for all integer parameter values within the range of the calculation intervals found in the literature during the review. On a group level, we calculated the median and 10%- and 90%-quantiles of each processing strategy.
+
+# Results
+
+## Systematic Scoping Review
+
+Initial search yielded 7529 results of which 4364 remained after automated filtering and removal of duplicates (see flow diagram in @fig-flow). Out of the random sample (n = 500), 242 articles were included in the final analysis.
+
+```{r}
+#| echo: false
+#| fig-cap: "Flow diagram for the systematic scoping review in accordance with the PRISMA 2020 Statement [@page2021]"
+#| fig-scap: "Flow diagram for the systematic scoping review."
+#| label: fig-flow
+#| out-width: '90%'
+
+knitr::include_graphics("./plots/flow_diagram.png")
+```
+
+Reporting practices of the methodology of gas exchange measures differed widely across the literature (see @tbl-reporting). Almost half (44.2%) of the articles did not report any information regarding their data processing strategy. About one in twenty articles (5.8%) provided a rationale for their used strategy. Only a single article [@maturana2021] reported information regarding all the investigated criteria.
+
+```{r}
+#| echo: false
+#| label: tbl-reporting
+#| tbl-cap: "Percentage of studies that provided details on the different characteristics of oxygen uptake data processing."
+load("./data/reporting.Rda")
+t <- purrr::map_dfr(reporting, scales::percent, accuracy = 0.1)
+
+t[["pre"]] <- paste0(t[["pre"]], "*")
+t[["software"]] <- paste0(t[["software"]], "*")
+
+kableExtra::kbl(
+  t,
+  col.names = c("Metabolic cart", "Preprocessing", "Software", "Processing Strategy", "Rationale"),
+  align = "r",
+  booktabs = TRUE
+) |>
+  kableExtra::footnote(
+    general = "*only examined within the subgroup of studies using breath-by-breath measurements",
+    general_title = ""
+  )
+```
+
+Out of the authors that provided information and collected breath-by-breath measurements, most (79.5%) utilized binned averages to determine V̇O~2max~. Moving time averages, or breath-based averages were uncommon (see @fig-strategies). No study used methods of digital filtering to determine V̇O~2max~.
+
+```{r}
+#| echo: false
+#| fig-cap: "Strategies for processing breath-by-breath data in the reviewed literature (n = 88)."
+#| label: fig-strategies
+#| out-width: '90%'
+
+knitr::include_graphics("./plots/strategies.png")
+```
+
+For preprocessing, some authors reported the use of a (linear) interpolation for the breath-by-breath data to seconds (n = 7; 4.3%). A minority of researchers reported the use of data filtering strategies to remove outliers. This included the use of initial data smoothing by a short moving average (3 seconds, n = 1; 5 breaths, n = 3), the manual detection and removal of outliers (n = 2) or an automated removal of outliers (n = 5). For the automated outlier detection authors removed single data points differing from a not further defined local mean by a varying number of standard deviations (2, 3 or 4) or being outside of a 95% confidence interval. When reported, the software used for data processing varied among studies showing a total of more than 15 reported programs (for 30 studies that reported this parameter).
+
+The calculation intervals for time-based averages of mixing chamber and breath-by-breath devices ranged from 5 to 60 seconds (see @fig-duration). 30-second intervals were most common to define V̇O~2max~, while authors also often employed shorter (10-20 s) and longer (60 s) periods.
+
+```{r}
+#| echo: false
+#| fig-cap: "Total durations of the calculation interval of V̇O~2max~ in the reviewed studies."
+#| label: fig-duration
+#| out-width: '90%'
+
+knitr::include_graphics("./plots/duration_count.png")
+```
+
+## Experimental Comparison
+
+The average V̇O~2max~ as determined by a binned 30-second average was 62.2 ± 6.3 ml·min^-1^·kg^-1^ (mean ± standard deviation). Applying different data processing strategies for V̇O~2max~ determination leads to different outcome values (see @fig-comparison).
+
+```{r}
+#| echo: false
+#| fig-cap: "V̇O~2max~ varies by data processing strategy. Values are expressed relative to the V̇O~2max~ from a 30-second binned average — the most common strategy as determined by the review. Solid lines display the median, the shaded areas mark the interval between 10th and 90th percentile. Using moving average leads to systematically higher V̇O~2max~ values compared to binned time averages. Changing the averaging interval (in seconds or breaths) can lead to median changes in V̇O~2max~ as large as 5%."
+#| fig-scap: "Comparison of different data processing strategies."
+#| label: fig-comparison
+#| out-width: '90%'
+
+knitr::include_graphics("./plots/comparison.png")
+```
+
+Binned time averages systematically generate lower V̇O~2max~ values compared to moving averages. Decreasing the calculation interval to 5 seconds leads to a 3-4% median increase of V̇O~2max~ values. Notably on an individual level these increases may be lower (\~2%) or much higher (\>10%) than the median value.
+
+Moving time and moving breath averages yield nearly identical values for V̇O~2max~ over all calculation intervals, as most of the trained athletes reached respiratory rates around 60 min^-1^ in the final minutes of the exercise test (see SUPPL FIG LINK).
+
+# Discussion
+
+We aimed to review current practices of data processing strategies to determine V̇O~2max~ and to compare them on experimental data. Our results show, that current research uses a variety of processing strategies to determine V̇O~2max~, which directly influences the values obtained. Identical raw breath-by-breath data can result in different V̇O~2max~ values when processed differently. Many articles only incompletely report on their methods, which hinders the reproducibility of V̇O~2max~ measurement.
+
+## Current State of Data Processing
+
+Despite calls to use moving averages or digital filters [@robergs2003; @robergs2010], binned time averages remain the most common data processing strategy to determine V̇O~2max~ in the reviewed literature (see @fig-strategies). Our numbers are generally in line with the findings of the non-systematic search by Midgley et al. @midgley2007 and the survey by Robergs et al. @robergs2010. It is somewhat surprising, that practices have not changed in recent years despite the publication of recommendations, that discourage researchers from using binned averages [@robergs2010]. Using binned time averages leads to systematically lower V̇O~2max~ values as compared to moving averages (see @fig-comparison). The peak in oxygen uptake may be attained between two averaging intervals, resulting in an underestimation of V̇O~2max~. Binned time averages revoke the most important argument for measuring breath-by-breath: the high temporal resolution of data. Despite these arguments speaking against the use of binned time averages, our review demonstrates that they remain extremely common in the scientific literature.
+
+Breath-based averages seem to be more common (\~8%) than reported previously (\<1%) [@midgley2007], but less common than assessed in self-reporting (\~17%) [@robergs2010]. The increasing proportion of breath-based averages may be explained by publications in the recent years advocating for their use [@robergs2003; @robergs2010]. The length of the calculation interval for averaging is highly diverse within the literature (see @fig-duration). This may reflect contradictory recommendations [@howley1995; @robergs2003]. There is no consensus on using shorter or longer calculation intervals, and an is unclear whether an optimal interval duration even exists. As different interval durations influence V̇O~2max~ by more than 5% on a median level (see @fig-comparison), the exact reporting of the data processing strategy remains essential for interpretation.
+
+A major source for choosing binned averages for data processing may be limitations by analysis software. Our review shows that most researchers use the software of the metabolic cart's manufacturer to analyze the gas exchange data. These software may by default output binned time averages instead of raw breath-by-breath data. Moreover, further processing (e.g., interpolation, moving averages) may require the use of additional software. This may also explain why digital filtering has --- despite recommended by Robergs et al. @robergs2010 --- not been used in a single study reviewed here: standard distributions of common data analysis software (e.g., Microsoft Excel) lack the capability to perform such operations. The common practices of data processing are likely to be both attributed to a lack of awareness and a lack of adequate software solutions.
+
+## Impact of Different Data Processing Strategies
+
+The different data processing strategies found in the literature directly bias the V̇O~2max~ determination (see @fig-comparison), and as such influence the classification of individuals, the evaluation of training success, and the assessment of V̇O~2max~ attainment. In accordance with previous findings [@johnson1998; @astorino2009; @sell2021] longer calculation intervals lead to lower V̇O~2max~ values (see @fig-comparison). The analyzed data shows median differences up to 5-7% between processing strategies, which is in accordance with previous research [@martin-rincon2019]. Some studies reported even higher mean differences of up to 20% [@myers1990], but only when including raw breath-by-breath data in the comparison. The evaluation of unprocessed raw data for its maximum is highly erroneous and as such is not performed in research (see @fig-duration); so there is no reason to compare it to other strategies. While previous research was often conducted in sedentary or recreationally trained individuals, we now present evidence, that a similar effect of data processing strategies on V̇O~2max~ exists in trained athletes.
+
+Binned time averages lead to systematically lower V̇O~2max~ values compared with moving averages, for the reasons explained above. While this general trend has been acknowledged previously [@martin-rincon2019], it has not been quantified. Our data suggest a \~1% lower median V̇O~2max~ when using binned averages compared with moving averages of the same calculation interval length. This difference is well within the measurement error of most if not all metabolic carts, but it is systematic and as such may bias the evaluation in scenarios where small changes in V̇O~2max~ are important (e.g. in elite sports).
+
+Moving time and moving breath averages lead to almost identical V̇O~2max~ values on a median level (@fig-comparison). This seems natural in that the athletes in this study reached respiratory rates around 60 min^-1^ (see SUPPL LINK), resulting in equivalent time- and breath-based interval lengths. For an athletic population, V̇O~2max~ values obtained by moving time and moving breath averages can approximately be used interchangeably. Given that less trained individuals display lower respiratory rates during exercise tests to exhaustion [@blackie1991], this finding will likely not translate to a sedentary population.
+
+The exact impact of data processing strategies on the V̇O~2max~ is highly individual. Most research did present only comparisons of mean values, with results in accordance with those found here [@martin-rincon2019]. On an individual level, data processing strategies may impact the V̇O~2max~ in different severity. For example, for 10% of the investigated athletes a binned time average of 5 seconds leads to a V̇O~2max~ \<3% higher than by a 30-second average, while for another 10% the V̇O~2max~ was \>6% higher (see @fig-comparison). Current values reported and equation derived compare strategies on a group level [@martin-rincon2019], which improves comparability of group results for meta-analyses or group classifications. However, on an individual level these equations can only be applied with a high margin of error. Changes in the impact of different data processing strategies on V̇O~2max~ range from 1-2% in some individuals to more than 10% in others. Hence when evaluating V̇O~2max~ data from different tests in a single individual obtained by using different processing methods, there is no way to accurately compare these values even when the processing strategies are reported. While the comparison of V̇O~2max~ from different processing strategies require their reporting for an sufficient analysis on a group level, on the individual level the raw data from each test is required.
+
+## Guidelines for Reporting
+
+To compare and evaluate V̇O~2max~ values from different studies, knowledge of the underlying data processing strategies is crucial. Our review demonstrates that almost half of the studies measuring V̇O~2max~ did not describe their processing strategy. Other aspects of the data processing, such as outlier filtering or the rationale for the chosen procedure were only in rare instances reported (see @tbl-reporting). @tbl-recommendation lists seven items that should be reported to provide sufficient information on the data processing strategy used to determine V̇O~2max~. These items may be reported in form of a checklist, as an in-text enumeration or in sentence form. An example paragraph containing all the relevant information for the original data presented in this paper [@quittmann_unpubl_a; @quittmann_unpubl_b] would be:
+
+> *"We measured breath-by-breath data during the ramp tests with a ZAN 600 USB device (nSpire Health, Inc., Longmont, CO, United States of America). The raw data was analyzed without any previous filtering by using a low-pass forward-backward Butterworth filter (each filter: 3rd order, 0.04 Hz cut-off) implemented in the spiro package for R version 0.1.0 [@nolte2022]. This strategy produces similar results as that recommended by Robergs et al. @robergs2010, but does not include a time lag."*
+
+Note that the correct reporting of an exercise test to determine V̇O~2max~ requires more information than those on data processing. Further aspects to be reported include, but are not limited to, the study population, the exercise protocol, the device calibration, and criteria to stop the test. In cases where journals endorse word limits on articles, this reporting --- including the reporting on data processing strategies --- may be included in supplementary files. The correct and detailed reporting of data processing strategies, as well as other test characteristics, is crucial for interpreting presented V̇O~2max~ values.
+
+The results of this thesis suggest that comprehensive reporting facilitates approximate comparisons of V̇O~2max~ data on a group level derived using different data processing strategies. But on an individual level and for a precise comparison, reporting is not enough, as differences between data processing strategies vary between individuals and are potentially influenced by training status. Sharing of the raw gas exchange data can solve this challenge, as it allows any researcher to recalculate the V̇O~2max~ using their preferred data processing strategy. Most raw gas exchange data files are structured in a simple way, which allows to easily remove any personal information (if this had not been done in the metabolic cart's system before). In terms of reproducibility of V̇O~2max~ determination, a way even superior to correct reporting and raw data sharing is to additionally share data analysis code. This allows any researcher to independently reproduce the V̇O~2max~ processing conducted within a study, but requires the data analysis to take place in a programming (or at least code generating) environment. Such programs for the purpose of analyzing gas exchange data exist as free open-source software [@maturana2022; @nolte2022].
+
+```{r}
+#| echo: false
+#| tbl-cap: "Recommendations for reporting data processing strategies to determine the maximum oxygen uptake."
+#| label: tbl-recommendation
+
+rec_df <- data.frame(
+  item = c("Metabolic Cart", "Measurement Mode", "Software", "Preprocessing", "Processing Strategy", "Processing Parameters", "Rationale"),
+  desc = c(
+    "State the exact device model and manufacturer.",
+    "State the measurement mode (e.g., mixing chamber, breath-by-breath,…).",
+    "State the name and version of the software used for data analysis.",
+    "State if and how data underwent any initial modification (e.g., filtering of outliers, interpolation) before analysis.",
+    "State the exact data processing strategy used to determine the VO2max (e.g., binned time averages).",
+    "State the parameters used for the processing strategy (e.g., length of averaging interval).",
+    "State the rationale for using the processing strategy (e.g., reference to recommendations).")
+)
+
+out <- kableExtra::kbl(
+  rec_df,
+  col.names = c("Reporting Item", "Description"),
+  # format = "latex",
+  booktabs = TRUE
+)
+
+# knitr::asis_output(stringr::str_replace_all(out, "VO2max", "${\\\\dot{\\\\textsf{V}}\\\\textsf{O}_{\\\\textsf{2max}}}$"))
+
+out
+```
+
+## Limitations
+
+Due to the sheer quantity of the publications investigating V̇O~2max~, it was not possible to perform an exhaustive review of the literature. The scoping review therefore relies on a random sample which not necessarily captures exact trends of the literature. However, efforts were made --- such as random sampling and systematic article exclusions --- to ensure the sample to be representative. Notable, almost half of the studies did not report their data processing strategy at all. The data processing strategies used in the literature could only be investigated when studies reported them.
+
+Ambiguities in the reporting of the investigated studies may impact the analysis results. For example some studies using long binned averages (e.g., 60 seconds) may have in fact been using multiple binned averages of shorter duration (e.g., 4x15 second), without describing this correctly. Moreover the exact definitions for building binned averages vary within the literature: While most studies define the binning periods from the beginning of the exercise, some may define them from the endpoint. Additionally some studies reviewed did not define the maximum bin, but a pre-set binned average period as their V̇O~2max~ (for example the last bin, regardless of its value). In situations where the maximum in oxygen uptake is reached considerably before exhaustion (i.e., a long plateau in oxygen uptake exists) this may lead to different results than a traditional binned average processing. We did not separately consider such sub-categories of data processing strategies, as they may not be very common and are often hard to precisely investigate due to ambiguities in their reporting.
+
+This work treated each breath as the single data processing unit of cardiopulmonary exercise testing. However, metabolic carts sample gas fraction and gas flow data at a much higher frequency (e.g., 50 Hz). The data for each breath is subsequently calculated from these raw signals by the means of an algorithm. Different algorithms to generate the breath-by-breath data can lead to different outcomes [@koschate2019], and as such may also influence the V̇O~2max~. Hence documenting and reporting of the breath-by-breath algorithm is advisable. Yet many metabolic carts do not describe their default algorithm and limit access to the raw data signal.
+
+The experimental comparison of different data processing strategies was conducted on a standardized data set of exercise tests. This standardization in terms of training status, exercise protocol, and measurement device helps to highlight the impact of different data processing even in a relatively homogeneous data set. However the results may only partly transfer to different settings, such as individuals with less training background.
+
+# References
