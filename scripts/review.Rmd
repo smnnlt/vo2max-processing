@@ -484,8 +484,11 @@ ext_count$proc_combination <- factor(
   labels = c("Binned Breath","Moving Time", "Moving Breath", "Binned Time", "Multiple Binned Time"))
 
 percs <- scales::percent(ext_count$n / sum(ext_count$n))
+ext_count$perc <- percs
 ext_count$label <- paste0(ext_count$proc_combination, " (", percs, ")")
 ext_count$subgroup <- c(1, 1, 2, 3, 4)
+
+# save(ext_count, file = "../data/bbb_strategies.Rda")
 
 p_strat <- ggplot(ext_count, aes(area = n, fill = proc_combination, label = label, subgroup = subgroup)) +
   geom_treemap(show.legend = FALSE, start = "topleft") +

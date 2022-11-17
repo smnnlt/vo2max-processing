@@ -143,7 +143,7 @@ quant <- function(data, lower, upper) {
   )
 }
 
-p_comp <- ggplot(res_tidy, aes(x = parameter, y = perdiff, colour = type, fill = type)) +
+p_comp_pre <- ggplot(res_tidy, aes(x = parameter, y = perdiff, colour = type, fill = type)) +
   geom_hline(
     yintercept = 0,
     colour = "grey",
@@ -157,10 +157,6 @@ p_comp <- ggplot(res_tidy, aes(x = parameter, y = perdiff, colour = type, fill =
     alpha = 0.1, 
     colour = NA
   ) +
-  scale_x_continuous(
-    name = "Parameter",
-    breaks = c(15, 30, 45, 60)
-  ) +
   scale_y_continuous(
     name = "% to Reference",
     labels = scales::percent,
@@ -173,6 +169,12 @@ p_comp <- ggplot(res_tidy, aes(x = parameter, y = perdiff, colour = type, fill =
   scale_fill_manual(
     name = "Processing Strategy",
     values = met.brewer("Java", 3)
+  )
+
+p_comp <- p_comp_pre +
+  scale_x_continuous(
+    name = "Parameter",
+    breaks = c(15, 30, 45, 60)
   ) +
   theme_classic() +
   theme(
@@ -182,6 +184,18 @@ p_comp <- ggplot(res_tidy, aes(x = parameter, y = perdiff, colour = type, fill =
 # ggsave("../plots/comparison.png", plot = p_comp, width = 6, height = 4, dpi = 600, bg = "white")
 
 knitr::include_graphics("../plots/comparison.png")
+
+# create plot with 'Duration' as x label
+p_comp_duration <- p_comp_pre +
+  scale_x_continuous(
+    name = "Duration",
+    breaks = c(15, 30, 45, 60)
+  ) +
+  theme_classic() +
+  theme(
+    legend.position = c(0.8,0.8)
+  )
+# ggsave("../plots/comparison_xlabel.png", plot = p_comp_duration, width = 6, height = 4, dpi = 600, bg = "white")
 ```
 
 ## Plot: Respiratory Rate over time
