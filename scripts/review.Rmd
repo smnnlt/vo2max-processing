@@ -466,6 +466,10 @@ p_int <- ext[ext$ptype == "time" & !is.na(ext$ptype), ] |>
 # ggsave("../plots/duration_count.png", plot = p_int, width = 5, height = 3, dpi = 600, bg = "white")
 
 knitr::include_graphics("../plots/duration_count.png")
+
+# save data for table generation as alternative to a plot
+i_data <- ext[ext$ptype == "time" & !is.na(ext$ptype), ]
+save(i_data, file = "../data/intervals.Rda")
 ```
 
 #### Plot: Processing strategies
