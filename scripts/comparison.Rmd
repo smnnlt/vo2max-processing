@@ -183,6 +183,9 @@ p_comp <- p_comp_pre +
 
 # ggsave("../plots/comparison.png", plot = p_comp, width = 6, height = 4, dpi = 600, bg = "white")
 
+# save plot as EPS
+ggsave("../plots/comparison.pdf", plot = p_comp, width = 6, height = 4, dpi = 1200, bg = "white")
+
 knitr::include_graphics("../plots/comparison.png")
 
 # create plot with 'Duration' as x label
