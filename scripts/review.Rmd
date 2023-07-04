@@ -437,6 +437,11 @@ knitr::kable(purrr::map_dfr(reporting, scales::percent, accuracy = 0.1))
 table(ext$ptype, useNA = "ifany")
 
 # Show data processing type for breath-by-breath measurements only
+ext$total_comb <- paste(ext$proc_combination, ext$parameters, sep = "_")
+table(ext$total_comb[ext$type == "bbb"], useNA = "ifany")
+
+## Show processing type X interval combinations
+
 table(ext$proc_combination[ext$type == "bbb"], useNA = "ifany")
 
 # Plot for total calculation interval lengths
