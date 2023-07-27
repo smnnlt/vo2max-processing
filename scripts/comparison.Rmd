@@ -264,7 +264,7 @@ p_rr <- ggplot(rr_all, aes(x = time, y = value_rr, colour = is_end, alpha = is_e
     name = NULL,
     limits = c(60,950),
     breaks = c(180, 360, 540, 720, 900),
-    labels = c(2, 5, 8, 12, 15),
+    labels = c(2, 5, 8, 11, 14),
     expand = c(0,0)
   ) +
   scale_y_continuous(
@@ -281,7 +281,7 @@ p_vo2 <- ggplot(rr_all, aes(x = time, y = value_vo2, colour = is_end, alpha = is
     name = "Time (min)",
     limits = c(60,950),
     breaks = c(180, 360, 540, 720, 900),
-    labels = c(2, 5, 8, 12, 15),
+    labels = c(2, 5, 8, 11, 14),
     expand = c(0,0)
   ) +
   scale_y_continuous(
@@ -289,12 +289,12 @@ p_vo2 <- ggplot(rr_all, aes(x = time, y = value_vo2, colour = is_end, alpha = is
   ) +
   theme_classic()
 
-p_all <- p_rr / p_vo2 + plot_annotation(tag_levels = 'A')
+p_all <- p_rr / p_vo2 + plot_annotation(tag_levels = 'a')
 
 # ggsave(filename = "../plots/timecourse.png", plot = p_all, width = 6, height = 7, dpi = 600, bg = "white")
 # ggsave(filename = "../plots/timecourse.pdf", plot = p_all, width = 6, height = 7, dpi = 1200, bg = "white")
 
-p_all_vert <- (p_rr | p_vo2) + plot_annotation(tag_levels = 'A')
+p_all_vert <- (p_rr | p_vo2) + plot_annotation(tag_levels = 'a')
 # ggsave(filename = "../plots/timecourse_vert.png", plot = p_all_vert, width = 8, height = 3, dpi = 600, bg = "white")
 
 knitr::include_graphics("../plots/timecourse.png")
@@ -585,11 +585,12 @@ slct_long$name <- factor(
   levels = names(sort(apply(slct[,-1],2,mean))),
   labels = c("(f) 60-s binned", "(e) 30-s binned","(d) 30-s moving","(c) digital filter","(b) 15-breath moving","(a) 7-breath moving"))
 
+# plot with individual data
 p_selcomp <- ggplot(slct_long, aes(x = value, y = name)) +
   geom_line(aes(group = id), orientation = "y", colour = "grey80") +
   stat_dotsinterval(
     alpha = 0.7, 
-    .width = c(0.5, 0.8), 
+    .width = c(0.33, 0.66), 
     binwidth = 0.5, dotsize = 1,
     point_interval = "mean_qi"
     ) +
@@ -618,5 +619,219 @@ summary(glht(mod, linfct = mcp(name = "Tukey")), test = adjusted(type = "single-
 # ggsave(filename = "../plots/sel_comp.png", width = 8, height = 5, dpi = 600, bg = "white")
 
 p_selcomp
+
+
+# calculate place for significance symbol
+get_mean_plus <- function(i) {
+  mean(slct_long$value[slct_long$name == slct_long$name[i]], 0.9) + 6.5
+}
+slct_long$place <- map_dbl(seq_len(nrow(slct_long)), get_mean_plus)
+
+get_symbol <- function(i) {
+  ifelse(
+    slct_long$name[i] %in% c("(d) 30-s moving", "(c) digital filter"),"#","*"
+  )
+}
+get_vjust <- function(i) {
+  ifelse(
+    slct_long$name[i] %in% c("(d) 30-s moving", "(c) digital filter"), 0.3 ,0.6
+  )
+}
+slct_long$symbol <- map_chr(seq_len(nrow(slct_long)), get_symbol)
+slct_long$vjust <- map_dbl(seq_len(nrow(slct_long)), get_vjust)
+# plot without individual data
+p_selcomp2 <- ggplot(slct_long, aes(x = value, y = name)) +
+  stat_pointinterval(
+    alpha = 0.7, 
+    .width = c(0.33, 0.66), 
+    point_interval = "mean_qi"
+  ) +
+  geom_text(
+    aes(x = place, label = symbol, vjust = vjust), 
+    show.legend = FALSE
+  ) +
+  scale_x_continuous(
+    name = expression(paste(dot(V), O[2][max], " ", (ml%.%min^-1%.%kg^-1))),
+    expand = c(0.02,0.02),
+    breaks = seq(52.5,72.5,2.5),
+    labels = c("","55","","60","","65","","70","")
+  ) +
+  scale_y_discrete(
+    name = NULL,
+    expand = c(0.05,0.1)
+  ) +
+  theme_classic(base_size = 14) +
+  theme(
+    axis.line.y = element_blank(),
+    axis.text.y = element_text(colour = "black")
+  )
+
+p_selcomp2
+
+# ggsave(filename = "../plots/sel_comp2.pdf", width = 7, height = 3, dpi = 600, bg = "white")
+# ggsave(filename = "../plots/sel_comp2.png", width = 7, height = 3.5, dpi = 600, bg = "white")
+
+
+
+
+
+```
+
+## Compare impact of binning preprocessing on VO2max
+
+```{r}
+# normal time binned
+max_time_binned <- function(data, parameter, max = TRUE) {
+  nbin <- ceiling(nrow(data) / parameter)
+  ibins <- seq(from = 1, by = parameter, length.out = nbin)
+  binmean <- function(i, length, data) {
+    values <- data$VO2_rel[i:(i + length - 1)]
+    values[is.na(values)] <- 0
+    mean(values)
+  }
+  binmeans <- purrr::map_dbl(.x = ibins, .f = binmean, length = parameter, data = data)
+  if (max) max(binmeans) else binmeans
+}
+
+max_time_binned_late <- function(data, parameter, max = TRUE) {
+  raw <- attr(data, "raw")
+  last_load <- round(raw$time[max(which(raw$load != 0))])
+  nbin <- ceiling(last_load / parameter)
+  ibins <- seq(to = last_load, by = parameter, length.out = nbin)
+  binmean <- function(i, length, data) {
+    values <- data$VO2_rel[i:(i + length - 1)]
+    values[is.na(values)] <- 0
+    mean(values)
+  }
+  binmeans <- purrr::map_dbl(.x = ibins, .f = binmean, length = parameter, data = data)
+  if (max) max(binmeans) else binmeans
+}
+
+max_time_binned_noninterp <- function(data, parameter, max = TRUE) {
+  raw <- attr(data, "raw")
+  nbin <- ceiling(nrow(data) / parameter)
+  ibins <- seq(from = 0, by = parameter, length.out = nbin)
+  binmean <- function(i, length, data) {
+    raw <- attr(data, "raw")
+    values <- raw$VO2[raw$time >= ibins[i] & raw$time <= (ibins[i]+length)] / attr(data, "info")$weight
+    values[is.na(values)] <- 0
+    mean(values)
+  }
+  binmeans <- purrr::map_dbl(.x = seq_along(ibins), .f = binmean, length = parameter, data = data)
+  if (max) max(binmeans) else binmeans
+}
+
+
+
+
+get_vo2max <- function(n, parameter = 30) {
+  data <- spiro(files[n], weight = info$bodymass[n])
+  data.frame(
+    begin = max_time_binned(data = data, parameter = parameter),
+    end = max_time_binned_late(data = data, parameter = parameter),
+    nonint = max_time_binned_noninterp(data = data, parameter = parameter)
+  )
+}
+
+o <- purrr::map_dfr(seq_along(files), get_vo2max)
+o$dif_align <- o$begin - o$end
+o$dif_interp <- o$begin - o$nonint
+apply(o, 2, mean)
+apply(o, 2, sd)
+
+```
+
+## Plot for article: Visualizing different strategies in one raw data set
+
+```{r example, warning = FALSE}
+plot_data <- function(id, show_legend = TRUE, show_ylabel = TRUE) {
+id_info <- read.csv("../data/participants.csv")
+bodymass <- id_info$bodymass[id_info$p == id]
+
+exm_data <- spiro(files[id])
+raw_vo2 <- attr(exm_data, "raw")$VO2
+raw_time <- attr(exm_data, "raw")$time
+
+fz2 <- spiro_smooth(exm_data, "fz", "VO2")[,1]
+mb2 <- spiro_smooth(exm_data, "7b", "VO2")[,1]
+mt2 <- spiro_smooth(exm_data, 30, "VO2")[,1]
+tb2 <- rep(max_time_binned(exm_data, 60, max = FALSE) * attr(exm_data, "info")[["weight"]], each = 60)
+
+exm_tidy2 <- data.frame(
+  method = c(rep.int("raw", length(raw_vo2)), rep.int("fz", length(fz2)), rep.int("mb", length(mb2)), rep.int("mt", length(mt2)), rep.int("tb", length(tb2))),
+  value = c(raw_vo2, fz2, mb2, mt2, tb2),
+  time = c(rep.int(raw_time, 3), seq_along(mt2), seq_along(tb2))
+)
+
+exm_tidy2$method <- factor(
+  exm_tidy2$method, 
+  levels = c("raw", "mb", "mt", "tb", "fz"), 
+  labels = c("raw","7-breath moving","30-s moving","60-s binned", "digital filter"),
+  ordered = TRUE
+)
+exm_tidy2$value <- exm_tidy2$value / bodymass
+
+
+exm_tidy_cut <- exm_tidy2[exm_tidy2$time >= 500,]
+exm_tidy_cut_copy <- exm_tidy_cut[exm_tidy_cut$method == "raw", ]
+colnames(exm_tidy_cut_copy)[3] <- "timecopy"
+
+allplot <- ggplot(exm_tidy_cut, aes(x = time)) +
+  geom_point(
+    data = exm_tidy_cut_copy, 
+    aes(x = timecopy, y = value, alpha = method),
+    color = "black",
+    alpha = 0.15,
+    show.legend = FALSE,
+    size = 1.5
+  ) +
+  geom_line(
+    data = exm_tidy_cut[exm_tidy_cut$method %in% c("7-breath moving", "30-s moving", "digital filter", "60-s binned"), ], 
+    aes(y = value, color = method, linetype = method), 
+    size = 0.9,
+    show.legend = show_legend
+  ) +
+  scale_x_continuous(
+    name = "Time (min)",
+    limits = c(520,800),
+    breaks = c(540, 660, 780),
+    labels = c(8, 10, 12),
+    expand = c(0,0)
+  ) +
+    scale_y_continuous(
+      name = ifelse(show_ylabel, expression(paste(dot(V), O[2], " ", (ml%.%min^-1%.%kg^-1))), ""),
+      limits = c(45,80)
+    ) +
+  scale_color_manual(
+    name = "Method",
+    values = c("darkgreen", "purple", "orange", "turquoise2")
+  ) +
+  scale_linetype_manual(name = "Method", values = c("solid", "dashed", "longdash", "dotted")) +
+  theme_classic(12) +
+  theme(legend.position = "top")
+
+allplot
+}
+
+
+guide_area() / (plot_data(53, show_legend = FALSE) | plot_data(61, show_ylabel = FALSE)) + plot_layout(guides = 'collect', heights = c(1,6)) + plot_annotation(tag_levels = 'a') & theme(legend.position = "top") 
+
+
+#ggsave("../plots/allplot_article.png", dpi = 300, width = 7, height = 4, bg = "white")
+#ggsave("../plots/allplot_article.pdf", dpi = 300, width = 7, height = 4, bg = "white")
+```
+
+### Difference between filter and 30-s moving average
+```{r}
+res <- read.csv("../data/results.csv")
+ba <- data.frame(
+  f = fmax,
+  m = res$tm_30
+)
+
+ba$dif <- ba$f - ba$m
+
+mean(ba$dif)
+sd(ba$dif)
 ```
 
