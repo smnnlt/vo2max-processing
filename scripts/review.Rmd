@@ -437,6 +437,11 @@ knitr::kable(purrr::map_dfr(reporting, scales::percent, accuracy = 0.1))
 table(ext$ptype, useNA = "ifany")
 
 # Show data processing type for breath-by-breath measurements only
+ext$total_comb <- paste(ext$proc_combination, ext$parameters, sep = "_")
+table(ext$total_comb[ext$type == "bbb"], useNA = "ifany")
+
+## Show processing type X interval combinations
+
 table(ext$proc_combination[ext$type == "bbb"], useNA = "ifany")
 
 # Plot for total calculation interval lengths
@@ -466,6 +471,10 @@ p_int <- ext[ext$ptype == "time" & !is.na(ext$ptype), ] |>
 # ggsave("../plots/duration_count.png", plot = p_int, width = 5, height = 3, dpi = 600, bg = "white")
 
 knitr::include_graphics("../plots/duration_count.png")
+
+# save data for table generation as alternative to a plot
+i_data <- ext[ext$ptype == "time" & !is.na(ext$ptype), ]
+save(i_data, file = "../data/intervals.Rda")
 ```
 
 #### Plot: Processing strategies
@@ -484,8 +493,11 @@ ext_count$proc_combination <- factor(
   labels = c("Binned Breath","Moving Time", "Moving Breath", "Binned Time", "Multiple Binned Time"))
 
 percs <- scales::percent(ext_count$n / sum(ext_count$n))
+ext_count$perc <- percs
 ext_count$label <- paste0(ext_count$proc_combination, " (", percs, ")")
 ext_count$subgroup <- c(1, 1, 2, 3, 4)
+
+# save(ext_count, file = "../data/bbb_strategies.Rda")
 
 p_strat <- ggplot(ext_count, aes(area = n, fill = proc_combination, label = label, subgroup = subgroup)) +
   geom_treemap(show.legend = FALSE, start = "topleft") +
