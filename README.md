@@ -1,6 +1,8 @@
 # Data Processing Strategies to Determine Maximum Oxygen Uptake: A Systematic Scoping Review and Experimental Comparison
 
-A sport science project.
+A sport science project. Published as an article in Sports Medicine:
+
+Nolte, S., Rein, R. & Quittmann, O.J. Data Processing Strategies to Determine Maximum Oxygen Uptake: A Systematic Scoping Review and Experimental Comparison with Guidelines for Reporting. Sports Med (2023). https://doi.org/10.1007/s40279-023-01903-3
 
 Read the preregistration on [OSF](https://osf.io/3am4s).
 
